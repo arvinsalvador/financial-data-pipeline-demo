@@ -60,7 +60,7 @@ system, choose or drop a `.csv` file, and select **Upload and register**. The ba
    `<checksum>_<sanitized-filename>` without overwriting an existing file; and
 5. writes the source-file, pipeline-run, and pipeline-run-step history.
 
-The default maximum is 10 MiB (`MAX_UPLOAD_SIZE_BYTES=10485760`). Allowed MIME types and
+The default maximum is 250 MiB (`MAX_UPLOAD_SIZE_BYTES=262144000`). Allowed MIME types and
 extensions are configurable in `.env`. Original names remain in database metadata, while
 only relative storage paths are returned by the API. Registered raw files persist through
 container restarts because `./data` is mounted at `/data` in the backend.

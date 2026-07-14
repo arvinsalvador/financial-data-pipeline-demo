@@ -26,7 +26,7 @@ class Settings(BaseSettings):
     ALLOWED_SOURCE_FILE_MIME_TYPES: str = (
         "text/csv,application/csv,application/vnd.ms-excel,text/plain,application/octet-stream"
     )
-    MAX_UPLOAD_SIZE_BYTES: int = Field(default=10 * 1024 * 1024, gt=0)
+    MAX_UPLOAD_SIZE_BYTES: int = Field(default=250 * 1024 * 1024, gt=0)
     PROFILING_VERSION: str = "1.0.0"
     INGESTION_VERSION: str = "1.0.0"
     INGESTION_REPORTS_DIRECTORY: Path = Path("/data/reports")

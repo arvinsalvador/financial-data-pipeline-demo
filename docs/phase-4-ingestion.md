@@ -30,7 +30,7 @@ Bank and credit-card `amount` keeps the parsed source sign. Where a source suppl
 
 Every completed run enforces `extracted = accepted + rejected`. Stored controls include extracted, accepted, rejected, and source-versus-accepted monetary totals; unavailable values remain null. The 13 recorded steps cover authorization/context validation, metadata, checksum, profile/mapping, CSV opening, extraction, parsing, staging, rejections, totals, invariants, artifacts, and finalization. A failed step leaves the run failed.
 
-Four immutable, run-specific JSON artifacts are registered with relative paths and SHA-256 checksums: ingestion manifest, rejected-row report, control-total report, and ingestion summary. Current files are processed deterministically in a streaming CSV loop; the configured upload limit is 10 MiB and profiling is capped at 100,000 rows.
+Four immutable, run-specific JSON artifacts are registered with relative paths and SHA-256 checksums: ingestion manifest, rejected-row report, control-total report, and ingestion summary. Current files are processed deterministically in a streaming CSV loop; the configured upload limit is 250 MiB and profiling is capped at 100,000 rows.
 
 ## API and UI
 

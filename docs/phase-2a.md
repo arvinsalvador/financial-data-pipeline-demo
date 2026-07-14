@@ -19,7 +19,7 @@ replacement. The seeded source-system code is `kaggle_small_business_finance`.
 
 ## Limits and current exclusions
 
-The default maximum upload size is 10 MiB and only `.csv` is allowed. MIME validation
+The default maximum upload size is 250 MiB and only `.csv` is allowed. MIME validation
 accepts common browser CSV MIME types and can be configured through `.env`. This phase does
 not profile, parse, normalize, reconcile, calculate, or ingest CSV records. Authentication,
 tenancy, orchestration, forecasting, and AI remain out of scope.

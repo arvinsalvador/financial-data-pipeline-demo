@@ -23,7 +23,8 @@ import {
 } from "../api/ingestion";
 import { IngestionView } from "./IngestionView";
 
-const MAX_UPLOAD_BYTES = 10 * 1024 * 1024;
+const MAX_UPLOAD_BYTES = Number(import.meta.env.VITE_MAX_UPLOAD_SIZE_BYTES ?? 250 * 1024 * 1024);
+const MAX_UPLOAD_MIB = Math.floor(MAX_UPLOAD_BYTES / (1024 * 1024));
 
 function formatBytes(bytes: number) {
   if (bytes < 1024) return `${bytes} B`;
@@ -92,7 +93,10 @@ export function CsvUploadPage() {
     }
     if (file.size > MAX_UPLOAD_BYTES) {
       setSelectedFile(null);
-      setMessage({ kind: "error", text: "The CSV exceeds the 10 MB upload limit." });
+      setMessage({
+        kind: "error",
+        text: `The CSV exceeds the ${MAX_UPLOAD_MIB} MiB upload limit.`,
+      });
       return;
     }
     setSelectedFile(file);
@@ -216,7 +220,7 @@ export function CsvUploadPage() {
           }}
         >
           <strong>Drop a CSV here</strong>
-          <span>or choose a file up to 10 MB</span>
+          <span>or choose a file up to {MAX_UPLOAD_MIB} MiB</span>
           <input
             ref={inputRef}
             type="file"
