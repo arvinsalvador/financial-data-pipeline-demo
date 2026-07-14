@@ -15,7 +15,7 @@ from app.exceptions import (
     RegistrationFailure,
     UploadServiceError,
 )
-from app.models import SourceFile, SourceSystem
+from app.models import PipelineRunArtifact, SourceFile, SourceSystem, Tenant
 from app.services.checksum import StreamingChecksum
 from app.services.filename import deterministic_stored_filename, sanitize_filename
 from app.services.pipeline_runs import PipelineRunRecorder
@@ -38,16 +38,22 @@ class SourceFileRegistrationService:
         self.recorder = PipelineRunRecorder()
 
     async def register(
-        self, session: Session, upload: UploadFile, source_system_code: str
+        self,
+        session: Session,
+        upload: UploadFile,
+        source_system_code: str,
+        tenant: Tenant,
     ) -> RegistrationResult:
         original_filename = upload.filename or ""
-        run_id = self.recorder.start(session, original_filename, source_system_code)
+        run_id = self.recorder.start(session, original_filename, source_system_code, tenant.id)
         temporary_path: Path | None = None
         registered_path: Path | None = None
         try:
             source_system = session.scalar(
                 select(SourceSystem).where(
-                    SourceSystem.code == source_system_code, SourceSystem.is_active.is_(True)
+                    SourceSystem.tenant_id == tenant.id,
+                    SourceSystem.code == source_system_code,
+                    SourceSystem.is_active.is_(True),
                 )
             )
             if source_system is None:
@@ -62,18 +68,23 @@ class SourceFileRegistrationService:
             temporary_path, file_size, checksum = await self._stream_to_temporary(upload)
 
             existing = session.scalar(
-                select(SourceFile).where(SourceFile.sha256_checksum == checksum)
+                select(SourceFile).where(
+                    SourceFile.tenant_id == tenant.id, SourceFile.sha256_checksum == checksum
+                )
             )
             if existing is not None:
                 self.storage.remove_if_present(temporary_path)
                 self.recorder.duplicate(session, run_id, existing.id, checksum)
                 raise DuplicateSourceFile(existing.id, checksum, pipeline_run_id=run_id)
 
-            stored_filename = deterministic_stored_filename(checksum, sanitized_filename)
+            stored_filename = (
+                f"{tenant.code}_{deterministic_stored_filename(checksum, sanitized_filename)}"
+            )
             registered_path = self.storage.register(temporary_path, stored_filename)
             temporary_path = None
             now = datetime.now(UTC)
             source_file = SourceFile(
+                tenant_id=tenant.id,
                 source_system_id=source_system.id,
                 original_filename=original_filename,
                 stored_filename=stored_filename,
@@ -99,6 +110,20 @@ class SourceFileRegistrationService:
                     "file_size_bytes": file_size,
                 },
             )
+            session.add(
+                PipelineRunArtifact(
+                    tenant_id=tenant.id,
+                    pipeline_run_id=run_id,
+                    artifact_type="registered_source",
+                    name=stored_filename,
+                    relative_path=source_file.relative_path,
+                    checksum=checksum,
+                    mime_type=mime_type,
+                    file_size_bytes=file_size,
+                    metadata_json={"immutable": True},
+                )
+            )
+            session.commit()
             session.refresh(source_file)
             return RegistrationResult(source_file=source_file, pipeline_run_id=run_id)
         except DuplicateSourceFile:

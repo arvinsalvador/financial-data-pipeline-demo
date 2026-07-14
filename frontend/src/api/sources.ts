@@ -1,4 +1,5 @@
 import { API_BASE_URL } from "./health";
+import { governedFetch } from "./context";
 
 export interface SourceSystem {
   id: number;
@@ -107,17 +108,17 @@ async function parseResponse<T>(response: Response): Promise<T> {
 }
 
 export async function fetchSourceSystems(signal?: AbortSignal): Promise<SourceSystem[]> {
-  const response = await fetch(`${API_BASE_URL}/source-systems?page_size=100`, { signal });
+  const response = await governedFetch(`${API_BASE_URL}/source-systems?page_size=100`, { signal });
   return (await parseResponse<Page<SourceSystem>>(response)).items;
 }
 
 export async function fetchSourceFiles(signal?: AbortSignal): Promise<SourceFile[]> {
-  const response = await fetch(`${API_BASE_URL}/source-files?page_size=20`, { signal });
+  const response = await governedFetch(`${API_BASE_URL}/source-files?page_size=20`, { signal });
   return (await parseResponse<Page<SourceFile>>(response)).items;
 }
 
 export async function fetchSourceFile(sourceFileId: number): Promise<SourceFile> {
-  const response = await fetch(`${API_BASE_URL}/source-files/${sourceFileId}`);
+  const response = await governedFetch(`${API_BASE_URL}/source-files/${sourceFileId}`);
   return parseResponse<SourceFile>(response);
 }
 
@@ -128,7 +129,7 @@ export async function uploadSourceFile(
   const formData = new FormData();
   formData.append("file", file);
   formData.append("source_system_code", sourceSystemCode);
-  const response = await fetch(`${API_BASE_URL}/source-files/upload`, {
+  const response = await governedFetch(`${API_BASE_URL}/source-files/upload`, {
     method: "POST",
     body: formData,
   });
@@ -136,19 +137,19 @@ export async function uploadSourceFile(
 }
 
 export async function profileSourceFile(sourceFileId: number): Promise<SourceFileProfile> {
-  const response = await fetch(`${API_BASE_URL}/source-files/${sourceFileId}/profile`, {
+  const response = await governedFetch(`${API_BASE_URL}/source-files/${sourceFileId}/profile`, {
     method: "POST",
   });
   return parseResponse<SourceFileProfile>(response);
 }
 
 export async function fetchLatestProfile(sourceFileId: number): Promise<SourceFileProfile> {
-  const response = await fetch(`${API_BASE_URL}/source-files/${sourceFileId}/profiles/latest`);
+  const response = await governedFetch(`${API_BASE_URL}/source-files/${sourceFileId}/profiles/latest`);
   return parseResponse<SourceFileProfile>(response);
 }
 
 export async function fetchProfileColumns(profileId: number): Promise<ColumnProfile[]> {
-  const response = await fetch(`${API_BASE_URL}/profiles/${profileId}/columns?page_size=200`);
+  const response = await governedFetch(`${API_BASE_URL}/profiles/${profileId}/columns?page_size=200`);
   return (await parseResponse<Page<ColumnProfile>>(response)).items;
 }
 
@@ -160,6 +161,6 @@ export async function fetchProfileIssues(
   const params = new URLSearchParams({ page_size: "200" });
   if (severity) params.set("severity", severity);
   if (issueType) params.set("issue_type", issueType);
-  const response = await fetch(`${API_BASE_URL}/profiles/${profileId}/issues?${params}`);
+  const response = await governedFetch(`${API_BASE_URL}/profiles/${profileId}/issues?${params}`);
   return (await parseResponse<Page<DataQualityIssue>>(response)).items;
 }

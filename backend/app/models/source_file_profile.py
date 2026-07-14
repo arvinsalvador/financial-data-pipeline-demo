@@ -35,6 +35,9 @@ class SourceFileProfile(Base):
     )
 
     id: Mapped[int] = mapped_column(primary_key=True)
+    tenant_id: Mapped[int] = mapped_column(
+        ForeignKey("tenants.id", ondelete="RESTRICT"), index=True
+    )
     source_file_id: Mapped[int] = mapped_column(
         ForeignKey("source_files.id", ondelete="CASCADE"), index=True
     )

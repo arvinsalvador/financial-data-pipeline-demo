@@ -2,12 +2,20 @@ import { useCallback, useEffect, useState } from "react";
 
 import { API_BASE_URL, fetchHealth, type HealthResponse } from "./api/health";
 import { CsvUploadPage } from "./components/CsvUploadPage";
+import { GovernancePage } from "./components/GovernancePage";
 import { StatusCard } from "./components/StatusCard";
+import { DEFAULT_ACTOR, DEFAULT_TENANT, setDevelopmentContext } from "./api/context";
+import { fetchTenants, type Tenant } from "./api/governance";
 
 export default function App() {
   const [health, setHealth] = useState<HealthResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [tenantCode, setTenantCode] = useState(localStorage.getItem("demoTenantCode") ?? DEFAULT_TENANT);
+  const [actorEmail, setActorEmail] = useState(localStorage.getItem("demoActorEmail") ?? DEFAULT_ACTOR);
+  const [tenants, setTenants] = useState<Tenant[]>([]);
+  const [page, setPage] = useState<"sources" | "governance">("sources");
+  const [contextVersion, setContextVersion] = useState(0);
 
   const loadHealth = useCallback(async (signal?: AbortSignal) => {
     setLoading(true);
@@ -38,6 +46,18 @@ export default function App() {
     return () => controller.abort();
   }, []);
 
+  useEffect(() => {
+    setDevelopmentContext(tenantCode, actorEmail);
+    void fetchTenants().then(setTenants).catch(() => setTenants([]));
+  }, [tenantCode, actorEmail]);
+
+  function changeContext(nextTenant: string, nextActor: string) {
+    setDevelopmentContext(nextTenant, nextActor);
+    setTenantCode(nextTenant);
+    setActorEmail(nextActor);
+    setContextVersion((value) => value + 1);
+  }
+
   return (
     <main>
       <section className="panel status-panel">
@@ -61,7 +81,13 @@ export default function App() {
           </button>
         </div>
       </section>
-      <div className="panel"><CsvUploadPage /></div>
+      <section className="panel context-bar">
+        <div><p className="eyebrow">Development context · Not authentication</p><strong>Tenant and actor simulation</strong></div>
+        <label>Tenant<select value={tenantCode} onChange={(event) => changeContext(event.target.value, actorEmail)}>{tenants.length ? tenants.map((tenant) => <option key={tenant.id} value={tenant.code}>{tenant.display_name}</option>) : <option value={tenantCode}>{tenantCode}</option>}</select></label>
+        <label>Demo user<select value={actorEmail} onChange={(event) => changeContext(tenantCode, event.target.value)}><option value="admin@demo.local">Platform admin</option><option value="cfo@demo.local">CFO user</option><option value="analyst@demo.local">Finance analyst</option><option value="viewer@demo.local">Client viewer</option></select></label>
+        <nav><button type="button" className={page === "sources" ? "" : "secondary-button"} onClick={() => setPage("sources")}>Sources</button><button type="button" className={page === "governance" ? "" : "secondary-button"} onClick={() => setPage("governance")}>Governance & audit</button></nav>
+      </section>
+      <div className="panel" key={`${tenantCode}-${actorEmail}-${contextVersion}`}>{page === "sources" ? <CsvUploadPage /> : <GovernancePage />}</div>
     </main>
   );
 }

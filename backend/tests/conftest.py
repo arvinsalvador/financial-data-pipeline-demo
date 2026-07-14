@@ -16,6 +16,8 @@ from app.core.config import Settings, get_settings
 from app.db.session import SessionLocal
 from app.main import app
 from app.models import (
+    AuditEvent,
+    AuditEventChange,
     DataQualityIssue,
     PipelineRun,
     PipelineRunStep,
@@ -23,6 +25,7 @@ from app.models import (
     SourceFileColumnProfile,
     SourceFileProfile,
 )
+from app.services.governance_seed import seed_governance_data
 
 
 @pytest.fixture
@@ -40,10 +43,17 @@ def test_settings(tmp_path: Path) -> Settings:
 @pytest.fixture(autouse=True)
 def isolate_registration_records(tmp_path: Path) -> Generator[None, None, None]:
     with SessionLocal() as session:
+        seed_governance_data(session, get_settings())
         baseline_run_id = session.scalar(select(func.max(PipelineRun.id))) or 0
         baseline_file_id = session.scalar(select(func.max(SourceFile.id))) or 0
+        baseline_audit_id = session.scalar(select(func.max(AuditEvent.id))) or 0
     yield
     with SessionLocal() as session:
+        new_audit_ids = select(AuditEvent.id).where(AuditEvent.id > baseline_audit_id)
+        session.execute(
+            delete(AuditEventChange).where(AuditEventChange.audit_event_id.in_(new_audit_ids))
+        )
+        session.execute(delete(AuditEvent).where(AuditEvent.id > baseline_audit_id))
         new_run_ids = select(PipelineRun.id).where(PipelineRun.id > baseline_run_id)
         new_profile_ids = select(SourceFileProfile.id).where(
             SourceFileProfile.pipeline_run_id.in_(new_run_ids)
@@ -71,7 +81,13 @@ def isolate_registration_records(tmp_path: Path) -> Generator[None, None, None]:
 @pytest.fixture
 def client(test_settings: Settings) -> Generator[TestClient, None, None]:
     app.dependency_overrides[get_settings] = lambda: test_settings
-    with TestClient(app) as test_client:
+    with TestClient(
+        app,
+        headers={
+            "X-Tenant-Code": "demo_coffee_group",
+            "X-Demo-User": "analyst@demo.local",
+        },
+    ) as test_client:
         yield test_client
     app.dependency_overrides.clear()
 

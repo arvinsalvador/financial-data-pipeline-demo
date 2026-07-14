@@ -4,6 +4,8 @@ A portfolio-oriented foundation for a future CFO financial data pipeline. Phase 
 the local platform boundary. Phase 2A adds CSV upload, source registration, checksum-based
 duplicate detection, immutable raw storage, and auditable pipeline history. Phase 2B adds
 versioned CSV profiling, column statistics, control totals, and data-quality issues.
+Phase 3 adds tenant ownership, demo users and roles, centralized permissions, append-only
+audit events, formal pipeline definitions, and artifact lineage.
 
 ## Phase 1 scope
 
@@ -107,6 +109,23 @@ curl -X POST http://localhost:8000/api/v1/source-files/1/profile
 See [Phase 2B profiling](docs/phase-2b.md) for stored metrics, rules, severity meanings,
 money/date parsing, balance validation, versioning, API endpoints, configuration, and
 known limitations. Profile totals are source controls, not authoritative reporting.
+
+## Tenant governance
+
+Development requests now require `X-Tenant-Code` and `X-Demo-User`. The React header
+provides development-only selectors and clearly states that they are not authentication.
+
+```bash
+curl -H 'X-Tenant-Code: demo_coffee_group' \
+  -H 'X-Demo-User: analyst@demo.local' \
+  http://localhost:8000/api/v1/source-files
+
+docker compose exec backend python -m app.cli.seed_governance
+docker compose exec backend python -m app.cli.verify_tenant_integrity
+```
+
+See [Phase 3 governance](docs/phase-3.md) for roles, permission mappings, audit semantics,
+pipeline definitions and artifacts, isolation behavior, demo users, and API examples.
 
 ## Database and migrations
 

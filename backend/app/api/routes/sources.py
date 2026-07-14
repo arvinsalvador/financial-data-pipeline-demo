@@ -5,6 +5,7 @@ from fastapi.responses import JSONResponse
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session, selectinload
 
+from app.api.dependencies import RequestContext, require_permission
 from app.core.config import Settings, get_settings
 from app.db.session import get_db
 from app.exceptions import DuplicateSourceFile, UploadServiceError
@@ -21,6 +22,7 @@ from app.schemas.sources import (
     UploadErrorResponse,
     UploadSuccessResponse,
 )
+from app.services.governance import AuditService
 from app.services.source_registration import SourceFileRegistrationService
 
 router = APIRouter()
@@ -29,6 +31,7 @@ router = APIRouter()
 def _source_file_response(source_file: SourceFile) -> SourceFileResponse:
     return SourceFileResponse(
         id=source_file.id,
+        tenant_id=source_file.tenant_id,
         source_system_id=source_file.source_system_id,
         source_system_code=source_file.source_system.code,
         original_filename=source_file.original_filename,
@@ -49,6 +52,8 @@ def _source_file_response(source_file: SourceFile) -> SourceFileResponse:
 def _pipeline_run_response(run: PipelineRun) -> PipelineRunResponse:
     return PipelineRunResponse(
         id=run.id,
+        tenant_id=run.tenant_id,
+        pipeline_definition_id=run.pipeline_definition_id,
         run_type=run.run_type,
         status=run.status,
         started_at=run.started_at,
@@ -68,13 +73,26 @@ def _pipeline_run_response(run: PipelineRun) -> PipelineRunResponse:
 async def upload_source_file(
     session: Annotated[Session, Depends(get_db)],
     settings: Annotated[Settings, Depends(get_settings)],
+    context: Annotated[RequestContext, Depends(require_permission("source_files.upload"))],
     file: Annotated[UploadFile, File()],
     source_system_code: Annotated[str, Form(min_length=1, max_length=100)],
 ) -> JSONResponse:
     service = SourceFileRegistrationService(settings)
     try:
-        result = await service.register(session, file, source_system_code)
+        result = await service.register(session, file, source_system_code, context.tenant)
     except DuplicateSourceFile as error:
+        AuditService().record(
+            session,
+            context,
+            event_type="source_file.duplicate_upload",
+            entity_type="source_file",
+            entity_id=error.existing_source_file_id,
+            action="upload",
+            description="Attempted to upload duplicate source bytes",
+            pipeline_run_id=error.pipeline_run_id,
+            source_file_id=error.existing_source_file_id,
+        )
+        session.commit()
         duplicate_body = UploadDuplicateResponse(
             status="duplicate",
             message=error.message,
@@ -94,6 +112,22 @@ async def upload_source_file(
         return JSONResponse(status_code=error.status_code, content=error_body.model_dump())
 
     source_file = result.source_file
+    AuditService().record(
+        session,
+        context,
+        event_type="source_file.uploaded",
+        entity_type="source_file",
+        entity_id=source_file.id,
+        action="upload",
+        description=f"Uploaded {source_file.original_filename}",
+        pipeline_run_id=result.pipeline_run_id,
+        source_file_id=source_file.id,
+        metadata={
+            "checksum": source_file.sha256_checksum,
+            "file_size_bytes": source_file.file_size_bytes,
+        },
+    )
+    session.commit()
     success_body = UploadSuccessResponse(
         status="registered",
         source_file_id=source_file.id,
@@ -109,12 +143,21 @@ async def upload_source_file(
 @router.get("/source-systems", response_model=SourceSystemPage)
 def list_source_systems(
     session: Annotated[Session, Depends(get_db)],
+    context: Annotated[RequestContext, Depends(require_permission("source_systems.view"))],
     page: Annotated[int, Query(ge=1)] = 1,
     page_size: Annotated[int, Query(ge=1, le=100)] = 20,
 ) -> SourceSystemPage:
-    total = session.scalar(select(func.count()).select_from(SourceSystem)) or 0
+    total = (
+        session.scalar(
+            select(func.count())
+            .select_from(SourceSystem)
+            .where(SourceSystem.tenant_id == context.tenant.id)
+        )
+        or 0
+    )
     items = session.scalars(
         select(SourceSystem)
+        .where(SourceSystem.tenant_id == context.tenant.id)
         .order_by(SourceSystem.name)
         .offset((page - 1) * page_size)
         .limit(page_size)
@@ -130,12 +173,21 @@ def list_source_systems(
 @router.get("/source-files", response_model=SourceFilePage)
 def list_source_files(
     session: Annotated[Session, Depends(get_db)],
+    context: Annotated[RequestContext, Depends(require_permission("source_files.view"))],
     page: Annotated[int, Query(ge=1)] = 1,
     page_size: Annotated[int, Query(ge=1, le=100)] = 20,
 ) -> SourceFilePage:
-    total = session.scalar(select(func.count()).select_from(SourceFile)) or 0
+    total = (
+        session.scalar(
+            select(func.count())
+            .select_from(SourceFile)
+            .where(SourceFile.tenant_id == context.tenant.id)
+        )
+        or 0
+    )
     items = session.scalars(
         select(SourceFile)
+        .where(SourceFile.tenant_id == context.tenant.id)
         .options(selectinload(SourceFile.source_system))
         .order_by(SourceFile.registered_at.desc(), SourceFile.id.desc())
         .offset((page - 1) * page_size)
@@ -151,11 +203,13 @@ def list_source_files(
 
 @router.get("/source-files/{source_file_id}", response_model=SourceFileResponse)
 def get_source_file(
-    source_file_id: int, session: Annotated[Session, Depends(get_db)]
+    source_file_id: int,
+    session: Annotated[Session, Depends(get_db)],
+    context: Annotated[RequestContext, Depends(require_permission("source_files.view"))],
 ) -> SourceFileResponse:
     source_file = session.scalar(
         select(SourceFile)
-        .where(SourceFile.id == source_file_id)
+        .where(SourceFile.id == source_file_id, SourceFile.tenant_id == context.tenant.id)
         .options(selectinload(SourceFile.source_system))
     )
     if source_file is None:
@@ -166,12 +220,21 @@ def get_source_file(
 @router.get("/pipeline-runs", response_model=PipelineRunPage)
 def list_pipeline_runs(
     session: Annotated[Session, Depends(get_db)],
+    context: Annotated[RequestContext, Depends(require_permission("pipeline_runs.view"))],
     page: Annotated[int, Query(ge=1)] = 1,
     page_size: Annotated[int, Query(ge=1, le=100)] = 20,
 ) -> PipelineRunPage:
-    total = session.scalar(select(func.count()).select_from(PipelineRun)) or 0
+    total = (
+        session.scalar(
+            select(func.count())
+            .select_from(PipelineRun)
+            .where(PipelineRun.tenant_id == context.tenant.id)
+        )
+        or 0
+    )
     items = session.scalars(
         select(PipelineRun)
+        .where(PipelineRun.tenant_id == context.tenant.id)
         .options(selectinload(PipelineRun.steps))
         .order_by(PipelineRun.started_at.desc(), PipelineRun.id.desc())
         .offset((page - 1) * page_size)
@@ -187,11 +250,13 @@ def list_pipeline_runs(
 
 @router.get("/pipeline-runs/{pipeline_run_id}", response_model=PipelineRunResponse)
 def get_pipeline_run(
-    pipeline_run_id: int, session: Annotated[Session, Depends(get_db)]
+    pipeline_run_id: int,
+    session: Annotated[Session, Depends(get_db)],
+    context: Annotated[RequestContext, Depends(require_permission("pipeline_runs.view"))],
 ) -> PipelineRunResponse:
     run = session.scalar(
         select(PipelineRun)
-        .where(PipelineRun.id == pipeline_run_id)
+        .where(PipelineRun.id == pipeline_run_id, PipelineRun.tenant_id == context.tenant.id)
         .options(selectinload(PipelineRun.steps))
     )
     if run is None:

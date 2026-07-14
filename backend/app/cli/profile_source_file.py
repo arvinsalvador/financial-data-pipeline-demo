@@ -30,7 +30,10 @@ def main() -> None:
             )
             source_ids = list(session.scalars(select(SourceFile.id).where(~profiled)))
         for source_id in source_ids:
-            profile = service.profile(session, source_id)
+            source = session.get(SourceFile, source_id)
+            if source is None:
+                raise RuntimeError(f"Source file {source_id} not found")
+            profile = service.profile(session, source_id, source.tenant_id)
             print(f"source_file_id={source_id} profile_id={profile.id} status={profile.status}")
 
 

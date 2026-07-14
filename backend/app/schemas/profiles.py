@@ -40,6 +40,7 @@ class IssueResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
     id: int
+    tenant_id: int
     source_file_id: int
     source_file_profile_id: int
     pipeline_run_id: int
@@ -64,6 +65,7 @@ class ProfileResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
     id: int
+    tenant_id: int
     source_file_id: int
     pipeline_run_id: int
     profile_version: str

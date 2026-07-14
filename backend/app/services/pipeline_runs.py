@@ -5,14 +5,28 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.models import PipelineRun, PipelineRunStep
+from app.services.governance import PipelineDefinitionService
 
 
 class PipelineRunRecorder:
     step_name = "receive_and_register"
 
-    def start(self, session: Session, original_filename: str, source_system_code: str) -> int:
+    def start(
+        self,
+        session: Session,
+        original_filename: str,
+        source_system_code: str,
+        tenant_id: int,
+    ) -> int:
         now = datetime.now(UTC)
-        run = PipelineRun(run_type="source_file_upload", status="running", started_at=now)
+        definition = PipelineDefinitionService().active_for(session, "source_file_registration")
+        run = PipelineRun(
+            tenant_id=tenant_id,
+            pipeline_definition_id=definition.id,
+            run_type="source_file_upload",
+            status="running",
+            started_at=now,
+        )
         run.steps.append(
             PipelineRunStep(
                 step_name=self.step_name,

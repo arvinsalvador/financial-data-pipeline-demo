@@ -35,6 +35,13 @@ class Settings(BaseSettings):
     SUPPORTED_ENCODINGS: str = "utf-8-sig,utf-8"
     SUPPORTED_DATE_FORMATS: str = "%Y-%m-%d,%m/%d/%Y,%m/%-d/%Y,%m/%d/%Y %H:%M:%S,%Y-%m-%d %H:%M:%S"
     MAX_PROFILING_ROW_COUNT: int = Field(default=100000, gt=0)
+    ENABLE_DEMO_ACTOR_HEADERS: bool = True
+    DEFAULT_DEMO_TENANT_CODE: str = "demo_coffee_group"
+    DEFAULT_DEMO_USER_EMAIL: str = "analyst@demo.local"
+
+    @property
+    def demo_actor_headers_enabled(self) -> bool:
+        return self.ENABLE_DEMO_ACTOR_HEADERS and self.ENVIRONMENT in {"development", "test"}
 
     @property
     def database_url(self) -> str:
