@@ -210,3 +210,15 @@ Phase 5 canonical financial normalization is documented in
 versioned canonical accounts, transactions, payroll, deterministic master-data resolution,
 source-to-canonical lineage, controls, exceptions, APIs, CLI verification, and frontend views.
 General-ledger journal entries and reconciliation are not implemented yet.
+## Phase 6: generated business sources
+
+The application now generates clean, deterministic CRM, customer, invoice, payment, vendor, AP, double-entry ledger, and forecast-assumption CSVs from canonical financial history. Generator version `1.0.0` defaults to seed `20260714`; identical inputs return a checksum-verified no-op. Generated CSVs are registered as normal immutable source files and remain traceable to canonical bank, card, and payroll records.
+
+Open **Generated data** in the frontend, or run:
+
+```bash
+docker compose exec backend python -m app.cli.generate_demo_sources --seed 20260714 --generation-date 2026-07-14
+docker compose exec backend python -m app.cli.verify_generated_data_integrity
+```
+
+See [docs/phase-6-generated-business-sources.md](docs/phase-6-generated-business-sources.md) for generation rules, accounting treatments, files, controls, APIs, permissions, and exact reproduction steps. Phase 6 does not yet implement reconciliation or forecast calculations and introduces no deliberate hostile defects.

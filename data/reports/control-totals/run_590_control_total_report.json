@@ -1,0 +1,33 @@
+{
+  "pipeline_run_id": 590,
+  "controls": [
+    {
+      "name": "extracted_row_count",
+      "source": "877",
+      "loaded": "877",
+      "difference": "0",
+      "status": "matched"
+    },
+    {
+      "name": "accepted_row_count",
+      "source": "877",
+      "loaded": "877",
+      "difference": "0",
+      "status": "matched"
+    },
+    {
+      "name": "rejected_row_count",
+      "source": "0",
+      "loaded": "0",
+      "difference": "0",
+      "status": "matched"
+    },
+    {
+      "name": "source_amount_total",
+      "source": "626006",
+      "loaded": "626006",
+      "difference": "0",
+      "status": "matched"
+    }
+  ]
+}

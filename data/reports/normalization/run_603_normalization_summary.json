@@ -1,0 +1,11 @@
+{
+  "tenant_id": 1,
+  "ingestion_run_id": 598,
+  "normalization_run_id": 603,
+  "mapping_code": "credit_card_transaction_v1",
+  "mapping_version": "1.0.0",
+  "normalization_version": "1.0.0",
+  "staging_count": 133,
+  "canonical_count": 133,
+  "exception_count": 0
+}

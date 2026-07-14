@@ -1,0 +1,11 @@
+{
+  "tenant_id": 1,
+  "ingestion_run_id": 591,
+  "normalization_run_id": 600,
+  "mapping_code": "payroll_summary_v1",
+  "mapping_version": "1.0.0",
+  "normalization_version": "1.0.0",
+  "staging_count": 92,
+  "canonical_count": 92,
+  "exception_count": 0
+}

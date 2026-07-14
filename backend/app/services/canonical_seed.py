@@ -21,6 +21,10 @@ ACCOUNT_SPECS = (
     ("1000", "Cash — Main Operating Account", "asset", "cash", "debit"),
     ("1010", "Cash — Payroll Account", "asset", "cash", "debit"),
     ("2000", "Credit Card Payable", "liability", "credit_card", "credit"),
+    ("1100", "Accounts Receivable", "asset", "accounts_receivable", "debit"),
+    ("2010", "Accounts Payable", "liability", "accounts_payable", "credit"),
+    ("2030", "Sales Tax Payable", "liability", "sales_tax", "credit"),
+    ("4000", "Sales Revenue", "revenue", "sales", "credit"),
     ("5000", "Payroll Expense", "expense", "payroll", "debit"),
     ("5010", "Employer Payroll Taxes", "expense", "payroll_tax", "debit"),
     ("2020", "Payroll Deductions Payable", "liability", "payroll", "credit"),
@@ -124,8 +128,46 @@ def seed_canonical_data(session: Session) -> dict[str, int]:
                 configuration_schema_json={},
             )
         )
+    generation_definition = session.scalar(
+        select(PipelineDefinition).where(
+            PipelineDefinition.code == "demo_source_generation",
+            PipelineDefinition.version == "1.0.0",
+        )
+    )
+    if generation_definition is None:
+        session.add(
+            PipelineDefinition(
+                code="demo_source_generation",
+                name="Deterministic Demo Business Source Generation",
+                description="Generates clean synthetic business sources from canonical history.",
+                version="1.0.0",
+                is_active=True,
+                configuration_schema_json={"default_seed": 20260714},
+            )
+        )
     mapping_count = 0
     for tenant in session.scalars(select(Tenant)).all():
+        generated_source = session.scalar(
+            select(SourceSystem).where(
+                SourceSystem.tenant_id == tenant.id,
+                SourceSystem.code == "generated_demo_business",
+            )
+        )
+        if generated_source is None:
+            session.add(
+                SourceSystem(
+                    tenant_id=tenant.id,
+                    code="generated_demo_business",
+                    name="Generated Demo Business Sources",
+                    source_type="generated_csv",
+                    description=(
+                        "Deterministic synthetic CRM, receivables, payables, ledger, and "
+                        "forecast-assumption sources derived from canonical demo financial history"
+                    ),
+                    is_active=True,
+                )
+            )
+            session.flush()
         currency = currencies.get(tenant.default_currency) or currencies["USD"]
         accounts: dict[str, FinancialAccount] = {}
         for code, name, account_type, subtype, normal in ACCOUNT_SPECS:
