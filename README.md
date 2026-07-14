@@ -1,16 +1,18 @@
 # CFO Financial Data Pipeline Demo
 
 A portfolio-oriented foundation for a future CFO financial data pipeline. Phase 1 proves
-the local platform boundary: a React status interface, a FastAPI service, PostgreSQL
-connectivity, repeatable Alembic migrations, tests, and static quality checks.
+the local platform boundary. Phase 2A adds CSV upload, source registration, checksum-based
+duplicate detection, immutable raw storage, and auditable pipeline history. Phase 2B adds
+versioned CSV profiling, column statistics, control totals, and data-quality issues.
 
 ## Phase 1 scope
 
-Included: containerized development, environment configuration, API health semantics, a
-typed example table, and developer documentation. Excluded: ingestion, reconciliation,
-forecasting, financial calculations or records, authentication, tenant management,
-Prefect, and AI. The source dataset and any Kaggle archive are **not ingested or modified**
-during Phase 1.
+Included: containerized development, API health semantics, CSV-only source-file intake,
+source-system selection, immutable raw bytes, profiling, and pipeline-run audit records.
+Excluded: canonical ingestion, normalization, reconciliation, forecasting, authoritative
+financial
+calculations, authentication, tenant management, Prefect, and AI. The source dataset and
+any Kaggle archive are **not ingested or modified**.
 
 ## Prerequisites and assumptions
 
@@ -42,6 +44,69 @@ Service URLs:
 
 The backend waits for healthy PostgreSQL, applies committed migrations with `alembic
 upgrade head`, then starts Uvicorn. Startup never generates migration files.
+
+## CSV upload flow
+
+Open the frontend, select the seeded **Kaggle Small Business Financial Dataset** source
+system, choose or drop a `.csv` file, and select **Upload and register**. The backend:
+
+1. validates the source system, filename, extension, MIME type, and configured size limit;
+2. streams the request into `data/raw/uploads/` while calculating SHA-256;
+3. returns a duplicate response without another `source_files` row when that checksum is
+   already registered;
+4. atomically links new bytes into `data/raw/registered/` under
+   `<checksum>_<sanitized-filename>` without overwriting an existing file; and
+5. writes the source-file, pipeline-run, and pipeline-run-step history.
+
+The default maximum is 10 MiB (`MAX_UPLOAD_SIZE_BYTES=10485760`). Allowed MIME types and
+extensions are configurable in `.env`. Original names remain in database metadata, while
+only relative storage paths are returned by the API. Registered raw files persist through
+container restarts because `./data` is mounted at `/data` in the backend.
+
+Example API upload:
+
+```bash
+curl -X POST http://localhost:8000/api/v1/source-files/upload \
+  -F "source_system_code=kaggle_small_business_finance" \
+  -F "file=@./sample.csv;type=text/csv"
+```
+
+Read-only endpoints support `page` and `page_size`:
+
+- `GET /api/v1/source-systems`
+- `GET /api/v1/source-files`
+- `GET /api/v1/source-files/{id}`
+- `GET /api/v1/pipeline-runs`
+- `GET /api/v1/pipeline-runs/{id}`
+
+Inspect registered filenames with `find data/raw/registered -maxdepth 1 -type f`. Database
+metadata can be inspected with the PostgreSQL instructions below. Registration does not
+interpret CSV rows. Phase 2B profiling reads them without modification; it does not
+normalize or ingest them.
+
+## CSV profiling
+
+On the source-file page, select **Profile**, then inspect the summary, column statistics,
+and filterable issues. **View profile** opens saved results, and reruns require confirmation.
+The same configured version is refreshed atomically while every attempt remains an
+auditable `csv_profile` pipeline run.
+
+```bash
+curl -X POST http://localhost:8000/api/v1/source-files/1/profile
+docker compose exec backend python -m app.cli.profile_source_file --source-file-id 1
+docker compose exec backend python -m app.cli.profile_source_file --all-unprofiled
+
+curl http://localhost:8000/api/v1/source-files/1/profiles/latest
+curl 'http://localhost:8000/api/v1/data-quality-issues?source_file_id=1'
+curl 'http://localhost:8000/api/v1/data-quality-issues?severity=critical'
+
+# Rerun the configured version
+curl -X POST http://localhost:8000/api/v1/source-files/1/profile
+```
+
+See [Phase 2B profiling](docs/phase-2b.md) for stored metrics, rules, severity meanings,
+money/date parsing, balance validation, versioning, API endpoints, configuration, and
+known limitations. Profile totals are source controls, not authoritative reporting.
 
 ## Database and migrations
 
@@ -104,6 +169,8 @@ all database data in it.
   Ubuntu distribution, then verify with `docker compose version`.
 - If the backend is unhealthy, run `docker compose logs backend postgres` and confirm the
   database credentials in `.env` are consistent.
+- If an upload is rejected, inspect its structured API response and the corresponding row
+  in `pipeline_runs`; validation failures are intentionally auditable.
 - If the frontend volume has stale dependencies, run `docker compose down -v` (noting the
   database deletion warning) or remove only the frontend node-modules volume explicitly.
 - If migrations fail after editing schema code, do not rely on `create_all`; add and review
@@ -111,5 +178,5 @@ all database data in it.
 - Check container status with `docker compose ps` and exercise readiness directly with
   `curl -i http://localhost:8000/api/v1/health/ready`.
 
-See [architecture](docs/architecture.md) and the [acceptance checklist](docs/phase-1-acceptance.md)
+See [architecture](docs/architecture.md), [Phase 2B](docs/phase-2b.md), and the [acceptance checklist](docs/phase-1-acceptance.md)
 for the service boundaries and verification sequence.
