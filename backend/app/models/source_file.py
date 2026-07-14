@@ -7,7 +7,9 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.db.base import Base
 
 if TYPE_CHECKING:
+    from app.models.data_quality_issue import DataQualityIssue
     from app.models.pipeline_run import PipelineRun
+    from app.models.source_file_profile import SourceFileProfile
     from app.models.source_system import SourceSystem
 
 
@@ -35,3 +37,7 @@ class SourceFile(Base):
 
     source_system: Mapped["SourceSystem"] = relationship(back_populates="source_files")
     pipeline_runs: Mapped[list["PipelineRun"]] = relationship(back_populates="source_file")
+    profiles: Mapped[list["SourceFileProfile"]] = relationship(back_populates="source_file")
+    data_quality_issues: Mapped[list["DataQualityIssue"]] = relationship(
+        back_populates="source_file"
+    )

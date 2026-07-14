@@ -3,12 +3,16 @@ import { useEffect, useRef, useState } from "react";
 import {
   fetchSourceFile,
   fetchSourceFiles,
+  fetchLatestProfile,
   fetchSourceSystems,
+  profileSourceFile,
   type SourceFile,
+  type SourceFileProfile,
   type SourceSystem,
   type UploadResult,
   uploadSourceFile,
 } from "../api/sources";
+import { ProfileView } from "./ProfileView";
 
 const MAX_UPLOAD_BYTES = 10 * 1024 * 1024;
 
@@ -25,6 +29,8 @@ export function CsvUploadPage() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [files, setFiles] = useState<SourceFile[]>([]);
   const [detail, setDetail] = useState<SourceFile | null>(null);
+  const [profiles, setProfiles] = useState<Record<number, SourceFileProfile>>({});
+  const [profileFile, setProfileFile] = useState<SourceFile | null>(null);
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState<{ kind: string; text: string } | null>(null);
 
@@ -38,6 +44,17 @@ export function CsvUploadPage() {
         setSourceSystems(systems);
         setSourceSystemCode(systems.find((system) => system.is_active)?.code ?? "");
         setFiles(recentFiles);
+        void Promise.all(
+          recentFiles.map(async (sourceFile) => {
+            try {
+              return [sourceFile.id, await fetchLatestProfile(sourceFile.id)] as const;
+            } catch {
+              return null;
+            }
+          }),
+        ).then((entries) =>
+          setProfiles(Object.fromEntries(entries.filter((entry) => entry !== null))),
+        );
       })
       .catch((error: unknown) => {
         if (error instanceof DOMException && error.name === "AbortError") return;
@@ -100,15 +117,45 @@ export function CsvUploadPage() {
     }
   }
 
+  async function runProfile(sourceFile: SourceFile) {
+    setBusy(true);
+    setMessage(null);
+    try {
+      const profile = await profileSourceFile(sourceFile.id);
+      setProfiles((current) => ({ ...current, [sourceFile.id]: profile }));
+      setProfileFile(sourceFile);
+      setMessage({ kind: "success", text: "CSV profiling completed and results were saved." });
+    } catch (error) {
+      setMessage({
+        kind: "error",
+        text: error instanceof Error ? error.message : "Profiling failed.",
+      });
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  if (profileFile && profiles[profileFile.id]) {
+    return (
+      <ProfileView
+        sourceFile={profileFile}
+        profile={profiles[profileFile.id]}
+        busy={busy}
+        onClose={() => setProfileFile(null)}
+        onRerun={() => void runProfile(profileFile)}
+      />
+    );
+  }
+
   return (
     <section className="upload-section">
       <div className="section-heading">
         <div>
-          <p className="eyebrow">Phase 2A · Source registration</p>
+          <p className="eyebrow">Phase 2A + 2B · Registration and profiling</p>
           <h2>Upload a CSV source file</h2>
           <p>
             Register untouched source bytes with a SHA-256 checksum. CSV contents are not
-            parsed or ingested yet.
+            modified. Profiling analyzes a read-only copy before ingestion.
           </p>
         </div>
         <span className="immutable-badge">Immutable raw storage</span>
@@ -181,6 +228,10 @@ export function CsvUploadPage() {
               <th>Size</th>
               <th>Checksum</th>
               <th>Status</th>
+              <th>Profile</th>
+              <th>Profiled</th>
+              <th>Warnings</th>
+              <th>Errors</th>
               <th>Uploaded</th>
               <th />
             </tr>
@@ -188,7 +239,7 @@ export function CsvUploadPage() {
           <tbody>
             {files.length === 0 ? (
               <tr>
-                <td colSpan={7} className="empty-row">No CSV files registered yet.</td>
+                <td colSpan={11} className="empty-row">No CSV files registered yet.</td>
               </tr>
             ) : (
               files.map((sourceFile) => (
@@ -198,10 +249,27 @@ export function CsvUploadPage() {
                   <td>{formatBytes(sourceFile.file_size_bytes)}</td>
                   <td><code>{sourceFile.sha256_checksum.slice(0, 10)}…</code></td>
                   <td><span className="file-status">{sourceFile.status}</span></td>
+                  <td>{profiles[sourceFile.id]?.status ?? "Not profiled"}</td>
+                  <td>{profiles[sourceFile.id] ? new Date(profiles[sourceFile.id].generated_at).toLocaleString() : "—"}</td>
+                  <td>{profiles[sourceFile.id]?.issue_totals.warning ?? 0}</td>
+                  <td>{(profiles[sourceFile.id]?.issue_totals.error ?? 0) + (profiles[sourceFile.id]?.issue_totals.critical ?? 0)}</td>
                   <td>{new Date(sourceFile.registered_at).toLocaleString()}</td>
                   <td>
                     <button className="text-button" type="button" onClick={() => void showDetail(sourceFile.id)}>
                       Details
+                    </button>
+                    {" · "}
+                    <button
+                      className="text-button"
+                      type="button"
+                      disabled={busy}
+                      onClick={() =>
+                        profiles[sourceFile.id]
+                          ? setProfileFile(sourceFile)
+                          : void runProfile(sourceFile)
+                      }
+                    >
+                      {profiles[sourceFile.id] ? "View profile" : "Profile"}
                     </button>
                   </td>
                 </tr>

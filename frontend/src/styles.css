@@ -80,6 +80,24 @@ code { font-size: 0.78rem; overflow-wrap: anywhere; }
 .empty-row { padding: 2rem; color: #78827b; text-align: center; }
 
 .detail-card { position: relative; margin-top: 1.5rem; padding: 1.3rem; background: #f3f7f2; border: 1px solid #dbe3da; border-radius: 14px; }
+.profile-view { display: grid; gap: 1.5rem; }
+.profile-toolbar, .issue-heading { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
+.profile-toolbar h2 { font-size: clamp(1.8rem, 4vw, 2.7rem); overflow-wrap: anywhere; }
+.profile-toolbar p { margin: 0.3rem 0; color: #667069; }
+.button-row, .filters { display: flex; gap: 0.7rem; align-items: flex-end; }
+.secondary-button { color: #254e34; background: #e7eee8; }
+.secondary-button:hover { color: white; }
+.metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(145px, 1fr)); gap: 0.7rem; }
+.metric { display: grid; gap: 0.35rem; min-height: 82px; padding: 0.9rem; background: #f3f7f2; border: 1px solid #dce4dc; border-radius: 12px; }
+.metric span { color: #68736b; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; }
+.metric strong { overflow-wrap: anywhere; }
+.profile-table { max-height: 430px; }
+.filters label { min-width: 130px; font-size: 0.75rem; }
+.filters select { padding: 0.5rem; }
+.severity { padding: 0.25rem 0.45rem; border-radius: 99px; text-transform: capitalize; }
+.severity.info { color: #28567c; background: #e4f0f8; }
+.severity.warning { color: #765514; background: #fff1c7; }
+.severity.error, .severity.critical { color: #842828; background: #fbe1e1; }
 .close-button { position: absolute; top: 1.2rem; right: 1.2rem; }
 dl { margin: 1rem 0 0; border-top: 1px solid #dce3dc; }
 dl div { display: grid; grid-template-columns: 130px 1fr; gap: 1rem; padding: 0.75rem 0; border-bottom: 1px solid #dce3dc; }
@@ -88,7 +106,8 @@ dd { margin: 0; overflow-wrap: anywhere; }
 
 @media (max-width: 760px) {
   main { padding: 1rem; }
-  .status-panel, .section-heading { flex-direction: column; align-items: stretch; }
+  .status-panel, .section-heading, .profile-toolbar, .issue-heading { flex-direction: column; align-items: stretch; }
+  .button-row, .filters { flex-wrap: wrap; }
   .status-grid { grid-template-columns: 1fr; }
   .immutable-badge { align-self: flex-start; }
   dl div { grid-template-columns: 1fr; gap: 0.25rem; }

@@ -2,13 +2,15 @@
 
 A portfolio-oriented foundation for a future CFO financial data pipeline. Phase 1 proves
 the local platform boundary. Phase 2A adds CSV upload, source registration, checksum-based
-duplicate detection, immutable raw storage, and auditable pipeline history.
+duplicate detection, immutable raw storage, and auditable pipeline history. Phase 2B adds
+versioned CSV profiling, column statistics, control totals, and data-quality issues.
 
 ## Phase 1 scope
 
 Included: containerized development, API health semantics, CSV-only source-file intake,
-source-system selection, immutable raw bytes, and pipeline-run audit records. Excluded:
-CSV profiling, ingestion, normalization, reconciliation, forecasting, financial
+source-system selection, immutable raw bytes, profiling, and pipeline-run audit records.
+Excluded: canonical ingestion, normalization, reconciliation, forecasting, authoritative
+financial
 calculations, authentication, tenant management, Prefect, and AI. The source dataset and
 any Kaggle archive are **not ingested or modified**.
 
@@ -78,8 +80,33 @@ Read-only endpoints support `page` and `page_size`:
 - `GET /api/v1/pipeline-runs/{id}`
 
 Inspect registered filenames with `find data/raw/registered -maxdepth 1 -type f`. Database
-metadata can be inspected with the PostgreSQL instructions below. **CSV rows are not
-profiled, parsed, transformed, or ingested in Phase 2A.**
+metadata can be inspected with the PostgreSQL instructions below. Registration does not
+interpret CSV rows. Phase 2B profiling reads them without modification; it does not
+normalize or ingest them.
+
+## CSV profiling
+
+On the source-file page, select **Profile**, then inspect the summary, column statistics,
+and filterable issues. **View profile** opens saved results, and reruns require confirmation.
+The same configured version is refreshed atomically while every attempt remains an
+auditable `csv_profile` pipeline run.
+
+```bash
+curl -X POST http://localhost:8000/api/v1/source-files/1/profile
+docker compose exec backend python -m app.cli.profile_source_file --source-file-id 1
+docker compose exec backend python -m app.cli.profile_source_file --all-unprofiled
+
+curl http://localhost:8000/api/v1/source-files/1/profiles/latest
+curl 'http://localhost:8000/api/v1/data-quality-issues?source_file_id=1'
+curl 'http://localhost:8000/api/v1/data-quality-issues?severity=critical'
+
+# Rerun the configured version
+curl -X POST http://localhost:8000/api/v1/source-files/1/profile
+```
+
+See [Phase 2B profiling](docs/phase-2b.md) for stored metrics, rules, severity meanings,
+money/date parsing, balance validation, versioning, API endpoints, configuration, and
+known limitations. Profile totals are source controls, not authoritative reporting.
 
 ## Database and migrations
 
@@ -151,5 +178,5 @@ all database data in it.
 - Check container status with `docker compose ps` and exercise readiness directly with
   `curl -i http://localhost:8000/api/v1/health/ready`.
 
-See [architecture](docs/architecture.md) and the [acceptance checklist](docs/phase-1-acceptance.md)
+See [architecture](docs/architecture.md), [Phase 2B](docs/phase-2b.md), and the [acceptance checklist](docs/phase-1-acceptance.md)
 for the service boundaries and verification sequence.

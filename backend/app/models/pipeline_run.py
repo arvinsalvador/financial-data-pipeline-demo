@@ -7,8 +7,10 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.db.base import Base
 
 if TYPE_CHECKING:
+    from app.models.data_quality_issue import DataQualityIssue
     from app.models.pipeline_run_step import PipelineRunStep
     from app.models.source_file import SourceFile
+    from app.models.source_file_profile import SourceFileProfile
 
 
 class PipelineRun(Base):
@@ -36,4 +38,8 @@ class PipelineRun(Base):
         back_populates="pipeline_run",
         cascade="all, delete-orphan",
         order_by="PipelineRunStep.step_order",
+    )
+    profiles: Mapped[list["SourceFileProfile"]] = relationship(back_populates="pipeline_run")
+    data_quality_issues: Mapped[list["DataQualityIssue"]] = relationship(
+        back_populates="pipeline_run"
     )

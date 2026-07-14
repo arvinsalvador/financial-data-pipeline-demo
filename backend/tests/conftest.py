@@ -15,7 +15,14 @@ os.environ.setdefault(
 from app.core.config import Settings, get_settings
 from app.db.session import SessionLocal
 from app.main import app
-from app.models import PipelineRun, PipelineRunStep, SourceFile
+from app.models import (
+    DataQualityIssue,
+    PipelineRun,
+    PipelineRunStep,
+    SourceFile,
+    SourceFileColumnProfile,
+    SourceFileProfile,
+)
 
 
 @pytest.fixture
@@ -38,6 +45,20 @@ def isolate_registration_records(tmp_path: Path) -> Generator[None, None, None]:
     yield
     with SessionLocal() as session:
         new_run_ids = select(PipelineRun.id).where(PipelineRun.id > baseline_run_id)
+        new_profile_ids = select(SourceFileProfile.id).where(
+            SourceFileProfile.pipeline_run_id.in_(new_run_ids)
+        )
+        session.execute(
+            delete(DataQualityIssue).where(
+                DataQualityIssue.source_file_profile_id.in_(new_profile_ids)
+            )
+        )
+        session.execute(
+            delete(SourceFileColumnProfile).where(
+                SourceFileColumnProfile.source_file_profile_id.in_(new_profile_ids)
+            )
+        )
+        session.execute(delete(SourceFileProfile).where(SourceFileProfile.id.in_(new_profile_ids)))
         session.execute(
             delete(PipelineRunStep).where(PipelineRunStep.pipeline_run_id.in_(new_run_ids))
         )

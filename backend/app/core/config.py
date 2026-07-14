@@ -27,6 +27,14 @@ class Settings(BaseSettings):
         "text/csv,application/csv,application/vnd.ms-excel,text/plain,application/octet-stream"
     )
     MAX_UPLOAD_SIZE_BYTES: int = Field(default=10 * 1024 * 1024, gt=0)
+    PROFILING_VERSION: str = "1.0.0"
+    CSV_READ_CHUNK_SIZE: int = Field(default=1000, gt=0)
+    MAX_SAMPLED_VALUES_PER_COLUMN: int = Field(default=5, gt=0, le=100)
+    NULL_PERCENTAGE_WARNING_THRESHOLD: float = Field(default=50.0, ge=0, le=100)
+    RUNNING_BALANCE_TOLERANCE: float = Field(default=0.01, ge=0)
+    SUPPORTED_ENCODINGS: str = "utf-8-sig,utf-8"
+    SUPPORTED_DATE_FORMATS: str = "%Y-%m-%d,%m/%d/%Y,%m/%-d/%Y,%m/%d/%Y %H:%M:%S,%Y-%m-%d %H:%M:%S"
+    MAX_PROFILING_ROW_COUNT: int = Field(default=100000, gt=0)
 
     @property
     def database_url(self) -> str:
@@ -51,6 +59,10 @@ class Settings(BaseSettings):
             for mime_type in self.ALLOWED_SOURCE_FILE_MIME_TYPES.split(",")
             if mime_type.strip()
         }
+
+    @property
+    def supported_encodings(self) -> list[str]:
+        return [value.strip() for value in self.SUPPORTED_ENCODINGS.split(",") if value.strip()]
 
 
 @lru_cache
