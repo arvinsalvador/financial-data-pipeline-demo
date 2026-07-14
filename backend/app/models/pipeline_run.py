@@ -1,7 +1,7 @@
 from datetime import datetime
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
-from sqlalchemy import DateTime, ForeignKey, Integer, String, Text, func
+from sqlalchemy import JSON, DateTime, ForeignKey, Integer, String, Text, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.base import Base
@@ -34,6 +34,7 @@ class PipelineRun(Base):
     records_accepted: Mapped[int] = mapped_column(Integer(), default=0, server_default="0")
     records_rejected: Mapped[int] = mapped_column(Integer(), default=0, server_default="0")
     error_message: Mapped[str | None] = mapped_column(Text())
+    metadata_json: Mapped[dict[str, Any] | None] = mapped_column(JSON())
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
     updated_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), onupdate=func.now()

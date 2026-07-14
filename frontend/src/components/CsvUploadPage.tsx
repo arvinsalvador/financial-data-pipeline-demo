@@ -14,6 +14,14 @@ import {
 } from "../api/sources";
 import { ProfileView } from "./ProfileView";
 import { getDemoUser } from "../api/context";
+import {
+  fetchIngestions,
+  fetchMappings,
+  ingestSourceFile,
+  type IngestionSummary,
+  type Mapping,
+} from "../api/ingestion";
+import { IngestionView } from "./IngestionView";
 
 const MAX_UPLOAD_BYTES = 10 * 1024 * 1024;
 
@@ -33,6 +41,9 @@ export function CsvUploadPage() {
   const [detail, setDetail] = useState<SourceFile | null>(null);
   const [profiles, setProfiles] = useState<Record<number, SourceFileProfile>>({});
   const [profileFile, setProfileFile] = useState<SourceFile | null>(null);
+  const [ingestions, setIngestions] = useState<Record<number, IngestionSummary>>({});
+  const [ingestionView, setIngestionView] = useState<IngestionSummary | null>(null);
+  const [mappings, setMappings] = useState<Mapping[]>([]);
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState<{ kind: string; text: string } | null>(null);
 
@@ -41,8 +52,10 @@ export function CsvUploadPage() {
     void Promise.all([
       fetchSourceSystems(controller.signal),
       fetchSourceFiles(controller.signal),
+      fetchMappings().catch(() => []),
     ])
-      .then(([systems, recentFiles]) => {
+      .then(([systems, recentFiles, loadedMappings]) => {
+        setMappings(loadedMappings);
         setSourceSystems(systems);
         setSourceSystemCode(systems.find((system) => system.is_active)?.code ?? "");
         setFiles(recentFiles);
@@ -57,6 +70,10 @@ export function CsvUploadPage() {
         ).then((entries) =>
           setProfiles(Object.fromEntries(entries.filter((entry) => entry !== null))),
         );
+        void Promise.all(recentFiles.map(async (sourceFile) => {
+          const history = await fetchIngestions(sourceFile.id);
+          return history[0] ? [sourceFile.id, history[0]] as const : null;
+        })).then((entries) => setIngestions(Object.fromEntries(entries.filter((entry) => entry !== null))));
       })
       .catch((error: unknown) => {
         if (error instanceof DOMException && error.name === "AbortError") return;
@@ -79,6 +96,15 @@ export function CsvUploadPage() {
       return;
     }
     setSelectedFile(file);
+  }
+
+  async function runIngestion(sourceFile: SourceFile, forceRerun = false) {
+    const mapping = mappings.find((item) => item.source_file_pattern.toLowerCase() === sourceFile.original_filename.toLowerCase());
+    if (!mapping) { setMessage({ kind: "error", text: "No unambiguous active mapping matches this filename." }); return; }
+    setBusy(true); setMessage(null);
+    try { const result = await ingestSourceFile(sourceFile.id, mapping.mapping_code, forceRerun); setIngestions((current) => ({ ...current, [sourceFile.id]: result })); setIngestionView(result); }
+    catch (error) { setMessage({ kind: "error", text: error instanceof Error ? error.message : "Ingestion failed." }); }
+    finally { setBusy(false); }
   }
 
   async function submitUpload() {
@@ -148,12 +174,13 @@ export function CsvUploadPage() {
       />
     );
   }
+  if (ingestionView) return <IngestionView ingestion={ingestionView} onClose={() => setIngestionView(null)} />;
 
   return (
     <section className="upload-section">
       <div className="section-heading">
         <div>
-          <p className="eyebrow">Phase 2A + 2B · Registration and profiling</p>
+          <p className="eyebrow">Phase 2A–4 · Registration, profiling, and ingestion</p>
           <h2>Upload a CSV source file</h2>
           <p>
             Register untouched source bytes with a SHA-256 checksum. CSV contents are not
@@ -234,6 +261,8 @@ export function CsvUploadPage() {
               <th>Profiled</th>
               <th>Warnings</th>
               <th>Errors</th>
+              <th>Ingestion</th>
+              <th>Accepted / rejected</th>
               <th>Uploaded</th>
               <th />
             </tr>
@@ -241,7 +270,7 @@ export function CsvUploadPage() {
           <tbody>
             {files.length === 0 ? (
               <tr>
-                <td colSpan={11} className="empty-row">No CSV files registered yet.</td>
+                <td colSpan={13} className="empty-row">No CSV files registered yet.</td>
               </tr>
             ) : (
               files.map((sourceFile) => (
@@ -255,6 +284,8 @@ export function CsvUploadPage() {
                   <td>{profiles[sourceFile.id] ? new Date(profiles[sourceFile.id].generated_at).toLocaleString() : "—"}</td>
                   <td>{profiles[sourceFile.id]?.issue_totals.warning ?? 0}</td>
                   <td>{(profiles[sourceFile.id]?.issue_totals.error ?? 0) + (profiles[sourceFile.id]?.issue_totals.critical ?? 0)}</td>
+                  <td>{ingestions[sourceFile.id]?.status ?? "Not ingested"}</td>
+                  <td>{ingestions[sourceFile.id] ? `${ingestions[sourceFile.id].records_accepted} / ${ingestions[sourceFile.id].records_rejected}` : "—"}</td>
                   <td>{new Date(sourceFile.registered_at).toLocaleString()}</td>
                   <td>
                     <button className="text-button" type="button" onClick={() => void showDetail(sourceFile.id)}>
@@ -273,6 +304,9 @@ export function CsvUploadPage() {
                     >
                       {profiles[sourceFile.id] ? "View profile" : "Profile"}
                     </button>
+                    {" · "}
+                    <button className="text-button" type="button" disabled={busy || !canModify || !profiles[sourceFile.id] || profiles[sourceFile.id].status === "blocked" || !mappings.some((item) => item.source_file_pattern.toLowerCase() === sourceFile.original_filename.toLowerCase())} title={!profiles[sourceFile.id] ? "Profile this file first" : !canModify ? "Your role cannot ingest" : "Ingest raw rows into source-specific staging"} onClick={() => ingestions[sourceFile.id] ? setIngestionView(ingestions[sourceFile.id]) : void runIngestion(sourceFile)}>{ingestions[sourceFile.id] ? "View ingestion" : "Ingest"}</button>
+                    {ingestions[sourceFile.id] && canModify && <><span>{" · "}</span><button className="text-button" type="button" disabled={busy} onClick={() => void runIngestion(sourceFile, true)}>Rerun</button></>}
                   </td>
                 </tr>
               ))

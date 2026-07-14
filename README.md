@@ -199,3 +199,8 @@ all database data in it.
 
 See [architecture](docs/architecture.md), [Phase 2B](docs/phase-2b.md), and the [acceptance checklist](docs/phase-1-acceptance.md)
 for the service boundaries and verification sequence.
+Phase 4 raw and source-specific staging ingestion is documented in
+[`docs/phase-4-ingestion.md`](docs/phase-4-ingestion.md). It adds versioned schema mappings,
+auditable accepted/rejected row lineage, control totals, ingestion artifacts, tenant-scoped APIs,
+CLI integrity verification, and read-only frontend workflows. Canonical financial normalization is
+not implemented yet.
