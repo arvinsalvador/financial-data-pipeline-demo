@@ -1,0 +1,13 @@
+amount,confidence,group_id,status,type
+512.000000,0.980000,984,suggested,one_to_one
+512.000000,0.980000,986,suggested,one_to_one
+498.000000,0.980000,1042,suggested,one_to_one
+498.000000,0.980000,1045,suggested,one_to_one
+713.000000,0.980000,1294,suggested,one_to_one
+713.000000,0.980000,1297,suggested,one_to_one
+512.000000,0.900000,1329,suggested,one_to_one
+512.000000,0.900000,1330,suggested,one_to_one
+498.000000,0.800000,1331,suggested,one_to_one
+498.000000,0.800000,1332,suggested,one_to_one
+713.000000,0.800000,1333,suggested,one_to_one
+713.000000,0.800000,1334,suggested,one_to_one

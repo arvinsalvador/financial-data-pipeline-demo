@@ -252,3 +252,17 @@ docker compose exec backend python -m app.cli.verify_validation_integrity --vali
 ```
 
 See [docs/phase-8-validation-engine.md](docs/phase-8-validation-engine.md) for the architecture, rules, controls, severity model, API, CLI, frontend, manual verification, and limitations. Phase 8 detects issues but intentionally does not reconcile or resolve them.
+
+## Phase 9: bank-to-ledger reconciliation
+
+Reconciliation version `1.0.0` deterministically matches canonical bank activity to generated cash-ledger lines. It consumes Phase 8 validation evidence, supports exact and grouped suggestions, detects duplicates, reversals, partial coverage and unmatched records, preserves append-only operator decisions, and produces 13 controls plus nine immutable reports.
+
+Open **Reconciliation** in the frontend, or run:
+
+```bash
+docker compose exec backend python -m app.cli.reconcile_bank_ledger --bank-account-id 1 --date-from 2022-01-01 --date-to 2023-12-31
+docker compose exec backend python -m app.cli.verify_bank_reconciliation_integrity --reconciliation-run-id 1
+docker compose exec backend python -m app.cli.summarize_unmatched_bank_ledger --reconciliation-run-id 1
+```
+
+See [docs/phase-9-bank-ledger-reconciliation.md](docs/phase-9-bank-ledger-reconciliation.md) for accounting signs, rule precedence, controls, APIs, permissions, CLI usage, verification, and deliberate boundaries.

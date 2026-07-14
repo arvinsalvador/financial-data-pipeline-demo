@@ -64,6 +64,13 @@ PERMISSIONS = (
     "validation.rules.view",
     "validation.reports.view",
     "validation.statistics.view",
+    "bank_ledger_reconciliation.execute",
+    "bank_ledger_reconciliation.view",
+    "bank_ledger_reconciliation.review",
+    "reconciliation_candidates.view",
+    "reconciliation_exceptions.view",
+    "reconciliation_controls.view",
+    "reconciliation_reports.view",
 )
 ROLE_PERMISSIONS = {
     "platform_admin": PERMISSIONS,
@@ -111,6 +118,13 @@ ROLE_PERMISSIONS = {
         "validation.rules.view",
         "validation.reports.view",
         "validation.statistics.view",
+        "bank_ledger_reconciliation.execute",
+        "bank_ledger_reconciliation.view",
+        "bank_ledger_reconciliation.review",
+        "reconciliation_candidates.view",
+        "reconciliation_exceptions.view",
+        "reconciliation_controls.view",
+        "reconciliation_reports.view",
     ),
     "finance_analyst": (
         "source_systems.view",
@@ -150,6 +164,13 @@ ROLE_PERMISSIONS = {
         "validation.rules.view",
         "validation.reports.view",
         "validation.statistics.view",
+        "bank_ledger_reconciliation.execute",
+        "bank_ledger_reconciliation.view",
+        "bank_ledger_reconciliation.review",
+        "reconciliation_candidates.view",
+        "reconciliation_exceptions.view",
+        "reconciliation_controls.view",
+        "reconciliation_reports.view",
     ),
     "client_viewer": (
         "source_systems.view",
@@ -168,6 +189,7 @@ ROLE_PERMISSIONS = {
         "validation.rules.view",
         "validation.reports.view",
         "validation.statistics.view",
+        "bank_ledger_reconciliation.view",
     ),
 }
 
@@ -311,6 +333,9 @@ def seed_governance_data(session: Session, settings: Settings) -> dict[str, int]
     from app.services.validation_seed import seed_validation_data
 
     seed_validation_data(session)
+    from app.services.reconciliation_seed import seed_reconciliation_data
+
+    seed_reconciliation_data(session, settings)
     return {
         "tenants": 1,
         "users": len(users),
