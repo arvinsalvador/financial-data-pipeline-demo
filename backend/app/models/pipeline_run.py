@@ -17,6 +17,12 @@ class PipelineRun(Base):
     __tablename__ = "pipeline_runs"
 
     id: Mapped[int] = mapped_column(primary_key=True)
+    tenant_id: Mapped[int] = mapped_column(
+        ForeignKey("tenants.id", ondelete="RESTRICT"), index=True
+    )
+    pipeline_definition_id: Mapped[int | None] = mapped_column(
+        ForeignKey("pipeline_definitions.id", ondelete="RESTRICT"), index=True
+    )
     run_type: Mapped[str] = mapped_column(String(100), index=True)
     status: Mapped[str] = mapped_column(String(50), index=True)
     started_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))

@@ -13,6 +13,7 @@ import {
   uploadSourceFile,
 } from "../api/sources";
 import { ProfileView } from "./ProfileView";
+import { getDemoUser } from "../api/context";
 
 const MAX_UPLOAD_BYTES = 10 * 1024 * 1024;
 
@@ -23,6 +24,7 @@ function formatBytes(bytes: number) {
 }
 
 export function CsvUploadPage() {
+  const canModify = getDemoUser() !== "viewer@demo.local";
   const inputRef = useRef<HTMLInputElement>(null);
   const [sourceSystems, setSourceSystems] = useState<SourceSystem[]>([]);
   const [sourceSystemCode, setSourceSystemCode] = useState("");
@@ -167,7 +169,7 @@ export function CsvUploadPage() {
           <select
             value={sourceSystemCode}
             onChange={(event) => setSourceSystemCode(event.target.value)}
-            disabled={busy}
+            disabled={busy || !canModify}
           >
             <option value="">Select a source system</option>
             {sourceSystems.map((system) => (
@@ -193,7 +195,7 @@ export function CsvUploadPage() {
             type="file"
             accept=".csv,text/csv"
             onChange={(event) => chooseFile(event.target.files?.[0])}
-            disabled={busy}
+          disabled={busy || !canModify}
           />
         </div>
 
@@ -209,7 +211,7 @@ export function CsvUploadPage() {
         <button
           type="button"
           onClick={() => void submitUpload()}
-          disabled={!selectedFile || !sourceSystemCode || busy}
+        disabled={!selectedFile || !sourceSystemCode || busy || !canModify}
         >
           {busy ? "Registering…" : "Upload and register"}
         </button>
@@ -262,7 +264,7 @@ export function CsvUploadPage() {
                     <button
                       className="text-button"
                       type="button"
-                      disabled={busy}
+                    disabled={busy || (!profiles[sourceFile.id] && !canModify)}
                       onClick={() =>
                         profiles[sourceFile.id]
                           ? setProfileFile(sourceFile)

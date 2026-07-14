@@ -15,6 +15,7 @@ from sqlalchemy.orm import Session
 from app.core.config import Settings
 from app.models import (
     DataQualityIssue,
+    PipelineDefinition,
     PipelineRun,
     PipelineRunStep,
     SourceFile,
@@ -538,11 +539,15 @@ class ProfilingOrchestrationService:
     def __init__(self, settings: Settings) -> None:
         self.settings = settings
 
-    def profile(self, session: Session, source_file_id: int) -> SourceFileProfile:
-        source_file = session.get(SourceFile, source_file_id)
+    def profile(self, session: Session, source_file_id: int, tenant_id: int) -> SourceFileProfile:
+        source_file = session.scalar(
+            select(SourceFile).where(
+                SourceFile.id == source_file_id, SourceFile.tenant_id == tenant_id
+            )
+        )
         if source_file is None:
             raise ProfilingError("Source file not found")
-        run = self._start_run(session, source_file_id)
+        run = self._start_run(session, source_file_id, tenant_id)
         try:
             path = self.settings.REGISTERED_RAW_DIRECTORY / source_file.stored_filename
             if not path.is_file():
@@ -594,10 +599,22 @@ class ProfilingOrchestrationService:
             raise ProfilingError(str(error)) from error
 
     @staticmethod
-    def _start_run(session: Session, source_file_id: int) -> PipelineRun:
+    def _start_run(session: Session, source_file_id: int, tenant_id: int) -> PipelineRun:
         now = datetime.now(UTC)
+        definition = session.scalar(
+            select(PipelineDefinition).where(
+                PipelineDefinition.code == "csv_profile", PipelineDefinition.is_active.is_(True)
+            )
+        )
+        if definition is None:
+            raise ProfilingError("CSV profile pipeline definition is not active")
         run = PipelineRun(
-            run_type="csv_profile", status="running", started_at=now, source_file_id=source_file_id
+            tenant_id=tenant_id,
+            pipeline_definition_id=definition.id,
+            run_type="csv_profile",
+            status="running",
+            started_at=now,
+            source_file_id=source_file_id,
         )
         run.steps = [
             PipelineRunStep(
@@ -639,6 +656,7 @@ class ProfilingOrchestrationService:
         )
         if profile is None:
             profile = SourceFileProfile(
+                tenant_id=source_file.tenant_id,
                 source_file_id=source_file.id,
                 pipeline_run_id=run.id,
                 profile_version=self.settings.PROFILING_VERSION,
@@ -747,6 +765,7 @@ class ProfilingOrchestrationService:
         for issue in analysis.issues:
             session.add(
                 DataQualityIssue(
+                    tenant_id=source_file.tenant_id,
                     source_file_id=source_file.id,
                     source_file_profile_id=profile.id,
                     pipeline_run_id=run.id,

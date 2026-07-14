@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import TYPE_CHECKING
 
-from sqlalchemy import BigInteger, DateTime, ForeignKey, String, func
+from sqlalchemy import BigInteger, DateTime, ForeignKey, String, UniqueConstraint, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.base import Base
@@ -15,8 +15,14 @@ if TYPE_CHECKING:
 
 class SourceFile(Base):
     __tablename__ = "source_files"
+    __table_args__ = (
+        UniqueConstraint("tenant_id", "sha256_checksum", name="uq_source_file_tenant_checksum"),
+    )
 
     id: Mapped[int] = mapped_column(primary_key=True)
+    tenant_id: Mapped[int] = mapped_column(
+        ForeignKey("tenants.id", ondelete="RESTRICT"), index=True
+    )
     source_system_id: Mapped[int] = mapped_column(
         ForeignKey("source_systems.id", ondelete="RESTRICT"), index=True
     )
@@ -26,7 +32,7 @@ class SourceFile(Base):
     file_extension: Mapped[str] = mapped_column(String(20))
     mime_type: Mapped[str] = mapped_column(String(255))
     file_size_bytes: Mapped[int] = mapped_column(BigInteger())
-    sha256_checksum: Mapped[str] = mapped_column(String(64), unique=True, index=True)
+    sha256_checksum: Mapped[str] = mapped_column(String(64), index=True)
     status: Mapped[str] = mapped_column(String(50), index=True)
     discovered_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
     registered_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))

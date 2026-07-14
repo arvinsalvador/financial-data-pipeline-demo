@@ -8,6 +8,7 @@ import {
   type SourceFile,
   type SourceFileProfile,
 } from "../api/sources";
+import { getDemoUser } from "../api/context";
 
 interface Props {
   sourceFile: SourceFile;
@@ -20,6 +21,7 @@ interface Props {
 const money = (value: string | null) => (value === null ? "—" : value);
 
 export function ProfileView({ sourceFile, profile, busy, onClose, onRerun }: Props) {
+  const canRerun = getDemoUser() !== "viewer@demo.local";
   const [columns, setColumns] = useState<ColumnProfile[]>([]);
   const [issues, setIssues] = useState<DataQualityIssue[]>([]);
   const [severity, setSeverity] = useState("");
@@ -53,7 +55,7 @@ export function ProfileView({ sourceFile, profile, busy, onClose, onRerun }: Pro
           <button type="button" className="secondary-button" onClick={onClose}>Back to files</button>
           <button
             type="button"
-            disabled={busy}
+            disabled={busy || !canRerun}
             onClick={() => {
               if (window.confirm("Rerun this profile version? Existing derived results will be refreshed.")) onRerun();
             }}

@@ -8,6 +8,7 @@ class SourceSystemResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
     id: int
+    tenant_id: int
     code: str
     name: str
     description: str | None
@@ -26,6 +27,7 @@ class SourceSystemPage(BaseModel):
 
 class SourceFileResponse(BaseModel):
     id: int
+    tenant_id: int
     source_system_id: int
     source_system_code: str
     original_filename: str
@@ -64,6 +66,8 @@ class PipelineRunStepResponse(BaseModel):
 
 class PipelineRunResponse(BaseModel):
     id: int
+    tenant_id: int
+    pipeline_definition_id: int | None
     run_type: str
     status: str
     started_at: datetime
