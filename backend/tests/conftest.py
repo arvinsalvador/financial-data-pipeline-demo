@@ -18,8 +18,18 @@ from app.main import app
 from app.models import (
     AuditEvent,
     AuditEventChange,
+    BankTransaction,
+    CanonicalRecordLineage,
+    Counterparty,
+    CreditCardTransaction,
     DataQualityIssue,
+    Employee,
+    FinancialTransaction,
     IngestionControlTotal,
+    NormalizationControlTotal,
+    NormalizationException,
+    PayrollEntry,
+    PayrollRun,
     PipelineRun,
     PipelineRunArtifact,
     PipelineRunStep,
@@ -32,6 +42,7 @@ from app.models import (
     StagingCreditCardTransaction,
     StagingPayrollDetail,
     StagingPayrollSummary,
+    Vendor,
 )
 from app.services.governance_seed import seed_governance_data
 
@@ -56,6 +67,9 @@ def isolate_registration_records(tmp_path: Path) -> Generator[None, None, None]:
         baseline_run_id = session.scalar(select(func.max(PipelineRun.id))) or 0
         baseline_file_id = session.scalar(select(func.max(SourceFile.id))) or 0
         baseline_audit_id = session.scalar(select(func.max(AuditEvent.id))) or 0
+        baseline_counterparty_id = session.scalar(select(func.max(Counterparty.id))) or 0
+        baseline_employee_id = session.scalar(select(func.max(Employee.id))) or 0
+        baseline_vendor_id = session.scalar(select(func.max(Vendor.id))) or 0
     yield
     with SessionLocal() as session:
         new_audit_ids = select(AuditEvent.id).where(AuditEvent.id > baseline_audit_id)
@@ -66,6 +80,46 @@ def isolate_registration_records(tmp_path: Path) -> Generator[None, None, None]:
         new_run_ids = select(PipelineRun.id).where(PipelineRun.id > baseline_run_id)
         new_profile_ids = select(SourceFileProfile.id).where(
             SourceFileProfile.pipeline_run_id.in_(new_run_ids)
+        )
+        new_transaction_ids = select(FinancialTransaction.id).where(
+            FinancialTransaction.normalization_run_id.in_(new_run_ids)
+        )
+        new_payroll_run_ids = select(PayrollRun.id).where(
+            PayrollRun.pipeline_run_id.in_(new_run_ids)
+        )
+        session.execute(
+            delete(CanonicalRecordLineage).where(
+                CanonicalRecordLineage.source_file_id > baseline_file_id
+            )
+        )
+        session.execute(
+            delete(BankTransaction).where(
+                BankTransaction.financial_transaction_id.in_(new_transaction_ids)
+            )
+        )
+        session.execute(
+            delete(CreditCardTransaction).where(
+                CreditCardTransaction.financial_transaction_id.in_(new_transaction_ids)
+            )
+        )
+        session.execute(
+            delete(PayrollEntry).where(PayrollEntry.payroll_run_id.in_(new_payroll_run_ids))
+        )
+        session.execute(
+            delete(FinancialTransaction).where(
+                FinancialTransaction.normalization_run_id.in_(new_run_ids)
+            )
+        )
+        session.execute(delete(PayrollRun).where(PayrollRun.id.in_(new_payroll_run_ids)))
+        session.execute(
+            delete(NormalizationException).where(
+                NormalizationException.pipeline_run_id.in_(new_run_ids)
+            )
+        )
+        session.execute(
+            delete(NormalizationControlTotal).where(
+                NormalizationControlTotal.pipeline_run_id.in_(new_run_ids)
+            )
         )
         session.execute(
             delete(StagingBankTransaction).where(
@@ -115,6 +169,9 @@ def isolate_registration_records(tmp_path: Path) -> Generator[None, None, None]:
         )
         session.execute(delete(PipelineRun).where(PipelineRun.id > baseline_run_id))
         session.execute(delete(SourceFile).where(SourceFile.id > baseline_file_id))
+        session.execute(delete(Employee).where(Employee.id > baseline_employee_id))
+        session.execute(delete(Vendor).where(Vendor.id > baseline_vendor_id))
+        session.execute(delete(Counterparty).where(Counterparty.id > baseline_counterparty_id))
         session.commit()
     shutil.rmtree(tmp_path, ignore_errors=True)
 
