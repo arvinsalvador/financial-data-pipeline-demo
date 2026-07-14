@@ -18,6 +18,7 @@ from app.main import app
 from app.models import (
     AuditEvent,
     AuditEventChange,
+    BankLedgerReconciliationRun,
     BankTransaction,
     CanonicalRecordLineage,
     Counterparty,
@@ -44,6 +45,14 @@ from app.models import (
     PipelineRunArtifact,
     PipelineRunStep,
     RawSourceRow,
+    ReconciliationAllocation,
+    ReconciliationCandidate,
+    ReconciliationControlTotal,
+    ReconciliationDecision,
+    ReconciliationException,
+    ReconciliationMatch,
+    ReconciliationMatchGroup,
+    ReconciliationReport,
     RejectedSourceRow,
     SourceFile,
     SourceFileColumnProfile,
@@ -78,6 +87,7 @@ def test_settings(tmp_path: Path) -> Settings:
         MESSY_MANIFEST_ROOT=tmp_path / "generated" / "manifests" / "messy",
         MESSY_REPORT_ROOT=tmp_path / "generated" / "reports" / "messy",
         VALIDATION_REPORT_ROOT=tmp_path / "generated" / "reports" / "validation",
+        RECONCILIATION_REPORT_ROOT=tmp_path / "reports" / "reconciliation" / "bank-ledger",
         MAX_UPLOAD_SIZE_BYTES=128,
     )
 
@@ -117,6 +127,57 @@ def isolate_registration_records(tmp_path: Path) -> Generator[None, None, None]:
         )
         new_validation_run_ids = select(ValidationRun.id).where(
             ValidationRun.pipeline_run_id.in_(new_run_ids)
+        )
+        new_reconciliation_run_ids = select(BankLedgerReconciliationRun.id).where(
+            BankLedgerReconciliationRun.pipeline_run_id.in_(new_run_ids)
+        )
+        new_reconciliation_group_ids = select(ReconciliationMatchGroup.id).where(
+            ReconciliationMatchGroup.reconciliation_run_id.in_(new_reconciliation_run_ids)
+        )
+        session.execute(
+            delete(ReconciliationDecision).where(
+                ReconciliationDecision.reconciliation_run_id.in_(new_reconciliation_run_ids)
+            )
+        )
+        session.execute(
+            delete(ReconciliationAllocation).where(
+                ReconciliationAllocation.reconciliation_run_id.in_(new_reconciliation_run_ids)
+            )
+        )
+        session.execute(
+            delete(ReconciliationMatch).where(
+                ReconciliationMatch.reconciliation_run_id.in_(new_reconciliation_run_ids)
+            )
+        )
+        session.execute(
+            delete(ReconciliationException).where(
+                ReconciliationException.reconciliation_run_id.in_(new_reconciliation_run_ids)
+            )
+        )
+        session.execute(
+            delete(ReconciliationReport).where(
+                ReconciliationReport.reconciliation_run_id.in_(new_reconciliation_run_ids)
+            )
+        )
+        session.execute(
+            delete(ReconciliationControlTotal).where(
+                ReconciliationControlTotal.reconciliation_run_id.in_(new_reconciliation_run_ids)
+            )
+        )
+        session.execute(
+            delete(ReconciliationMatchGroup).where(
+                ReconciliationMatchGroup.id.in_(new_reconciliation_group_ids)
+            )
+        )
+        session.execute(
+            delete(ReconciliationCandidate).where(
+                ReconciliationCandidate.reconciliation_run_id.in_(new_reconciliation_run_ids)
+            )
+        )
+        session.execute(
+            delete(BankLedgerReconciliationRun).where(
+                BankLedgerReconciliationRun.id.in_(new_reconciliation_run_ids)
+            )
         )
         new_validation_issue_ids = select(ValidationIssue.id).where(
             ValidationIssue.validation_run_id.in_(new_validation_run_ids)

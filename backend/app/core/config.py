@@ -49,6 +49,20 @@ class Settings(BaseSettings):
     DEFAULT_VALIDATION_RULE_SET: str = "financial_data_quality_v1"
     VALIDATION_REPORT_ROOT: Path = Path("/data/generated/reports/validation")
     VALIDATION_MAX_ISSUES_PER_RULE: int = Field(default=5000, gt=0, le=100000)
+    RECONCILIATION_VERSION: str = "1.0.0"
+    RECONCILIATION_AMOUNT_TOLERANCE: float = Field(default=0.01, ge=0)
+    RECONCILIATION_DATE_TOLERANCE_DAYS: int = Field(default=3, ge=0, le=31)
+    RECONCILIATION_MIN_AUTO_ACCEPT_CONFIDENCE: float = Field(default=0.98, ge=0, le=1)
+    RECONCILIATION_MIN_SUGGESTION_CONFIDENCE: float = Field(default=0.65, ge=0, le=1)
+    RECONCILIATION_MAX_GROUP_SIZE: int = Field(default=5, ge=2, le=10)
+    RECONCILIATION_MAX_CANDIDATES_PER_RECORD: int = Field(default=20, ge=1, le=100)
+    RECONCILIATION_DESCRIPTION_SIMILARITY_THRESHOLD: float = Field(default=0.35, ge=0, le=1)
+    RECONCILIATION_REFERENCE_SIMILARITY_THRESHOLD: float = Field(default=0.8, ge=0, le=1)
+    RECONCILIATION_PARTIAL_MATCH_MINIMUM_AMOUNT: float = Field(default=1.0, ge=0)
+    RECONCILIATION_REVERSAL_DATE_TOLERANCE_DAYS: int = Field(default=7, ge=0, le=31)
+    RECONCILIATION_DUPLICATE_DATE_TOLERANCE_DAYS: int = Field(default=0, ge=0, le=31)
+    RECONCILIATION_AUTO_ACCEPT_GROUPED_MATCHES: bool = False
+    RECONCILIATION_REPORT_ROOT: Path = Path("/data/reports/reconciliation/bank-ledger")
     INGESTION_REPORTS_DIRECTORY: Path = Path("/data/reports")
     CSV_READ_CHUNK_SIZE: int = Field(default=1000, gt=0)
     MAX_SAMPLED_VALUES_PER_COLUMN: int = Field(default=5, gt=0, le=100)

@@ -61,6 +61,18 @@ from app.models.messy import (
 )
 from app.models.pipeline_run import PipelineRun
 from app.models.pipeline_run_step import PipelineRunStep
+from app.models.reconciliation import (
+    BankLedgerReconciliationRun,
+    ReconciliationAllocation,
+    ReconciliationCandidate,
+    ReconciliationControlTotal,
+    ReconciliationDecision,
+    ReconciliationException,
+    ReconciliationMatch,
+    ReconciliationMatchGroup,
+    ReconciliationReport,
+    ReconciliationRule,
+)
 from app.models.source_file import SourceFile
 from app.models.source_file_column_profile import SourceFileColumnProfile
 from app.models.source_file_profile import SourceFileProfile
@@ -82,6 +94,7 @@ __all__ = [
     "AuditEvent",
     "AuditEventChange",
     "BankAccount",
+    "BankLedgerReconciliationRun",
     "BankTransaction",
     "CanonicalRecordLineage",
     "Counterparty",
@@ -117,6 +130,15 @@ __all__ = [
     "PipelineRunArtifact",
     "PipelineRunStep",
     "RawSourceRow",
+    "ReconciliationAllocation",
+    "ReconciliationCandidate",
+    "ReconciliationControlTotal",
+    "ReconciliationDecision",
+    "ReconciliationException",
+    "ReconciliationMatch",
+    "ReconciliationMatchGroup",
+    "ReconciliationReport",
+    "ReconciliationRule",
     "RejectedSourceRow",
     "Role",
     "RolePermission",

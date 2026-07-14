@@ -1,0 +1,80 @@
+{
+  "allocation_balance": {
+    "difference": "0.000000",
+    "matched": "618482.000000",
+    "source": "618482.000000",
+    "status": "passed"
+  },
+  "automatic_match_rate": {
+    "difference": "0.026997",
+    "matched": "0.973003",
+    "source": "1.000000",
+    "status": "passed"
+  },
+  "bank_amount": {
+    "difference": "7524.000000",
+    "matched": "618482.000000",
+    "source": "626006.000000",
+    "status": "attention"
+  },
+  "duplicate_count": {
+    "difference": "0.000000",
+    "matched": "0.000000",
+    "source": "0.000000",
+    "status": "passed"
+  },
+  "eligible_bank_record_count": {
+    "difference": "12.000000",
+    "matched": "865.000000",
+    "source": "877.000000",
+    "status": "attention"
+  },
+  "eligible_ledger_record_count": {
+    "difference": "36.000000",
+    "matched": "865.000000",
+    "source": "901.000000",
+    "status": "attention"
+  },
+  "exception_count": {
+    "difference": "0.000000",
+    "matched": "0.000000",
+    "source": "0.000000",
+    "status": "passed"
+  },
+  "ledger_amount": {
+    "difference": "118141.000000",
+    "matched": "618482.000000",
+    "source": "736623.000000",
+    "status": "attention"
+  },
+  "matched_amount": {
+    "difference": "0.000000",
+    "matched": "618482.000000",
+    "source": "618482.000000",
+    "status": "passed"
+  },
+  "overall_reconciliation_rate": {
+    "difference": "0.160382",
+    "matched": "0.839618",
+    "source": "1.000000",
+    "status": "passed"
+  },
+  "reversal_count": {
+    "difference": "0.000000",
+    "matched": "0.000000",
+    "source": "0.000000",
+    "status": "passed"
+  },
+  "unmatched_bank_amount": {
+    "difference": "7524.000000",
+    "matched": "618482.000000",
+    "source": "626006.000000",
+    "status": "passed"
+  },
+  "unmatched_ledger_amount": {
+    "difference": "118141.000000",
+    "matched": "618482.000000",
+    "source": "736623.000000",
+    "status": "passed"
+  }
+}

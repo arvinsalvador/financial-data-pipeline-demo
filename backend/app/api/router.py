@@ -7,6 +7,12 @@ from app.api.routes.ingestions import router as ingestions_router
 from app.api.routes.messy_datasets import router as messy_datasets_router
 from app.api.routes.normalizations import router as normalizations_router
 from app.api.routes.profiles import router as profiles_router
+from app.api.routes.reconciliations import (
+    match_group_router,
+)
+from app.api.routes.reconciliations import (
+    router as reconciliations_router,
+)
 from app.api.routes.sources import router as sources_router
 from app.api.routes.validation import router as validation_router
 
@@ -20,3 +26,5 @@ api_router.include_router(governance_router, tags=["governance"])
 api_router.include_router(profiles_router, tags=["profiling"])
 api_router.include_router(sources_router, tags=["sources"])
 api_router.include_router(validation_router, tags=["validation"])
+api_router.include_router(reconciliations_router, tags=["reconciliation"])
+api_router.include_router(match_group_router, tags=["reconciliation"])
