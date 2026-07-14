@@ -44,17 +44,13 @@ class BaseSourceConnector:
         for column in mapping.columns:
             config = column.transformation_config_json or {}
             aliases = [column.source_column_name, *config.get("aliases", [])]
-            matches = {
+            matches = [
                 normalized[normalize_header(alias)]
                 for alias in aliases
                 if normalize_header(alias) in normalized
-            }
-            if len(matches) > 1:
-                raise ValueError(
-                    f"Ambiguous columns for {column.canonical_field_name}: {sorted(matches)}"
-                )
+            ]
             if matches:
-                self.bindings[column.canonical_field_name] = matches.pop()
+                self.bindings[column.canonical_field_name] = matches[0]
             elif column.is_required:
                 raise ValueError(
                     f"Required mapped column is unavailable: {column.canonical_field_name}"

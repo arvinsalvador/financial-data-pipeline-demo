@@ -40,6 +40,12 @@ PERMISSIONS = (
     "rejected_rows.view",
     "staging_records.view",
     "ingestion_control_totals.view",
+    "normalization.execute",
+    "canonical_records.view",
+    "canonical_lineage.view",
+    "normalization_exceptions.view",
+    "normalization_exceptions.manage",
+    "normalization_control_totals.view",
 )
 ROLE_PERMISSIONS = {
     "platform_admin": PERMISSIONS,
@@ -63,6 +69,12 @@ ROLE_PERMISSIONS = {
         "rejected_rows.view",
         "staging_records.view",
         "ingestion_control_totals.view",
+        "normalization.execute",
+        "canonical_records.view",
+        "canonical_lineage.view",
+        "normalization_exceptions.view",
+        "normalization_exceptions.manage",
+        "normalization_control_totals.view",
     ),
     "finance_analyst": (
         "source_systems.view",
@@ -79,6 +91,11 @@ ROLE_PERMISSIONS = {
         "rejected_rows.view",
         "staging_records.view",
         "ingestion_control_totals.view",
+        "normalization.execute",
+        "canonical_records.view",
+        "canonical_lineage.view",
+        "normalization_exceptions.view",
+        "normalization_control_totals.view",
     ),
     "client_viewer": (
         "source_systems.view",
@@ -87,6 +104,7 @@ ROLE_PERMISSIONS = {
         "data_quality_issues.view",
         "pipeline_runs.view",
         "dashboards.view",
+        "canonical_records.view",
     ),
 }
 
@@ -221,6 +239,9 @@ def seed_governance_data(session: Session, settings: Settings) -> dict[str, int]
     from app.services.ingestion_seed import seed_ingestion_data
 
     seed_ingestion_data(session)
+    from app.services.canonical_seed import seed_canonical_data
+
+    seed_canonical_data(session)
     return {
         "tenants": 1,
         "users": len(users),

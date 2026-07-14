@@ -204,3 +204,9 @@ Phase 4 raw and source-specific staging ingestion is documented in
 auditable accepted/rejected row lineage, control totals, ingestion artifacts, tenant-scoped APIs,
 CLI integrity verification, and read-only frontend workflows. Canonical financial normalization is
 not implemented yet.
+
+Phase 5 canonical financial normalization is documented in
+[`docs/phase-5-canonical-normalization.md`](docs/phase-5-canonical-normalization.md). It adds
+versioned canonical accounts, transactions, payroll, deterministic master-data resolution,
+source-to-canonical lineage, controls, exceptions, APIs, CLI verification, and frontend views.
+General-ledger journal entries and reconciliation are not implemented yet.

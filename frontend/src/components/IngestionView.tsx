@@ -1,13 +1,18 @@
 import { useEffect, useState } from "react";
 import { fetchControlTotals, fetchRawRows, fetchRejections, type ControlTotal, type IngestionSummary, type RawRow, type Rejection } from "../api/ingestion";
+import { fetchNormalizations, normalizeIngestion, type NormalizationSummary } from "../api/normalization";
+import { NormalizationView } from "./NormalizationView";
 
 export function IngestionView({ ingestion, onClose }: { ingestion: IngestionSummary; onClose: () => void }) {
   const [raw, setRaw] = useState<RawRow[]>([]); const [rejections, setRejections] = useState<Rejection[]>([]);
   const [controls, setControls] = useState<ControlTotal[]>([]); const [category, setCategory] = useState("");
-  useEffect(() => { void Promise.all([fetchRawRows(ingestion.id), fetchRejections(ingestion.id), fetchControlTotals(ingestion.id)]).then(([rows, rejected, totals]) => { setRaw(rows); setRejections(rejected); setControls(totals); }); }, [ingestion.id]);
+  const [normalization, setNormalization] = useState<NormalizationSummary | null>(null); const [normalizing, setNormalizing] = useState(false);
+  useEffect(() => { void Promise.all([fetchRawRows(ingestion.id), fetchRejections(ingestion.id), fetchControlTotals(ingestion.id), fetchNormalizations(ingestion.id)]).then(([rows, rejected, totals, normalizations]) => { setRaw(rows); setRejections(rejected); setControls(totals); if (normalizations[0]) setNormalization(normalizations[0]); }); }, [ingestion.id]);
+  async function runNormalization(force = false) { setNormalizing(true); try { setNormalization(await normalizeIngestion(ingestion.id, undefined, force)); } finally { setNormalizing(false); } }
   const shown = rejections.filter((item) => !category || item.rejection_category === category);
   const pct = ingestion.records_extracted ? (100 * ingestion.records_accepted / ingestion.records_extracted).toFixed(1) : "0.0";
-  return <section><button className="close-button" onClick={onClose}>Back to source files</button><p className="eyebrow">Phase 4 · Raw and staging ingestion</p><h2>{ingestion.source_filename}</h2>
+  if (normalization) return <NormalizationView normalization={normalization} onClose={() => setNormalization(null)} />;
+  return <section><button className="close-button" onClick={onClose}>Back to source files</button><p className="eyebrow">Phase 4 · Raw and staging ingestion</p><h2>{ingestion.source_filename}</h2><button type="button" disabled={normalizing || !["completed", "completed_with_rejections"].includes(ingestion.status)} onClick={() => void runNormalization(false)}>{normalizing ? "Normalizing…" : "Normalize"}</button><button type="button" className="secondary-button" disabled={normalizing} onClick={() => void runNormalization(true)}>Safe rerun</button>
     {ingestion.no_op && <p className="upload-message duplicate">Safe no-op: this mapping and ingestion version were already completed.</p>}
     <div className="metric-grid"><article><span>Status</span><strong>{ingestion.status}</strong></article><article><span>Connector</span><strong>{ingestion.connector ?? "—"}</strong></article><article><span>Mapping</span><strong>{ingestion.mapping_code} v{ingestion.mapping_version}</strong></article><article><span>Ingestion</span><strong>v{ingestion.ingestion_version}</strong></article><article><span>Extracted</span><strong>{ingestion.records_extracted}</strong></article><article><span>Accepted</span><strong>{ingestion.records_accepted} ({pct}%)</strong></article><article><span>Rejected</span><strong>{ingestion.records_rejected}</strong></article></div>
     <h3>Control totals</h3><div className="table-wrap"><table><thead><tr><th>Control</th><th>Source</th><th>Loaded</th><th>Difference</th><th>Status</th></tr></thead><tbody>{controls.map((item) => <tr key={item.id}><td>{item.control_name}</td><td>{item.source_value ?? "—"}</td><td>{item.loaded_value ?? "—"}</td><td>{item.difference_value ?? "—"}</td><td>{item.status}</td></tr>)}</tbody></table></div>
