@@ -50,6 +50,15 @@ from app.models.ingestion import (
     StagingPayrollDetail,
     StagingPayrollSummary,
 )
+from app.models.messy import (
+    DataMutation,
+    DefectScenario,
+    DefectScenarioRule,
+    ExpectedException,
+    MessyDatasetRun,
+    MessyGenerationControlTotal,
+    MessySourceFile,
+)
 from app.models.pipeline_run import PipelineRun
 from app.models.pipeline_run_step import PipelineRunStep
 from app.models.source_file import SourceFile
@@ -69,8 +78,12 @@ __all__ = [
     "CreditCardTransaction",
     "Currency",
     "Customer",
+    "DataMutation",
     "DataQualityIssue",
+    "DefectScenario",
+    "DefectScenarioRule",
     "Employee",
+    "ExpectedException",
     "FinancialAccount",
     "FinancialTransaction",
     "GeneratedDatasetRun",
@@ -79,6 +92,9 @@ __all__ = [
     "GenerationControlTotal",
     "GenerationException",
     "IngestionControlTotal",
+    "MessyDatasetRun",
+    "MessyGenerationControlTotal",
+    "MessySourceFile",
     "NormalizationControlTotal",
     "NormalizationException",
     "NormalizationMapping",

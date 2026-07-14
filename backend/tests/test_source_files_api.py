@@ -114,6 +114,7 @@ def test_source_system_listing(client: TestClient) -> None:
     assert response.status_code == 200
     assert SOURCE_CODE in {item["code"] for item in response.json()["items"]}
     assert "generated_demo_business" in {item["code"] for item in response.json()["items"]}
+    assert "generated_demo_business_messy" in {item["code"] for item in response.json()["items"]}
 
 
 def test_source_file_listing_and_detail_do_not_expose_absolute_paths(client: TestClient) -> None:

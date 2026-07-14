@@ -22,8 +22,10 @@ from app.models import (
     CanonicalRecordLineage,
     Counterparty,
     CreditCardTransaction,
+    DataMutation,
     DataQualityIssue,
     Employee,
+    ExpectedException,
     FinancialTransaction,
     GeneratedDatasetRun,
     GeneratedRecordLink,
@@ -31,6 +33,9 @@ from app.models import (
     GenerationControlTotal,
     GenerationException,
     IngestionControlTotal,
+    MessyDatasetRun,
+    MessyGenerationControlTotal,
+    MessySourceFile,
     NormalizationControlTotal,
     NormalizationException,
     PayrollEntry,
@@ -62,6 +67,9 @@ def test_settings(tmp_path: Path) -> Settings:
         MANIFESTS_DIRECTORY=tmp_path / "manifests",
         INGESTION_REPORTS_DIRECTORY=tmp_path / "reports",
         GENERATED_DATA_DIRECTORY=tmp_path / "generated",
+        MESSY_GENERATED_ROOT=tmp_path / "generated" / "messy",
+        MESSY_MANIFEST_ROOT=tmp_path / "generated" / "manifests" / "messy",
+        MESSY_REPORT_ROOT=tmp_path / "generated" / "reports" / "messy",
         MAX_UPLOAD_SIZE_BYTES=128,
     )
 
@@ -96,6 +104,28 @@ def isolate_registration_records(tmp_path: Path) -> Generator[None, None, None]:
         new_generated_run_ids = select(GeneratedDatasetRun.id).where(
             GeneratedDatasetRun.pipeline_run_id.in_(new_run_ids)
         )
+        new_messy_run_ids = select(MessyDatasetRun.id).where(
+            MessyDatasetRun.pipeline_run_id.in_(new_run_ids)
+        )
+        session.execute(
+            delete(ExpectedException).where(
+                ExpectedException.messy_dataset_run_id.in_(new_messy_run_ids)
+            )
+        )
+        session.execute(
+            delete(DataMutation).where(DataMutation.messy_dataset_run_id.in_(new_messy_run_ids))
+        )
+        session.execute(
+            delete(MessyGenerationControlTotal).where(
+                MessyGenerationControlTotal.messy_dataset_run_id.in_(new_messy_run_ids)
+            )
+        )
+        session.execute(
+            delete(MessySourceFile).where(
+                MessySourceFile.messy_dataset_run_id.in_(new_messy_run_ids)
+            )
+        )
+        session.execute(delete(MessyDatasetRun).where(MessyDatasetRun.id.in_(new_messy_run_ids)))
         session.execute(
             delete(GeneratedRecordLink).where(
                 GeneratedRecordLink.generated_dataset_run_id.in_(new_generated_run_ids)

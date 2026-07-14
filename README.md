@@ -222,3 +222,18 @@ docker compose exec backend python -m app.cli.verify_generated_data_integrity
 ```
 
 See [docs/phase-6-generated-business-sources.md](docs/phase-6-generated-business-sources.md) for generation rules, accounting treatments, files, controls, APIs, permissions, and exact reproduction steps. Phase 6 does not yet implement reconciliation or forecast calculations and introduces no deliberate hostile defects.
+
+## Phase 7: controlled messy data
+
+Completed clean datasets can now be copied into separate, deterministic messy variants using versioned light, standard, or hostile scenarios. Every attempted mutation is auditable, every applied mutation has a linked expected exception, and clean inputs remain checksum-protected. Identical tenant, clean run, scenario, version, seed, and generator inputs return a verified no-op.
+
+Open **Messy data** in the frontend, or run:
+
+```bash
+docker compose exec backend python -m app.cli.list_defect_scenarios
+docker compose exec backend python -m app.cli.generate_messy_dataset --clean-generated-dataset-run-id 7 --scenario-code standard_messy_v1 --seed 20260714
+docker compose exec backend python -m app.cli.verify_messy_data_integrity --messy-dataset-run-id 1
+docker compose exec backend python -m app.cli.summarize_expected_exceptions --messy-dataset-run-id 1
+```
+
+See [docs/phase-7-controlled-messy-data.md](docs/phase-7-controlled-messy-data.md) for rules, controls, manifests, APIs, permissions, commands, and limitations. Phase 7 produces controlled test data and expected ground truth; it does not yet perform validation or reconciliation.

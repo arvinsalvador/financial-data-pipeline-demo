@@ -52,6 +52,12 @@ PERMISSIONS = (
     "generated_links.view",
     "generation_controls.view",
     "generation_exceptions.view",
+    "messy_datasets.execute",
+    "messy_datasets.view",
+    "defect_scenarios.view",
+    "data_mutations.view",
+    "expected_exceptions.view",
+    "messy_controls.view",
 )
 ROLE_PERMISSIONS = {
     "platform_admin": PERMISSIONS,
@@ -87,6 +93,12 @@ ROLE_PERMISSIONS = {
         "generated_links.view",
         "generation_controls.view",
         "generation_exceptions.view",
+        "messy_datasets.execute",
+        "messy_datasets.view",
+        "defect_scenarios.view",
+        "data_mutations.view",
+        "expected_exceptions.view",
+        "messy_controls.view",
     ),
     "finance_analyst": (
         "source_systems.view",
@@ -114,6 +126,12 @@ ROLE_PERMISSIONS = {
         "generated_links.view",
         "generation_controls.view",
         "generation_exceptions.view",
+        "messy_datasets.execute",
+        "messy_datasets.view",
+        "defect_scenarios.view",
+        "data_mutations.view",
+        "expected_exceptions.view",
+        "messy_controls.view",
     ),
     "client_viewer": (
         "source_systems.view",
@@ -125,6 +143,8 @@ ROLE_PERMISSIONS = {
         "canonical_records.view",
         "generated_datasets.view",
         "generated_files.view",
+        "messy_datasets.view",
+        "expected_exceptions.view",
     ),
 }
 
@@ -262,6 +282,9 @@ def seed_governance_data(session: Session, settings: Settings) -> dict[str, int]
     from app.services.canonical_seed import seed_canonical_data
 
     seed_canonical_data(session)
+    from app.services.messy_seed import seed_messy_data
+
+    seed_messy_data(session)
     return {
         "tenants": 1,
         "users": len(users),
