@@ -1,0 +1,27 @@
+{
+  "tenant_id": 1,
+  "ingestion_run_id": 590,
+  "normalization_run_id": 599,
+  "mapping_code": "bank_transaction_main_v1",
+  "mapping_version": "1.0.0",
+  "normalization_version": "1.0.0",
+  "staging_count": 877,
+  "canonical_count": 877,
+  "exception_count": 0,
+  "controls": [
+    {
+      "name": "staging_record_count",
+      "staging": "877",
+      "canonical": "877",
+      "difference": "0",
+      "status": "matched"
+    },
+    {
+      "name": "staging_amount_total",
+      "staging": "626006.000000",
+      "canonical": "626006.000000",
+      "difference": "0.000000",
+      "status": "matched"
+    }
+  ]
+}

@@ -25,6 +25,11 @@ from app.models import (
     DataQualityIssue,
     Employee,
     FinancialTransaction,
+    GeneratedDatasetRun,
+    GeneratedRecordLink,
+    GeneratedSourceFile,
+    GenerationControlTotal,
+    GenerationException,
     IngestionControlTotal,
     NormalizationControlTotal,
     NormalizationException,
@@ -56,6 +61,7 @@ def test_settings(tmp_path: Path) -> Settings:
         REJECTED_RAW_DIRECTORY=tmp_path / "raw" / "rejected",
         MANIFESTS_DIRECTORY=tmp_path / "manifests",
         INGESTION_REPORTS_DIRECTORY=tmp_path / "reports",
+        GENERATED_DATA_DIRECTORY=tmp_path / "generated",
         MAX_UPLOAD_SIZE_BYTES=128,
     )
 
@@ -86,6 +92,32 @@ def isolate_registration_records(tmp_path: Path) -> Generator[None, None, None]:
         )
         new_payroll_run_ids = select(PayrollRun.id).where(
             PayrollRun.pipeline_run_id.in_(new_run_ids)
+        )
+        new_generated_run_ids = select(GeneratedDatasetRun.id).where(
+            GeneratedDatasetRun.pipeline_run_id.in_(new_run_ids)
+        )
+        session.execute(
+            delete(GeneratedRecordLink).where(
+                GeneratedRecordLink.generated_dataset_run_id.in_(new_generated_run_ids)
+            )
+        )
+        session.execute(
+            delete(GenerationControlTotal).where(
+                GenerationControlTotal.generated_dataset_run_id.in_(new_generated_run_ids)
+            )
+        )
+        session.execute(
+            delete(GenerationException).where(
+                GenerationException.generated_dataset_run_id.in_(new_generated_run_ids)
+            )
+        )
+        session.execute(
+            delete(GeneratedSourceFile).where(
+                GeneratedSourceFile.generated_dataset_run_id.in_(new_generated_run_ids)
+            )
+        )
+        session.execute(
+            delete(GeneratedDatasetRun).where(GeneratedDatasetRun.id.in_(new_generated_run_ids))
         )
         session.execute(
             delete(CanonicalRecordLineage).where(

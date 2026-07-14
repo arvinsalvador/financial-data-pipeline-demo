@@ -1,0 +1,11 @@
+{
+  "tenant_id": 1,
+  "ingestion_run_id": 590,
+  "normalization_run_id": 599,
+  "mapping_code": "bank_transaction_main_v1",
+  "mapping_version": "1.0.0",
+  "normalization_version": "1.0.0",
+  "staging_count": 877,
+  "canonical_count": 877,
+  "exception_count": 0
+}

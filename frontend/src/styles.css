@@ -86,6 +86,8 @@ code { font-size: 0.78rem; overflow-wrap: anywhere; }
 .context-bar nav { display: flex; gap: 0.5rem; }
 .governance-page { display: grid; gap: 1.4rem; }
 .governance-form { display: grid; gap: 1rem; padding: 1.2rem; background: #f3f7f2; border-radius: 14px; }
+.generated-page, .generated-details { display: grid; gap: 1.4rem; }
+.generation-form { display: grid; grid-template-columns: 1fr 1fr auto; gap: 0.8rem; align-items: end; padding: 1.2rem; background: #f3f7f2; border-radius: 14px; }
 .form-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.8rem; }
 .detail-card pre { max-height: 300px; overflow: auto; white-space: pre-wrap; }
 .profile-toolbar, .issue-heading { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
@@ -115,7 +117,7 @@ dd { margin: 0; overflow-wrap: anywhere; }
   main { padding: 1rem; }
   .status-panel, .section-heading, .profile-toolbar, .issue-heading { flex-direction: column; align-items: stretch; }
   .button-row, .filters { flex-wrap: wrap; }
-  .context-bar, .form-grid { grid-template-columns: 1fr; }
+  .context-bar, .form-grid, .generation-form { grid-template-columns: 1fr; }
   .status-grid { grid-template-columns: 1fr; }
   .immutable-badge { align-self: flex-start; }
   dl div { grid-template-columns: 1fr; gap: 0.25rem; }

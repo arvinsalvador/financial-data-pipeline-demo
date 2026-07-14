@@ -19,6 +19,13 @@ from app.models.canonical import (
     Vendor,
 )
 from app.models.data_quality_issue import DataQualityIssue
+from app.models.generation import (
+    GeneratedDatasetRun,
+    GeneratedRecordLink,
+    GeneratedSourceFile,
+    GenerationControlTotal,
+    GenerationException,
+)
 from app.models.governance import (
     AuditEvent,
     AuditEventChange,
@@ -66,6 +73,11 @@ __all__ = [
     "Employee",
     "FinancialAccount",
     "FinancialTransaction",
+    "GeneratedDatasetRun",
+    "GeneratedRecordLink",
+    "GeneratedSourceFile",
+    "GenerationControlTotal",
+    "GenerationException",
     "IngestionControlTotal",
     "NormalizationControlTotal",
     "NormalizationException",

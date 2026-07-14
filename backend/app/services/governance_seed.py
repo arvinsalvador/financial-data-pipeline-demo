@@ -46,6 +46,12 @@ PERMISSIONS = (
     "normalization_exceptions.view",
     "normalization_exceptions.manage",
     "normalization_control_totals.view",
+    "generated_datasets.execute",
+    "generated_datasets.view",
+    "generated_files.view",
+    "generated_links.view",
+    "generation_controls.view",
+    "generation_exceptions.view",
 )
 ROLE_PERMISSIONS = {
     "platform_admin": PERMISSIONS,
@@ -75,6 +81,12 @@ ROLE_PERMISSIONS = {
         "normalization_exceptions.view",
         "normalization_exceptions.manage",
         "normalization_control_totals.view",
+        "generated_datasets.execute",
+        "generated_datasets.view",
+        "generated_files.view",
+        "generated_links.view",
+        "generation_controls.view",
+        "generation_exceptions.view",
     ),
     "finance_analyst": (
         "source_systems.view",
@@ -96,6 +108,12 @@ ROLE_PERMISSIONS = {
         "canonical_lineage.view",
         "normalization_exceptions.view",
         "normalization_control_totals.view",
+        "generated_datasets.execute",
+        "generated_datasets.view",
+        "generated_files.view",
+        "generated_links.view",
+        "generation_controls.view",
+        "generation_exceptions.view",
     ),
     "client_viewer": (
         "source_systems.view",
@@ -105,6 +123,8 @@ ROLE_PERMISSIONS = {
         "pipeline_runs.view",
         "dashboards.view",
         "canonical_records.view",
+        "generated_datasets.view",
+        "generated_files.view",
     ),
 }
 

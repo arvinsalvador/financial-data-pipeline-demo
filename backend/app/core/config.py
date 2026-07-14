@@ -30,6 +30,11 @@ class Settings(BaseSettings):
     PROFILING_VERSION: str = "1.0.0"
     INGESTION_VERSION: str = "1.0.0"
     NORMALIZATION_VERSION: str = "1.0.0"
+    GENERATOR_VERSION: str = "1.0.0"
+    GENERATION_RANDOM_SEED: int = 20260714
+    GENERATED_DATA_DIRECTORY: Path = Path("/data/generated")
+    GENERATED_CUSTOMER_COUNT: int = Field(default=8, gt=0, le=1000)
+    GENERATION_MIN_CUSTOMER_DEPOSIT: float = Field(default=0.01, ge=0)
     INGESTION_REPORTS_DIRECTORY: Path = Path("/data/reports")
     CSV_READ_CHUNK_SIZE: int = Field(default=1000, gt=0)
     MAX_SAMPLED_VALUES_PER_COLUMN: int = Field(default=5, gt=0, le=100)
