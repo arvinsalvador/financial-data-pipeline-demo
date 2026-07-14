@@ -1,0 +1,22 @@
+import { governedFetch } from "./context";
+import { API_BASE_URL } from "./health";
+
+interface Page<T> { items: T[]; total: number; page: number; page_size: number; }
+export interface ScenarioRule { id: number; rule_code: string; defect_type: string; target_file_type: string; target_column: string | null; requested_count: number | null; requested_percentage: string | null; severity: string; is_enabled: boolean; rule_order: number; configuration_json: Record<string, unknown> | null; }
+export interface Scenario { id: number; code: string; name: string; description: string | null; version: string; enabled_rule_count: number; expected_approximate_defect_count: number; severity_distribution: Record<string, number>; rules: ScenarioRule[]; }
+export interface MessyRun { id: number; pipeline_run_id: number; clean_generated_dataset_run_id: number; defect_scenario_id: number; messy_generator_version: string; random_seed: number; input_fingerprint: string; defect_plan_fingerprint: string; output_fingerprint: string | null; status: string; clean_file_count: number; messy_file_count: number; requested_defect_count: number; applied_defect_count: number; skipped_defect_count: number; failed_defect_count: number; expected_exception_count: number; metadata_json: Record<string, string> | null; no_op: boolean; pipeline_steps: Record<string, unknown>[]; artifacts: Record<string, unknown>[]; }
+export interface MessyFile { id: number; clean_generated_source_file_id: number; source_file_id: number; file_type: string; filename: string; relative_path: string; sha256_checksum: string; file_size_bytes: number; row_count: number; }
+export interface Mutation { id: number; defect_scenario_rule_id: number; defect_type: string; target_filename: string; source_row_number: number | null; source_record_key: string | null; target_column: string | null; original_value: string | null; mutated_value: string | null; mutation_status: string; }
+export interface ExpectedIssue { id: number; expected_exception_code: string; expected_issue_type: string; expected_severity: string; expected_filename: string; expected_source_row_number: number | null; expected_source_record_key: string | null; expected_column_name: string | null; expected_message_pattern: string; status: string; }
+export interface MessyControl { id: number; control_name: string; clean_value: string | null; messy_value: string | null; difference_value: string | null; expected_difference: string | null; status: string; }
+
+async function request<T>(path: string, init?: RequestInit): Promise<T> { const response = await governedFetch(`${API_BASE_URL}${path}`, init); const body = (await response.json()) as T & { detail?: string }; if (!response.ok) throw new Error(body.detail ?? `Request failed (${response.status})`); return body; }
+export function fetchScenarios() { return request<Scenario[]>("/defect-scenarios"); }
+export function fetchScenario(id: number) { return request<Scenario>(`/defect-scenarios/${id}`); }
+export async function fetchMessyRuns() { return (await request<Page<MessyRun>>("/messy-datasets?page_size=100")).items; }
+export function fetchMessyRun(id: number) { return request<MessyRun>(`/messy-datasets/${id}`); }
+export function generateMessy(cleanId: number, scenario: string, seed: number, force: boolean) { return request<MessyRun>("/messy-datasets", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ clean_generated_dataset_run_id: cleanId, scenario_code: scenario, random_seed: seed, force_rerun: force }) }); }
+export async function fetchMessyFiles(id: number) { return (await request<Page<MessyFile>>(`/messy-datasets/${id}/files?page_size=100`)).items; }
+export async function fetchMutations(id: number, defect = "", status = "") { const query = new URLSearchParams({ page_size: "200" }); if (defect) query.set("defect_type", defect); if (status) query.set("mutation_status", status); return (await request<Page<Mutation>>(`/messy-datasets/${id}/mutations?${query}`)).items; }
+export async function fetchExpected(id: number, severity = "", code = "") { const query = new URLSearchParams({ page_size: "200" }); if (severity) query.set("severity", severity); if (code) query.set("exception_code", code); return (await request<Page<ExpectedIssue>>(`/messy-datasets/${id}/expected-exceptions?${query}`)).items; }
+export async function fetchMessyControls(id: number) { return (await request<Page<MessyControl>>(`/messy-datasets/${id}/control-totals?page_size=100`)).items; }

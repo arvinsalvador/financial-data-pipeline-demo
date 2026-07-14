@@ -35,6 +35,16 @@ class Settings(BaseSettings):
     GENERATED_DATA_DIRECTORY: Path = Path("/data/generated")
     GENERATED_CUSTOMER_COUNT: int = Field(default=8, gt=0, le=1000)
     GENERATION_MIN_CUSTOMER_DEPOSIT: float = Field(default=0.01, ge=0)
+    MESSY_GENERATOR_VERSION: str = "1.0.0"
+    DEFAULT_DEFECT_SCENARIO: str = "standard_messy_v1"
+    MESSY_GENERATION_RANDOM_SEED: int = 20260714
+    MAX_DEFECTS_PER_RUN: int = Field(default=500, gt=0, le=10000)
+    MAX_MUTATION_VALUE_LENGTH: int = Field(default=500, gt=0, le=10000)
+    MESSY_GENERATED_ROOT: Path = Path("/data/generated/messy")
+    MESSY_MANIFEST_ROOT: Path = Path("/data/generated/manifests/messy")
+    MESSY_REPORT_ROOT: Path = Path("/data/generated/reports/messy")
+    MESSY_DETERMINISM_VERIFICATION_ENABLED: bool = True
+    SCENARIO_RULE_CONFLICT_POLICY: str = "skip_later"
     INGESTION_REPORTS_DIRECTORY: Path = Path("/data/reports")
     CSV_READ_CHUNK_SIZE: int = Field(default=1000, gt=0)
     MAX_SAMPLED_VALUES_PER_COLUMN: int = Field(default=5, gt=0, le=100)
