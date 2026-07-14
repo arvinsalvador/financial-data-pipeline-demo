@@ -58,6 +58,12 @@ PERMISSIONS = (
     "data_mutations.view",
     "expected_exceptions.view",
     "messy_controls.view",
+    "validation.execute",
+    "validation.runs.view",
+    "validation.issues.view",
+    "validation.rules.view",
+    "validation.reports.view",
+    "validation.statistics.view",
 )
 ROLE_PERMISSIONS = {
     "platform_admin": PERMISSIONS,
@@ -99,6 +105,12 @@ ROLE_PERMISSIONS = {
         "data_mutations.view",
         "expected_exceptions.view",
         "messy_controls.view",
+        "validation.execute",
+        "validation.runs.view",
+        "validation.issues.view",
+        "validation.rules.view",
+        "validation.reports.view",
+        "validation.statistics.view",
     ),
     "finance_analyst": (
         "source_systems.view",
@@ -132,6 +144,12 @@ ROLE_PERMISSIONS = {
         "data_mutations.view",
         "expected_exceptions.view",
         "messy_controls.view",
+        "validation.execute",
+        "validation.runs.view",
+        "validation.issues.view",
+        "validation.rules.view",
+        "validation.reports.view",
+        "validation.statistics.view",
     ),
     "client_viewer": (
         "source_systems.view",
@@ -145,6 +163,11 @@ ROLE_PERMISSIONS = {
         "generated_files.view",
         "messy_datasets.view",
         "expected_exceptions.view",
+        "validation.runs.view",
+        "validation.issues.view",
+        "validation.rules.view",
+        "validation.reports.view",
+        "validation.statistics.view",
     ),
 }
 
@@ -285,6 +308,9 @@ def seed_governance_data(session: Session, settings: Settings) -> dict[str, int]
     from app.services.messy_seed import seed_messy_data
 
     seed_messy_data(session)
+    from app.services.validation_seed import seed_validation_data
+
+    seed_validation_data(session)
     return {
         "tenants": 1,
         "users": len(users),

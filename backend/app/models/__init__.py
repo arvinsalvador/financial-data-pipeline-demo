@@ -66,6 +66,17 @@ from app.models.source_file_column_profile import SourceFileColumnProfile
 from app.models.source_file_profile import SourceFileProfile
 from app.models.source_system import SourceSystem
 from app.models.system_check import SystemCheck
+from app.models.validation import (
+    ValidationIssue,
+    ValidationIssueHistory,
+    ValidationReport,
+    ValidationRule,
+    ValidationRuleSet,
+    ValidationRun,
+    ValidationRunResult,
+    ValidationStatistic,
+    ValidationSummary,
+)
 
 __all__ = [
     "AuditEvent",
@@ -125,5 +136,14 @@ __all__ = [
     "TenantUserRole",
     "TransactionCategory",
     "User",
+    "ValidationIssue",
+    "ValidationIssueHistory",
+    "ValidationReport",
+    "ValidationRule",
+    "ValidationRuleSet",
+    "ValidationRun",
+    "ValidationRunResult",
+    "ValidationStatistic",
+    "ValidationSummary",
     "Vendor",
 ]
