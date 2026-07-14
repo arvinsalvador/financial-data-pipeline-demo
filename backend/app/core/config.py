@@ -28,6 +28,8 @@ class Settings(BaseSettings):
     )
     MAX_UPLOAD_SIZE_BYTES: int = Field(default=10 * 1024 * 1024, gt=0)
     PROFILING_VERSION: str = "1.0.0"
+    INGESTION_VERSION: str = "1.0.0"
+    INGESTION_REPORTS_DIRECTORY: Path = Path("/data/reports")
     CSV_READ_CHUNK_SIZE: int = Field(default=1000, gt=0)
     MAX_SAMPLED_VALUES_PER_COLUMN: int = Field(default=5, gt=0, le=100)
     NULL_PERCENTAGE_WARNING_THRESHOLD: float = Field(default=50.0, ge=0, le=100)

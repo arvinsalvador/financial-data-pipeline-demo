@@ -35,6 +35,11 @@ PERMISSIONS = (
     "pipeline_runs.retry",
     "audit_events.view",
     "dashboards.view",
+    "source_files.ingest",
+    "raw_rows.view",
+    "rejected_rows.view",
+    "staging_records.view",
+    "ingestion_control_totals.view",
 )
 ROLE_PERMISSIONS = {
     "platform_admin": PERMISSIONS,
@@ -53,6 +58,11 @@ ROLE_PERMISSIONS = {
         "pipeline_runs.retry",
         "audit_events.view",
         "dashboards.view",
+        "source_files.ingest",
+        "raw_rows.view",
+        "rejected_rows.view",
+        "staging_records.view",
+        "ingestion_control_totals.view",
     ),
     "finance_analyst": (
         "source_systems.view",
@@ -64,6 +74,11 @@ ROLE_PERMISSIONS = {
         "pipeline_runs.view",
         "pipeline_runs.execute",
         "dashboards.view",
+        "source_files.ingest",
+        "raw_rows.view",
+        "rejected_rows.view",
+        "staging_records.view",
+        "ingestion_control_totals.view",
     ),
     "client_viewer": (
         "source_systems.view",
@@ -203,6 +218,9 @@ def seed_governance_data(session: Session, settings: Settings) -> dict[str, int]
                 )
             )
     session.commit()
+    from app.services.ingestion_seed import seed_ingestion_data
+
+    seed_ingestion_data(session)
     return {
         "tenants": 1,
         "users": len(users),

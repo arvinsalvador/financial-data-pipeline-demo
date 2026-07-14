@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import { API_BASE_URL, fetchHealth, type HealthResponse } from "./api/health";
 import { CsvUploadPage } from "./components/CsvUploadPage";
 import { GovernancePage } from "./components/GovernancePage";
+import { IngestionCatalogPage } from "./components/IngestionCatalogPage";
 import { StatusCard } from "./components/StatusCard";
 import { DEFAULT_ACTOR, DEFAULT_TENANT, setDevelopmentContext } from "./api/context";
 import { fetchTenants, type Tenant } from "./api/governance";
@@ -14,7 +15,7 @@ export default function App() {
   const [tenantCode, setTenantCode] = useState(localStorage.getItem("demoTenantCode") ?? DEFAULT_TENANT);
   const [actorEmail, setActorEmail] = useState(localStorage.getItem("demoActorEmail") ?? DEFAULT_ACTOR);
   const [tenants, setTenants] = useState<Tenant[]>([]);
-  const [page, setPage] = useState<"sources" | "governance">("sources");
+  const [page, setPage] = useState<"sources" | "staging" | "governance">("sources");
   const [contextVersion, setContextVersion] = useState(0);
 
   const loadHealth = useCallback(async (signal?: AbortSignal) => {
@@ -85,9 +86,9 @@ export default function App() {
         <div><p className="eyebrow">Development context · Not authentication</p><strong>Tenant and actor simulation</strong></div>
         <label>Tenant<select value={tenantCode} onChange={(event) => changeContext(event.target.value, actorEmail)}>{tenants.length ? tenants.map((tenant) => <option key={tenant.id} value={tenant.code}>{tenant.display_name}</option>) : <option value={tenantCode}>{tenantCode}</option>}</select></label>
         <label>Demo user<select value={actorEmail} onChange={(event) => changeContext(tenantCode, event.target.value)}><option value="admin@demo.local">Platform admin</option><option value="cfo@demo.local">CFO user</option><option value="analyst@demo.local">Finance analyst</option><option value="viewer@demo.local">Client viewer</option></select></label>
-        <nav><button type="button" className={page === "sources" ? "" : "secondary-button"} onClick={() => setPage("sources")}>Sources</button><button type="button" className={page === "governance" ? "" : "secondary-button"} onClick={() => setPage("governance")}>Governance & audit</button></nav>
+        <nav><button type="button" className={page === "sources" ? "" : "secondary-button"} onClick={() => setPage("sources")}>Sources</button>{actorEmail !== "viewer@demo.local" && <button type="button" className={page === "staging" ? "" : "secondary-button"} onClick={() => setPage("staging")}>Staging & mappings</button>}<button type="button" className={page === "governance" ? "" : "secondary-button"} onClick={() => setPage("governance")}>Governance & audit</button></nav>
       </section>
-      <div className="panel" key={`${tenantCode}-${actorEmail}-${contextVersion}`}>{page === "sources" ? <CsvUploadPage /> : <GovernancePage />}</div>
+      <div className="panel" key={`${tenantCode}-${actorEmail}-${contextVersion}`}>{page === "sources" ? <CsvUploadPage /> : page === "staging" ? <IngestionCatalogPage /> : <GovernancePage />}</div>
     </main>
   );
 }

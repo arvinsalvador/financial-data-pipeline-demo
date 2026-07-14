@@ -19,11 +19,19 @@ from app.models import (
     AuditEvent,
     AuditEventChange,
     DataQualityIssue,
+    IngestionControlTotal,
     PipelineRun,
+    PipelineRunArtifact,
     PipelineRunStep,
+    RawSourceRow,
+    RejectedSourceRow,
     SourceFile,
     SourceFileColumnProfile,
     SourceFileProfile,
+    StagingBankTransaction,
+    StagingCreditCardTransaction,
+    StagingPayrollDetail,
+    StagingPayrollSummary,
 )
 from app.services.governance_seed import seed_governance_data
 
@@ -36,6 +44,7 @@ def test_settings(tmp_path: Path) -> Settings:
         REGISTERED_RAW_DIRECTORY=tmp_path / "raw" / "registered",
         REJECTED_RAW_DIRECTORY=tmp_path / "raw" / "rejected",
         MANIFESTS_DIRECTORY=tmp_path / "manifests",
+        INGESTION_REPORTS_DIRECTORY=tmp_path / "reports",
         MAX_UPLOAD_SIZE_BYTES=128,
     )
 
@@ -59,6 +68,35 @@ def isolate_registration_records(tmp_path: Path) -> Generator[None, None, None]:
             SourceFileProfile.pipeline_run_id.in_(new_run_ids)
         )
         session.execute(
+            delete(StagingBankTransaction).where(
+                StagingBankTransaction.pipeline_run_id.in_(new_run_ids)
+            )
+        )
+        session.execute(
+            delete(StagingCreditCardTransaction).where(
+                StagingCreditCardTransaction.pipeline_run_id.in_(new_run_ids)
+            )
+        )
+        session.execute(
+            delete(StagingPayrollSummary).where(
+                StagingPayrollSummary.pipeline_run_id.in_(new_run_ids)
+            )
+        )
+        session.execute(
+            delete(StagingPayrollDetail).where(
+                StagingPayrollDetail.pipeline_run_id.in_(new_run_ids)
+            )
+        )
+        session.execute(
+            delete(RejectedSourceRow).where(RejectedSourceRow.pipeline_run_id.in_(new_run_ids))
+        )
+        session.execute(
+            delete(IngestionControlTotal).where(
+                IngestionControlTotal.pipeline_run_id.in_(new_run_ids)
+            )
+        )
+        session.execute(delete(RawSourceRow).where(RawSourceRow.pipeline_run_id.in_(new_run_ids)))
+        session.execute(
             delete(DataQualityIssue).where(
                 DataQualityIssue.source_file_profile_id.in_(new_profile_ids)
             )
@@ -71,6 +109,9 @@ def isolate_registration_records(tmp_path: Path) -> Generator[None, None, None]:
         session.execute(delete(SourceFileProfile).where(SourceFileProfile.id.in_(new_profile_ids)))
         session.execute(
             delete(PipelineRunStep).where(PipelineRunStep.pipeline_run_id.in_(new_run_ids))
+        )
+        session.execute(
+            delete(PipelineRunArtifact).where(PipelineRunArtifact.pipeline_run_id.in_(new_run_ids))
         )
         session.execute(delete(PipelineRun).where(PipelineRun.id > baseline_run_id))
         session.execute(delete(SourceFile).where(SourceFile.id > baseline_file_id))
