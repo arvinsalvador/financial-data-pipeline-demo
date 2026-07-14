@@ -1,8 +1,13 @@
 # Backend
 
-FastAPI service for the Phase 1 platform foundation. It exposes root, liveness,
-readiness, and aggregate health endpoints. PostgreSQL access uses SQLAlchemy 2.x and
-psycopg; schema changes are managed only through Alembic migrations.
+FastAPI service for the platform foundation and Phase 2A source registration. It exposes
+health endpoints plus multipart CSV upload and paginated source-system, source-file, and
+pipeline-run reads. PostgreSQL access uses SQLAlchemy 2.x and psycopg; schema changes are
+managed only through Alembic migrations.
+
+Upload orchestration lives in `app/services/`: filename validation, checksums, immutable
+storage, registration, and pipeline-run recording are separate from the API route. The
+database stores `raw/registered/...` relative paths, never container or host paths.
 
 From the repository root, run migrations with `docker compose exec backend alembic
 upgrade head`. Run tests and quality checks with:

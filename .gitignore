@@ -29,6 +29,18 @@ Thumbs.db
 # Data
 data/raw/*
 !data/raw/.gitkeep
+!data/raw/uploads/
+!data/raw/registered/
+!data/raw/rejected/
+data/raw/uploads/*
+data/raw/registered/*
+data/raw/rejected/*
+!data/raw/uploads/.gitkeep
+!data/raw/registered/.gitkeep
+!data/raw/rejected/.gitkeep
+
+data/manifests/*
+!data/manifests/.gitkeep
 
 data/generated/*
 !data/generated/.gitkeep

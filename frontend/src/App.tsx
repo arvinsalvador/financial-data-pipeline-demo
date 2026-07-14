@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 
 import { API_BASE_URL, fetchHealth, type HealthResponse } from "./api/health";
+import { CsvUploadPage } from "./components/CsvUploadPage";
 import { StatusCard } from "./components/StatusCard";
 
 export default function App() {
@@ -39,36 +40,28 @@ export default function App() {
 
   return (
     <main>
-      <section className="panel">
-        <p className="eyebrow">Phase 1 · Platform foundation</p>
-        <h1>{health?.application ?? "CFO Financial Data Pipeline Demo"}</h1>
-        <p className="lede">Container and database connectivity status</p>
-
-        {loading && <p className="notice">Checking services…</p>}
-        {error && <p className="notice error">{error}</p>}
-
-        {health && (
-          <div className="status-grid">
-            <StatusCard label="Backend" status={health.backend.status} />
-            <StatusCard label="Database" status={health.database.status} />
-          </div>
-        )}
-
-        <dl>
-          <div>
-            <dt>Environment</dt>
-            <dd>{health?.environment ?? "—"}</dd>
-          </div>
-          <div>
-            <dt>API base URL</dt>
-            <dd>{API_BASE_URL}</dd>
-          </div>
-        </dl>
-
-        <button type="button" onClick={() => void loadHealth()} disabled={loading}>
-          {loading ? "Refreshing…" : "Refresh status"}
-        </button>
+      <section className="panel status-panel">
+        <div>
+          <p className="eyebrow">CFO Financial Data Pipeline Demo</p>
+          <h1>Source intake</h1>
+          <p className="lede">Register raw financial source files without transforming them.</p>
+        </div>
+        <div className="health-summary">
+          {loading && <p className="notice">Checking services...</p>}
+          {error && <p className="notice error">{error}</p>}
+          {health && (
+            <div className="status-grid">
+              <StatusCard label="Backend" status={health.backend.status} />
+              <StatusCard label="Database" status={health.database.status} />
+            </div>
+          )}
+          <p className="api-label">{health?.environment ?? "-"} · {API_BASE_URL}</p>
+          <button type="button" onClick={() => void loadHealth()} disabled={loading}>
+            {loading ? "Refreshing..." : "Refresh status"}
+          </button>
+        </div>
       </section>
+      <div className="panel"><CsvUploadPage /></div>
     </main>
   );
 }

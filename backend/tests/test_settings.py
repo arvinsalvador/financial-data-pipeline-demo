@@ -9,6 +9,8 @@ def test_settings_read_required_database_url() -> None:
 
     assert settings.database_url.endswith("@db:5432/app")
     assert settings.cors_origins == ["http://localhost:5173"]
+    assert settings.allowed_source_file_extensions == {".csv"}
+    assert settings.MAX_UPLOAD_SIZE_BYTES == 10 * 1024 * 1024
 
 
 def test_database_url_is_required(monkeypatch: pytest.MonkeyPatch) -> None:
