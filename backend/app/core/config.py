@@ -45,6 +45,10 @@ class Settings(BaseSettings):
     MESSY_REPORT_ROOT: Path = Path("/data/generated/reports/messy")
     MESSY_DETERMINISM_VERIFICATION_ENABLED: bool = True
     SCENARIO_RULE_CONFLICT_POLICY: str = "skip_later"
+    VALIDATION_VERSION: str = "1.0.0"
+    DEFAULT_VALIDATION_RULE_SET: str = "financial_data_quality_v1"
+    VALIDATION_REPORT_ROOT: Path = Path("/data/generated/reports/validation")
+    VALIDATION_MAX_ISSUES_PER_RULE: int = Field(default=5000, gt=0, le=100000)
     INGESTION_REPORTS_DIRECTORY: Path = Path("/data/reports")
     CSV_READ_CHUNK_SIZE: int = Field(default=1000, gt=0)
     MAX_SAMPLED_VALUES_PER_COLUMN: int = Field(default=5, gt=0, le=100)

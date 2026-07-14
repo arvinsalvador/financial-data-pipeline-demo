@@ -52,6 +52,13 @@ from app.models import (
     StagingCreditCardTransaction,
     StagingPayrollDetail,
     StagingPayrollSummary,
+    ValidationIssue,
+    ValidationIssueHistory,
+    ValidationReport,
+    ValidationRun,
+    ValidationRunResult,
+    ValidationStatistic,
+    ValidationSummary,
     Vendor,
 )
 from app.services.governance_seed import seed_governance_data
@@ -70,6 +77,7 @@ def test_settings(tmp_path: Path) -> Settings:
         MESSY_GENERATED_ROOT=tmp_path / "generated" / "messy",
         MESSY_MANIFEST_ROOT=tmp_path / "generated" / "manifests" / "messy",
         MESSY_REPORT_ROOT=tmp_path / "generated" / "reports" / "messy",
+        VALIDATION_REPORT_ROOT=tmp_path / "generated" / "reports" / "validation",
         MAX_UPLOAD_SIZE_BYTES=128,
     )
 
@@ -107,6 +115,43 @@ def isolate_registration_records(tmp_path: Path) -> Generator[None, None, None]:
         new_messy_run_ids = select(MessyDatasetRun.id).where(
             MessyDatasetRun.pipeline_run_id.in_(new_run_ids)
         )
+        new_validation_run_ids = select(ValidationRun.id).where(
+            ValidationRun.pipeline_run_id.in_(new_run_ids)
+        )
+        new_validation_issue_ids = select(ValidationIssue.id).where(
+            ValidationIssue.validation_run_id.in_(new_validation_run_ids)
+        )
+        session.execute(
+            delete(ValidationIssueHistory).where(
+                ValidationIssueHistory.validation_issue_id.in_(new_validation_issue_ids)
+            )
+        )
+        session.execute(
+            delete(ValidationIssue).where(
+                ValidationIssue.validation_run_id.in_(new_validation_run_ids)
+            )
+        )
+        session.execute(
+            delete(ValidationRunResult).where(
+                ValidationRunResult.validation_run_id.in_(new_validation_run_ids)
+            )
+        )
+        session.execute(
+            delete(ValidationReport).where(
+                ValidationReport.validation_run_id.in_(new_validation_run_ids)
+            )
+        )
+        session.execute(
+            delete(ValidationStatistic).where(
+                ValidationStatistic.validation_run_id.in_(new_validation_run_ids)
+            )
+        )
+        session.execute(
+            delete(ValidationSummary).where(
+                ValidationSummary.validation_run_id.in_(new_validation_run_ids)
+            )
+        )
+        session.execute(delete(ValidationRun).where(ValidationRun.id.in_(new_validation_run_ids)))
         session.execute(
             delete(ExpectedException).where(
                 ExpectedException.messy_dataset_run_id.in_(new_messy_run_ids)

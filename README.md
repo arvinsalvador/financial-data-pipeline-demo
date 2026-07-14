@@ -237,3 +237,18 @@ docker compose exec backend python -m app.cli.summarize_expected_exceptions --me
 ```
 
 See [docs/phase-7-controlled-messy-data.md](docs/phase-7-controlled-messy-data.md) for rules, controls, manifests, APIs, permissions, commands, and limitations. Phase 7 produces controlled test data and expected ground truth; it does not yet perform validation or reconciliation.
+
+## Phase 8: validation and data quality
+
+Validation version `1.0.0` provides a tenant-aware, versioned, deterministic rule engine for raw, staging, canonical, generated, and messy data. It persists independent rule results, deduplicated issues, summaries, statistics, seven immutable reports, pipeline history, and audit events. Identical inputs return a checksum-verified no-op.
+
+Open **Validation** in the frontend, or run:
+
+```bash
+docker compose exec backend python -m app.cli.list_validation_rules
+docker compose exec backend python -m app.cli.run_validation --target-type messy_dataset --target-id 1
+docker compose exec backend python -m app.cli.validation_summary --validation-run-id 9
+docker compose exec backend python -m app.cli.verify_validation_integrity --validation-run-id 9
+```
+
+See [docs/phase-8-validation-engine.md](docs/phase-8-validation-engine.md) for the architecture, rules, controls, severity model, API, CLI, frontend, manual verification, and limitations. Phase 8 detects issues but intentionally does not reconcile or resolve them.
