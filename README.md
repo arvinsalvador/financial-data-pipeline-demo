@@ -266,3 +266,24 @@ docker compose exec backend python -m app.cli.summarize_unmatched_bank_ledger --
 ```
 
 See [docs/phase-9-bank-ledger-reconciliation.md](docs/phase-9-bank-ledger-reconciliation.md) for accounting signs, rule precedence, controls, APIs, permissions, CLI usage, verification, and deliberate boundaries.
+
+## Phase 10: payroll reconciliation
+
+Payroll reconciliation version `1.0.0` deterministically connects canonical employee payroll
+entries and runs with the secondary payroll checking account and validated payroll GL journals. It
+preserves unavailable source components, applies transparent exact/partial matching, prevents
+over-allocation, supports append-only finance review, and creates 17 controls plus 12 immutable
+reports.
+
+Open **Payroll reconciliation** in the frontend, or run:
+
+```bash
+docker compose exec backend python -m app.cli.reconcile_payroll --payroll-bank-account-id 2 --date-from 2023-01-01 --date-to 2023-12-31 --settlement-model net_pay_only
+docker compose exec backend python -m app.cli.verify_payroll_reconciliation_integrity --payroll-reconciliation-run-id 1
+docker compose exec backend python -m app.cli.summarize_payroll_mismatches --payroll-reconciliation-run-id 1
+```
+
+See [docs/phase-10-payroll-reconciliation.md](docs/phase-10-payroll-reconciliation.md) for source
+precedence, formulas, settlement models, sign conventions, matching and allocation policy, API,
+CLI, frontend, reports, configuration, verification, and known limitations. Invoice and collections
+reconciliation are not yet implemented.

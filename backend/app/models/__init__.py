@@ -59,6 +59,18 @@ from app.models.messy import (
     MessyGenerationControlTotal,
     MessySourceFile,
 )
+from app.models.payroll_reconciliation import (
+    PayrollReconciliationAllocation,
+    PayrollReconciliationCandidate,
+    PayrollReconciliationControlTotal,
+    PayrollReconciliationDecision,
+    PayrollReconciliationException,
+    PayrollReconciliationGroup,
+    PayrollReconciliationMatch,
+    PayrollReconciliationReport,
+    PayrollReconciliationRule,
+    PayrollReconciliationRun,
+)
 from app.models.pipeline_run import PipelineRun
 from app.models.pipeline_run_step import PipelineRunStep
 from app.models.reconciliation import (
@@ -123,6 +135,16 @@ __all__ = [
     "NormalizationException",
     "NormalizationMapping",
     "PayrollEntry",
+    "PayrollReconciliationAllocation",
+    "PayrollReconciliationCandidate",
+    "PayrollReconciliationControlTotal",
+    "PayrollReconciliationDecision",
+    "PayrollReconciliationException",
+    "PayrollReconciliationGroup",
+    "PayrollReconciliationMatch",
+    "PayrollReconciliationReport",
+    "PayrollReconciliationRule",
+    "PayrollReconciliationRun",
     "PayrollRun",
     "Permission",
     "PipelineDefinition",

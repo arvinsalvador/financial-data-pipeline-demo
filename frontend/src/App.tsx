@@ -7,6 +7,7 @@ import { GeneratedDataPage } from "./components/GeneratedDataPage";
 import { MessyDataPage } from "./components/MessyDataPage";
 import { ValidationPage } from "./components/ValidationPage";
 import { ReconciliationPage } from "./components/ReconciliationPage";
+import { PayrollReconciliationPage } from "./components/PayrollReconciliationPage";
 import { IngestionCatalogPage } from "./components/IngestionCatalogPage";
 import { CanonicalPage } from "./components/CanonicalPage";
 import { StatusCard } from "./components/StatusCard";
@@ -20,7 +21,7 @@ export default function App() {
   const [tenantCode, setTenantCode] = useState(localStorage.getItem("demoTenantCode") ?? DEFAULT_TENANT);
   const [actorEmail, setActorEmail] = useState(localStorage.getItem("demoActorEmail") ?? DEFAULT_ACTOR);
   const [tenants, setTenants] = useState<Tenant[]>([]);
-  const [page, setPage] = useState<"sources" | "staging" | "canonical" | "generated" | "messy" | "validation" | "reconciliation" | "governance">("sources");
+  const [page, setPage] = useState<"sources" | "staging" | "canonical" | "generated" | "messy" | "validation" | "reconciliation" | "payroll" | "governance">("sources");
   const [contextVersion, setContextVersion] = useState(0);
 
   const loadHealth = useCallback(async (signal?: AbortSignal) => {
@@ -91,9 +92,9 @@ export default function App() {
         <div><p className="eyebrow">Development context · Not authentication</p><strong>Tenant and actor simulation</strong></div>
         <label>Tenant<select value={tenantCode} onChange={(event) => changeContext(event.target.value, actorEmail)}>{tenants.length ? tenants.map((tenant) => <option key={tenant.id} value={tenant.code}>{tenant.display_name}</option>) : <option value={tenantCode}>{tenantCode}</option>}</select></label>
         <label>Demo user<select value={actorEmail} onChange={(event) => changeContext(tenantCode, event.target.value)}><option value="admin@demo.local">Platform admin</option><option value="cfo@demo.local">CFO user</option><option value="analyst@demo.local">Finance analyst</option><option value="viewer@demo.local">Client viewer</option></select></label>
-        <nav><button type="button" className={page === "sources" ? "" : "secondary-button"} onClick={() => setPage("sources")}>Sources</button>{actorEmail !== "viewer@demo.local" && <button type="button" className={page === "staging" ? "" : "secondary-button"} onClick={() => setPage("staging")}>Staging & mappings</button>}<button type="button" className={page === "canonical" ? "" : "secondary-button"} onClick={() => setPage("canonical")}>Canonical</button><button type="button" className={page === "generated" ? "" : "secondary-button"} onClick={() => setPage("generated")}>Generated data</button><button type="button" className={page === "messy" ? "" : "secondary-button"} onClick={() => setPage("messy")}>Messy data</button><button type="button" className={page === "validation" ? "" : "secondary-button"} onClick={() => setPage("validation")}>Validation</button><button type="button" className={page === "reconciliation" ? "" : "secondary-button"} onClick={() => setPage("reconciliation")}>Reconciliation</button><button type="button" className={page === "governance" ? "" : "secondary-button"} onClick={() => setPage("governance")}>Governance & audit</button></nav>
+        <nav><button type="button" className={page === "sources" ? "" : "secondary-button"} onClick={() => setPage("sources")}>Sources</button>{actorEmail !== "viewer@demo.local" && <button type="button" className={page === "staging" ? "" : "secondary-button"} onClick={() => setPage("staging")}>Staging & mappings</button>}<button type="button" className={page === "canonical" ? "" : "secondary-button"} onClick={() => setPage("canonical")}>Canonical</button><button type="button" className={page === "generated" ? "" : "secondary-button"} onClick={() => setPage("generated")}>Generated data</button><button type="button" className={page === "messy" ? "" : "secondary-button"} onClick={() => setPage("messy")}>Messy data</button><button type="button" className={page === "validation" ? "" : "secondary-button"} onClick={() => setPage("validation")}>Validation</button><button type="button" className={page === "reconciliation" ? "" : "secondary-button"} onClick={() => setPage("reconciliation")}>Bank reconciliation</button><button type="button" className={page === "payroll" ? "" : "secondary-button"} onClick={() => setPage("payroll")}>Payroll reconciliation</button><button type="button" className={page === "governance" ? "" : "secondary-button"} onClick={() => setPage("governance")}>Governance & audit</button></nav>
       </section>
-      <div className="panel" key={`${tenantCode}-${actorEmail}-${contextVersion}`}>{page === "sources" ? <CsvUploadPage /> : page === "staging" ? <IngestionCatalogPage /> : page === "canonical" ? <CanonicalPage /> : page === "generated" ? <GeneratedDataPage /> : page === "messy" ? <MessyDataPage /> : page === "validation" ? <ValidationPage /> : page === "reconciliation" ? <ReconciliationPage /> : <GovernancePage />}</div>
+      <div className="panel" key={`${tenantCode}-${actorEmail}-${contextVersion}`}>{page === "sources" ? <CsvUploadPage /> : page === "staging" ? <IngestionCatalogPage /> : page === "canonical" ? <CanonicalPage /> : page === "generated" ? <GeneratedDataPage /> : page === "messy" ? <MessyDataPage /> : page === "validation" ? <ValidationPage /> : page === "reconciliation" ? <ReconciliationPage /> : page === "payroll" ? <PayrollReconciliationPage /> : <GovernancePage />}</div>
     </main>
   );
 }

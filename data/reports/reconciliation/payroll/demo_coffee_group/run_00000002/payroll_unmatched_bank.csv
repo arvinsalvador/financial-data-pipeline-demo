@@ -1,0 +1,13 @@
+bank_transaction_id,code,gl_record_id,id,payroll_run_id,severity,status
+907,unmatched_bank_withdrawal,,161,,warning,open
+909,unmatched_bank_withdrawal,,162,,warning,open
+911,unmatched_bank_withdrawal,,163,,warning,open
+913,unmatched_bank_withdrawal,,164,,warning,open
+915,unmatched_bank_withdrawal,,165,,warning,open
+917,unmatched_bank_withdrawal,,166,,warning,open
+919,unmatched_bank_withdrawal,,167,,warning,open
+921,unmatched_bank_withdrawal,,168,,warning,open
+923,unmatched_bank_withdrawal,,169,,warning,open
+925,unmatched_bank_withdrawal,,170,,warning,open
+927,unmatched_bank_withdrawal,,171,,warning,open
+929,unmatched_bank_withdrawal,,172,,warning,open
