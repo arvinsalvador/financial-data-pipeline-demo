@@ -5,6 +5,9 @@ from sqlalchemy.orm import Session
 
 from app.core.config import Settings
 from app.models import (
+    ExceptionResolutionCode,
+    ExceptionServiceLevelPolicy,
+    ExceptionWorkflowRule,
     Permission,
     PipelineDefinition,
     Role,
@@ -241,6 +244,58 @@ ROLE_PERMISSIONS = {
     ),
 }
 
+EXCEPTION_PERMISSIONS = (
+    "exceptions.synchronize",
+    "exceptions.view",
+    "exceptions.view_sensitive",
+    "exceptions.assign",
+    "exceptions.comment",
+    "exceptions.review",
+    "exceptions.resolve",
+    "exceptions.ignore",
+    "exceptions.ignore_critical",
+    "exceptions.escalate",
+    "exceptions.reopen",
+    "exceptions.close",
+    "exceptions.bulk_manage",
+    "exceptions.relations_manage",
+    "exceptions.evidence_manage",
+    "exceptions.saved_views_manage",
+    "exceptions.statistics_view",
+    "exceptions.reports_view",
+)
+PERMISSIONS = PERMISSIONS + EXCEPTION_PERMISSIONS
+ROLE_PERMISSIONS["platform_admin"] = PERMISSIONS
+ROLE_PERMISSIONS["cfo_user"] = ROLE_PERMISSIONS["cfo_user"] + EXCEPTION_PERMISSIONS
+ROLE_PERMISSIONS["finance_analyst"] = ROLE_PERMISSIONS["finance_analyst"] + tuple(
+    code for code in EXCEPTION_PERMISSIONS if code not in {"exceptions.ignore_critical", "exceptions.close", "exceptions.view_sensitive"}
+)
+ROLE_PERMISSIONS["client_viewer"] = ROLE_PERMISSIONS["client_viewer"] + ("exceptions.view", "exceptions.statistics_view")
+
+WORKFLOW_RULES = (
+    ("critical_auto_escalate", "Critical Auto Escalate", None, None, "critical", "urgent", "escalated", "platform_admin", 1, True),
+    ("control_total_high_priority", "Control Total High Priority", "control_totals", None, None, "high", "open", "finance_analyst", 2, True),
+    ("duplicate_normal_priority", "Duplicate Normal Priority", None, "duplicate", None, "normal", "open", "finance_analyst", 3, True),
+    ("warning_default_normal", "Warning Default Normal", None, None, "warning", "normal", "open", "finance_analyst", 4, True),
+    ("info_default_low", "Info Default Low", None, None, "info", "low", "open", "finance_analyst", 5, False),
+    ("resolved_redetection_reopens", "Resolved Redetection Reopens", None, None, None, "normal", "open", "finance_analyst", 6, True),
+    ("ignored_redetection_remains_ignored_with_occurrence_increment", "Ignored Redetection Remains Ignored", None, None, None, "normal", "open", "finance_analyst", 7, False),
+    ("pipeline_failure_assign_platform_admin", "Pipeline Failure Assign Platform Admin", "pipeline", None, None, "urgent", "open", "platform_admin", 8, True),
+    ("reconciliation_exception_assign_finance_analyst", "Reconciliation Exception Assign Finance Analyst", None, "reconciliation", None, "high", "open", "finance_analyst", 9, True),
+)
+SLA_POLICIES = (
+    ("info", "Info", "info", 72, 336, 336),
+    ("warning", "Warning", "warning", 48, 168, 168),
+    ("error", "Error", "error", 24, 72, 72),
+    ("critical", "Critical", "critical", 4, 24, 24),
+)
+RESOLUTION_CODES = (
+    "corrected_source_data", "accepted_valid_variance", "accepted_timing_difference",
+    "duplicate_record_confirmed", "reversal_confirmed", "mapping_updated",
+    "source_record_excluded", "manual_match_confirmed", "customer_credit_confirmed",
+    "unapplied_payment_confirmed", "payroll_difference_confirmed", "false_positive",
+    "expected_test_defect", "no_action_required", "deferred", "other",
+)
 
 def seed_governance_data(session: Session, settings: Settings) -> dict[str, int]:
     if not settings.demo_actor_headers_enabled:
@@ -350,6 +405,7 @@ def seed_governance_data(session: Session, settings: Settings) -> dict[str, int]
     for code, name in (
         ("source_file_registration", "Source File Registration"),
         ("csv_profile", "CSV Profile"),
+        ("exception_management", "Unified Exception Management"),
     ):
         if (
             session.scalar(
@@ -368,6 +424,16 @@ def seed_governance_data(session: Session, settings: Settings) -> dict[str, int]
                     configuration_schema_json={},
                 )
             )
+
+    for index, (code, name, source_module, pattern, severity, priority, status, team, order, reopen) in enumerate(WORKFLOW_RULES, 1):
+        if session.scalar(select(ExceptionWorkflowRule).where(ExceptionWorkflowRule.tenant_id == tenant.id, ExceptionWorkflowRule.code == code, ExceptionWorkflowRule.version == "1.0.0")) is None:
+            session.add(ExceptionWorkflowRule(tenant_id=tenant.id, code=code, name=name, description=name, source_module=source_module, exception_code_pattern=pattern, severity=severity, initial_priority=priority, initial_status=status, auto_assign_team_code=team, escalation_after_hours=24 if priority in {"high", "urgent"} else None, resolution_requires_comment=True, ignore_requires_comment=True, reopen_on_redetection=reopen, configuration_json={}, version="1.0.0", execution_order=order, is_active=True))
+    for code, name, severity, response, resolution, escalation in SLA_POLICIES:
+        if session.scalar(select(ExceptionServiceLevelPolicy).where(ExceptionServiceLevelPolicy.tenant_id == tenant.id, ExceptionServiceLevelPolicy.code == code)) is None:
+            session.add(ExceptionServiceLevelPolicy(tenant_id=tenant.id, code=code, name=name, severity=severity, response_hours=response, resolution_hours=resolution, escalation_hours=escalation, business_hours_only=False, configuration_json={}, is_active=True))
+    for code in RESOLUTION_CODES:
+        if session.scalar(select(ExceptionResolutionCode).where(ExceptionResolutionCode.tenant_id == tenant.id, ExceptionResolutionCode.code == code)) is None:
+            session.add(ExceptionResolutionCode(tenant_id=tenant.id, code=code, name=code.replace("_", " ").title(), description=code.replace("_", " ").title(), is_active=True))
     session.commit()
     from app.services.ingestion_seed import seed_ingestion_data
 

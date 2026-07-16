@@ -91,6 +91,18 @@ class Settings(BaseSettings):
     INVOICE_COLLECTIONS_OVERDUE_WARNING_DAYS: int = Field(default=30, ge=0)
     INVOICE_COLLECTIONS_AGING_BUCKETS: str = "current,1_30,31_60,61_90,over_90"
     INVOICE_COLLECTIONS_REPORT_ROOT: Path = Path("/data/reports/reconciliation/invoice-collections")
+    UNIFIED_EXCEPTION_VERSION: str = "1.0.0"
+    UNIFIED_EXCEPTION_SYNC_BATCH_SIZE: int = Field(default=1000, gt=0, le=100000)
+    UNIFIED_EXCEPTION_MAX_BULK_ACTION_SIZE: int = Field(default=100, gt=0, le=1000)
+    UNIFIED_EXCEPTION_DEFAULT_COMMENT_LENGTH: int = Field(default=4000, gt=0, le=20000)
+    UNIFIED_EXCEPTION_MAX_COMMENT_LENGTH: int = Field(default=4000, gt=0, le=20000)
+    UNIFIED_EXCEPTION_MAX_EVIDENCE_SIZE_BYTES: int = Field(default=20 * 1024 * 1024, gt=0)
+    UNIFIED_EXCEPTION_CRITICAL_IGNORE_ENABLED: bool = True
+    UNIFIED_EXCEPTION_CLOSE_REQUIRES_SOURCE_RESOLVED: bool = False
+    UNIFIED_EXCEPTION_REOPEN_ON_REDETECTION: bool = True
+    UNIFIED_EXCEPTION_OVERDUE_REFRESH_INTERVAL_MINUTES: int = Field(default=60, gt=0)
+    UNIFIED_EXCEPTION_REPORT_ROOT: Path = Path("/data/reports/exceptions")
+    UNIFIED_EXCEPTION_NOTIFICATION_SIMULATION_ENABLED: bool = True
     INGESTION_REPORTS_DIRECTORY: Path = Path("/data/reports")
     CSV_READ_CHUNK_SIZE: int = Field(default=1000, gt=0)
     MAX_SAMPLED_VALUES_PER_COLUMN: int = Field(default=5, gt=0, le=100)
