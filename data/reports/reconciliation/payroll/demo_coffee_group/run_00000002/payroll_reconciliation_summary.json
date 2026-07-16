@@ -1,0 +1,8 @@
+{
+  "payroll_run_count": 37,
+  "reconciliation_rate": "0.000000",
+  "run_id": 2,
+  "settlement_model": "net_pay_only",
+  "status": "completed_with_exceptions",
+  "version": "1.0.0"
+}

@@ -71,6 +71,13 @@ PERMISSIONS = (
     "reconciliation_exceptions.view",
     "reconciliation_controls.view",
     "reconciliation_reports.view",
+    "payroll_reconciliation.execute",
+    "payroll_reconciliation.view",
+    "payroll_reconciliation.review",
+    "payroll_reconciliation_candidates.view",
+    "payroll_reconciliation_exceptions.view",
+    "payroll_reconciliation_controls.view",
+    "payroll_reconciliation_reports.view",
 )
 ROLE_PERMISSIONS = {
     "platform_admin": PERMISSIONS,
@@ -125,6 +132,13 @@ ROLE_PERMISSIONS = {
         "reconciliation_exceptions.view",
         "reconciliation_controls.view",
         "reconciliation_reports.view",
+        "payroll_reconciliation.execute",
+        "payroll_reconciliation.view",
+        "payroll_reconciliation.review",
+        "payroll_reconciliation_candidates.view",
+        "payroll_reconciliation_exceptions.view",
+        "payroll_reconciliation_controls.view",
+        "payroll_reconciliation_reports.view",
     ),
     "finance_analyst": (
         "source_systems.view",
@@ -171,6 +185,13 @@ ROLE_PERMISSIONS = {
         "reconciliation_exceptions.view",
         "reconciliation_controls.view",
         "reconciliation_reports.view",
+        "payroll_reconciliation.execute",
+        "payroll_reconciliation.view",
+        "payroll_reconciliation.review",
+        "payroll_reconciliation_candidates.view",
+        "payroll_reconciliation_exceptions.view",
+        "payroll_reconciliation_controls.view",
+        "payroll_reconciliation_reports.view",
     ),
     "client_viewer": (
         "source_systems.view",
@@ -190,6 +211,7 @@ ROLE_PERMISSIONS = {
         "validation.reports.view",
         "validation.statistics.view",
         "bank_ledger_reconciliation.view",
+        "payroll_reconciliation.view",
     ),
 }
 
@@ -333,9 +355,11 @@ def seed_governance_data(session: Session, settings: Settings) -> dict[str, int]
     from app.services.validation_seed import seed_validation_data
 
     seed_validation_data(session)
+    from app.services.payroll_reconciliation_seed import seed_payroll_reconciliation_data
     from app.services.reconciliation_seed import seed_reconciliation_data
 
     seed_reconciliation_data(session, settings)
+    seed_payroll_reconciliation_data(session, settings)
     return {
         "tenants": 1,
         "users": len(users),

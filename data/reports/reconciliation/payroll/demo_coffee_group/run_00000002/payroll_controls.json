@@ -1,0 +1,104 @@
+{
+  "allocation_balance": {
+    "bank": "0.000000",
+    "gl": null,
+    "payroll": "0.000000",
+    "status": "matched"
+  },
+  "bank_to_gl_difference": {
+    "bank": "50518.000000",
+    "gl": "194361.630000",
+    "payroll": null,
+    "status": "unavailable"
+  },
+  "bank_withdrawal_total": {
+    "bank": "50518.000000",
+    "gl": null,
+    "payroll": "144800.210000",
+    "status": "mismatch"
+  },
+  "employee_deduction_total": {
+    "bank": null,
+    "gl": null,
+    "payroll": null,
+    "status": "unavailable"
+  },
+  "employee_tax_total": {
+    "bank": null,
+    "gl": null,
+    "payroll": null,
+    "status": "unavailable"
+  },
+  "employer_contribution_total": {
+    "bank": null,
+    "gl": null,
+    "payroll": null,
+    "status": "unavailable"
+  },
+  "employer_tax_total": {
+    "bank": null,
+    "gl": null,
+    "payroll": null,
+    "status": "unavailable"
+  },
+  "gl_cash_total": {
+    "bank": "50518.000000",
+    "gl": null,
+    "payroll": null,
+    "status": "unavailable"
+  },
+  "gl_payroll_expense_total": {
+    "bank": null,
+    "gl": "194361.630000",
+    "payroll": "187074.050000",
+    "status": "mismatch"
+  },
+  "gl_payroll_liability_total": {
+    "bank": null,
+    "gl": "194361.630000",
+    "payroll": "187074.050000",
+    "status": "mismatch"
+  },
+  "gross_pay_total": {
+    "bank": null,
+    "gl": "194361.630000",
+    "payroll": "187074.050000",
+    "status": "mismatch"
+  },
+  "net_pay_total": {
+    "bank": "50518.000000",
+    "gl": null,
+    "payroll": "144800.210000",
+    "status": "mismatch"
+  },
+  "payroll_entry_count": {
+    "bank": null,
+    "gl": null,
+    "payroll": "178.000000",
+    "status": "matched"
+  },
+  "payroll_to_bank_difference": {
+    "bank": "50518.000000",
+    "gl": null,
+    "payroll": "144800.210000",
+    "status": "mismatch"
+  },
+  "payroll_to_gl_difference": {
+    "bank": null,
+    "gl": "194361.630000",
+    "payroll": "187074.050000",
+    "status": "mismatch"
+  },
+  "reconciliation_rate": {
+    "bank": null,
+    "gl": null,
+    "payroll": "0.000000",
+    "status": "matched"
+  },
+  "reimbursement_total": {
+    "bank": null,
+    "gl": null,
+    "payroll": null,
+    "status": "unavailable"
+  }
+}

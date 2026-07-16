@@ -8,9 +8,13 @@ from fastapi.testclient import TestClient
 from sqlalchemy import delete, func, select
 from sqlalchemy.orm import Session
 
-os.environ.setdefault(
+# Test database selection must happen before importing the application session factory.
+# ruff: noqa: E402
+
+base_database_url = os.environ.get(
     "DATABASE_URL", "postgresql+psycopg://pipeline:pipeline@postgres:5432/pipeline"
 )
+os.environ["DATABASE_URL"] = f"{base_database_url.rsplit('/', 1)[0]}/cfo_pipeline_test"
 
 from app.core.config import Settings, get_settings
 from app.db.session import SessionLocal
@@ -88,6 +92,7 @@ def test_settings(tmp_path: Path) -> Settings:
         MESSY_REPORT_ROOT=tmp_path / "generated" / "reports" / "messy",
         VALIDATION_REPORT_ROOT=tmp_path / "generated" / "reports" / "validation",
         RECONCILIATION_REPORT_ROOT=tmp_path / "reports" / "reconciliation" / "bank-ledger",
+        PAYROLL_RECONCILIATION_REPORT_ROOT=tmp_path / "reports" / "reconciliation" / "payroll",
         MAX_UPLOAD_SIZE_BYTES=128,
     )
 

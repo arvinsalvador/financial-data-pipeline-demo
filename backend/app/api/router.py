@@ -6,6 +6,8 @@ from app.api.routes.health import router as health_router
 from app.api.routes.ingestions import router as ingestions_router
 from app.api.routes.messy_datasets import router as messy_datasets_router
 from app.api.routes.normalizations import router as normalizations_router
+from app.api.routes.payroll_reconciliations import group_router as payroll_group_router
+from app.api.routes.payroll_reconciliations import router as payroll_reconciliations_router
 from app.api.routes.profiles import router as profiles_router
 from app.api.routes.reconciliations import (
     match_group_router,
@@ -28,3 +30,5 @@ api_router.include_router(sources_router, tags=["sources"])
 api_router.include_router(validation_router, tags=["validation"])
 api_router.include_router(reconciliations_router, tags=["reconciliation"])
 api_router.include_router(match_group_router, tags=["reconciliation"])
+api_router.include_router(payroll_reconciliations_router, tags=["payroll reconciliation"])
+api_router.include_router(payroll_group_router, tags=["payroll reconciliation"])

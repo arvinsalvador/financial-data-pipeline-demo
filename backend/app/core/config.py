@@ -63,6 +63,19 @@ class Settings(BaseSettings):
     RECONCILIATION_DUPLICATE_DATE_TOLERANCE_DAYS: int = Field(default=0, ge=0, le=31)
     RECONCILIATION_AUTO_ACCEPT_GROUPED_MATCHES: bool = False
     RECONCILIATION_REPORT_ROOT: Path = Path("/data/reports/reconciliation/bank-ledger")
+    PAYROLL_RECONCILIATION_VERSION: str = "1.0.0"
+    PAYROLL_RECONCILIATION_AMOUNT_TOLERANCE: float = Field(default=0.01, ge=0)
+    PAYROLL_RECONCILIATION_DATE_TOLERANCE_DAYS: int = Field(default=3, ge=0, le=31)
+    PAYROLL_RECONCILIATION_DEFAULT_SETTLEMENT_MODEL: str = "net_pay_only"
+    PAYROLL_RECONCILIATION_MIN_AUTO_ACCEPT_CONFIDENCE: float = Field(default=0.98, ge=0, le=1)
+    PAYROLL_RECONCILIATION_MIN_SUGGESTION_CONFIDENCE: float = Field(default=0.65, ge=0, le=1)
+    PAYROLL_RECONCILIATION_MAX_BANK_GROUP_SIZE: int = Field(default=5, ge=2, le=10)
+    PAYROLL_RECONCILIATION_MAX_GL_GROUP_SIZE: int = Field(default=20, ge=2, le=100)
+    PAYROLL_RECONCILIATION_MAX_CANDIDATES_PER_RUN: int = Field(default=20, ge=1, le=100)
+    PAYROLL_RECONCILIATION_DUPLICATE_DATE_TOLERANCE_DAYS: int = Field(default=0, ge=0, le=31)
+    PAYROLL_RECONCILIATION_REVERSAL_DATE_TOLERANCE_DAYS: int = Field(default=7, ge=0, le=31)
+    PAYROLL_RECONCILIATION_EMPLOYEE_TOLERANCE: float = Field(default=0.01, ge=0)
+    PAYROLL_RECONCILIATION_REPORT_ROOT: Path = Path("/data/reports/reconciliation/payroll")
     INGESTION_REPORTS_DIRECTORY: Path = Path("/data/reports")
     CSV_READ_CHUNK_SIZE: int = Field(default=1000, gt=0)
     MAX_SAMPLED_VALUES_PER_COLUMN: int = Field(default=5, gt=0, le=100)
