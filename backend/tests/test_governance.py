@@ -43,7 +43,7 @@ def test_governance_seed_contains_demo_entities(client: TestClient, db_session: 
         )
         == 4
     )
-    assert db_session.scalar(select(func.count()).select_from(PipelineDefinition)) == 9
+    assert db_session.scalar(select(func.count()).select_from(PipelineDefinition)) == 10
     tenants = client.get("/api/v1/tenants", headers=ADMIN)
     assert tenants.status_code == 200
     assert any(item["code"] == "demo_coffee_group" for item in tenants.json())

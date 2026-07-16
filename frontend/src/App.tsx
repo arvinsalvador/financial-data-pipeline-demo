@@ -9,13 +9,14 @@ import { CsvUploadPage } from "./components/CsvUploadPage";
 import { GeneratedDataPage } from "./components/GeneratedDataPage";
 import { GovernancePage } from "./components/GovernancePage";
 import { IngestionCatalogPage } from "./components/IngestionCatalogPage";
+import { InvoiceCollectionsPage } from "./components/InvoiceCollectionsPage";
 import { MessyDataPage } from "./components/MessyDataPage";
 import { PayrollReconciliationPage } from "./components/PayrollReconciliationPage";
 import { ReconciliationPage } from "./components/ReconciliationPage";
 import { ValidationPage } from "./components/ValidationPage";
 import type { PageKey } from "./navigation";
 
-const PAGES: Record<PageKey, () => React.JSX.Element> = { sources: CsvUploadPage, staging: IngestionCatalogPage, canonical: CanonicalPage, generated: GeneratedDataPage, messy: MessyDataPage, validation: ValidationPage, reconciliation: ReconciliationPage, payroll: PayrollReconciliationPage, governance: GovernancePage };
+const PAGES: Record<PageKey, () => React.JSX.Element> = { sources: CsvUploadPage, staging: IngestionCatalogPage, canonical: CanonicalPage, generated: GeneratedDataPage, messy: MessyDataPage, validation: ValidationPage, reconciliation: ReconciliationPage, payroll: PayrollReconciliationPage, collections: InvoiceCollectionsPage, governance: GovernancePage };
 
 export default function App() {
   const [health, setHealth] = useState<HealthResponse | null>(null);

@@ -25,6 +25,13 @@ application startup runs committed migrations but never creates migrations or ta
 directly. The initial `system_checks` table is intentionally empty and establishes the
 typed model/migration pattern for future phases.
 
+Phase 11 adds a read-only reconciliation layer over validated generated CRM/invoice/payment/GL
+sources and canonical operating-account deposits. It never rewrites source applications. The
+service persists deterministic candidates, groups, component matches, controlled allocations,
+exceptions, 19 controls, append-only decisions, AR-aging snapshots, and 15 checksum-registered
+artifacts. The API and CLI share the same engine and integrity verifier; React only renders
+authoritative backend totals and aging buckets.
+
 Phase 2A introduces `source_systems`, `source_files`, `pipeline_runs`, and
 `pipeline_run_steps`. The API streams multipart bytes to temporary storage and calculates
 SHA-256 incrementally. A checksum uniqueness constraint provides the database invariant;

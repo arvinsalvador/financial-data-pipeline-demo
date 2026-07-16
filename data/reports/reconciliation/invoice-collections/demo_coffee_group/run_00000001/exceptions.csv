@@ -1,0 +1,926 @@
+bank_transaction_id,code,gl_record_id,id,invoice_id,message,payment_id,severity,status
+,missing_gl,,1,INV-2022-0001,Invoice or collection GL posting does not reconcile,,error,open
+,missing_deposit,,2,INV-2022-0002,Applied payment has no exact bank deposit,,error,open
+,missing_gl,,3,INV-2022-0002,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,4,INV-2022-0003,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,5,INV-2022-0004,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,6,INV-2022-0005,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,7,INV-2022-0006,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,8,INV-2022-0007,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,9,INV-2022-0008,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,10,INV-2022-0009,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,11,INV-2022-0010,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,12,INV-2022-0011,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,13,INV-2022-0012,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,14,INV-2022-0013,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,15,INV-2022-0014,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,16,INV-2022-0015,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,17,INV-2022-0016,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,18,INV-2022-0017,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,19,INV-2022-0018,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,20,INV-2022-0019,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,21,INV-2022-0020,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,22,INV-2022-0021,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,23,INV-2022-0022,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,24,INV-2022-0023,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,25,INV-2022-0024,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,26,INV-2022-0025,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,27,INV-2022-0026,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,28,INV-2022-0027,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,29,INV-2022-0028,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,30,INV-2022-0029,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,31,INV-2022-0030,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,32,INV-2022-0031,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,33,INV-2022-0032,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,34,INV-2022-0033,Invoice or collection GL posting does not reconcile,,error,open
+,missing_deposit,,35,INV-2022-0034,Applied payment has no exact bank deposit,,error,open
+,missing_gl,,36,INV-2022-0034,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,37,INV-2022-0035,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,38,INV-2022-0036,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,39,INV-2022-0037,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,40,INV-2022-0038,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,41,INV-2022-0039,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,42,INV-2022-0040,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,43,INV-2022-0041,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,44,INV-2022-0042,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,45,INV-2022-0043,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,46,INV-2022-0044,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,47,INV-2022-0045,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,48,INV-2022-0046,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,49,INV-2022-0047,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,50,INV-2022-0048,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,51,INV-2022-0049,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,52,INV-2022-0050,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,53,INV-2022-0051,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,54,INV-2022-0052,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,55,INV-2022-0053,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,56,INV-2022-0054,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,57,INV-2022-0055,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,58,INV-2022-0056,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,59,INV-2022-0057,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,60,INV-2022-0058,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,61,INV-2022-0059,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,62,INV-2022-0060,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,63,INV-2022-0061,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,64,INV-2022-0062,Invoice or collection GL posting does not reconcile,,error,open
+,missing_deposit,,65,INV-2022-0063,Applied payment has no exact bank deposit,,error,open
+,missing_gl,,66,INV-2022-0063,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,67,INV-2022-0064,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,68,INV-2022-0065,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,69,INV-2022-0066,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,70,INV-2022-0067,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,71,INV-2022-0068,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,72,INV-2022-0069,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,73,INV-2022-0070,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,74,INV-2022-0071,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,75,INV-2022-0072,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,76,INV-2022-0073,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,77,INV-2022-0074,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,78,INV-2022-0075,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,79,INV-2022-0076,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,80,INV-2022-0077,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,81,INV-2022-0078,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,82,INV-2022-0079,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,83,INV-2022-0080,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,84,INV-2022-0081,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,85,INV-2022-0082,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,86,INV-2022-0083,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,87,INV-2022-0084,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,88,INV-2022-0085,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,89,INV-2022-0086,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,90,INV-2022-0087,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,91,INV-2022-0088,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,92,INV-2022-0089,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,93,INV-2022-0090,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,94,INV-2022-0091,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,95,INV-2022-0092,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,96,INV-2022-0093,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,97,INV-2022-0094,Invoice or collection GL posting does not reconcile,,error,open
+,missing_deposit,,98,INV-2022-0095,Applied payment has no exact bank deposit,,error,open
+,missing_gl,,99,INV-2022-0095,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,100,INV-2022-0096,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,101,INV-2022-0097,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,102,INV-2022-0098,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,103,INV-2022-0099,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,104,INV-2022-0100,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,105,INV-2022-0101,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,106,INV-2022-0102,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,107,INV-2022-0103,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,108,INV-2022-0104,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,109,INV-2022-0105,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,110,INV-2022-0106,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,111,INV-2022-0107,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,112,INV-2022-0108,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,113,INV-2022-0109,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,114,INV-2022-0110,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,115,INV-2022-0111,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,116,INV-2022-0112,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,117,INV-2022-0113,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,118,INV-2022-0114,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,119,INV-2022-0115,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,120,INV-2022-0116,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,121,INV-2022-0117,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,122,INV-2022-0118,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,123,INV-2022-0119,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,124,INV-2022-0120,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,125,INV-2022-0121,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,126,INV-2022-0122,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,127,INV-2022-0123,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,128,INV-2022-0124,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,129,INV-2022-0125,Invoice or collection GL posting does not reconcile,,error,open
+,missing_deposit,,130,INV-2022-0126,Applied payment has no exact bank deposit,,error,open
+,missing_gl,,131,INV-2022-0126,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,132,INV-2022-0127,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,133,INV-2022-0128,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,134,INV-2022-0129,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,135,INV-2022-0130,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,136,INV-2022-0131,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,137,INV-2022-0132,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,138,INV-2022-0133,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,139,INV-2022-0134,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,140,INV-2022-0135,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,141,INV-2022-0136,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,142,INV-2022-0137,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,143,INV-2022-0138,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,144,INV-2022-0139,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,145,INV-2022-0140,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,146,INV-2022-0141,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,147,INV-2022-0142,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,148,INV-2022-0143,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,149,INV-2022-0144,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,150,INV-2022-0145,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,151,INV-2022-0146,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,152,INV-2022-0147,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,153,INV-2022-0148,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,154,INV-2022-0149,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,155,INV-2022-0150,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,156,INV-2022-0151,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,157,INV-2022-0152,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,158,INV-2022-0153,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,159,INV-2022-0154,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,160,INV-2022-0155,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,161,INV-2022-0156,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,162,INV-2022-0157,Invoice or collection GL posting does not reconcile,,error,open
+,missing_deposit,,163,INV-2022-0158,Applied payment has no exact bank deposit,,error,open
+,missing_gl,,164,INV-2022-0158,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,165,INV-2022-0159,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,166,INV-2022-0160,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,167,INV-2022-0161,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,168,INV-2022-0162,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,169,INV-2022-0163,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,170,INV-2022-0164,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,171,INV-2022-0165,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,172,INV-2022-0166,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,173,INV-2022-0167,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,174,INV-2022-0168,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,175,INV-2022-0169,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,176,INV-2022-0170,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,177,INV-2022-0171,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,178,INV-2022-0172,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,179,INV-2022-0173,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,180,INV-2022-0174,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,181,INV-2022-0175,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,182,INV-2022-0176,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,183,INV-2022-0177,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,184,INV-2022-0178,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,185,INV-2022-0179,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,186,INV-2022-0180,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,187,INV-2022-0181,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,188,INV-2022-0182,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,189,INV-2022-0183,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,190,INV-2022-0184,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,191,INV-2022-0185,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,192,INV-2022-0186,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,193,INV-2022-0187,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,194,INV-2022-0188,Invoice or collection GL posting does not reconcile,,error,open
+,missing_deposit,,195,INV-2022-0189,Applied payment has no exact bank deposit,,error,open
+,missing_gl,,196,INV-2022-0189,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,197,INV-2022-0190,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,198,INV-2022-0191,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,199,INV-2022-0192,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,200,INV-2022-0193,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,201,INV-2022-0194,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,202,INV-2022-0195,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,203,INV-2022-0196,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,204,INV-2022-0197,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,205,INV-2022-0198,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,206,INV-2022-0199,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,207,INV-2022-0200,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,208,INV-2022-0201,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,209,INV-2022-0202,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,210,INV-2022-0203,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,211,INV-2022-0204,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,212,INV-2022-0205,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,213,INV-2022-0206,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,214,INV-2022-0207,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,215,INV-2022-0208,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,216,INV-2022-0209,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,217,INV-2022-0210,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,218,INV-2022-0211,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,219,INV-2022-0212,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,220,INV-2022-0213,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,221,INV-2022-0214,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,222,INV-2022-0215,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,223,INV-2022-0216,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,224,INV-2022-0217,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,225,INV-2022-0218,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,226,INV-2022-0219,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,227,INV-2022-0220,Invoice or collection GL posting does not reconcile,,error,open
+,missing_deposit,,228,INV-2022-0221,Applied payment has no exact bank deposit,,error,open
+,missing_gl,,229,INV-2022-0221,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,230,INV-2022-0222,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,231,INV-2022-0223,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,232,INV-2022-0224,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,233,INV-2022-0225,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,234,INV-2022-0226,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,235,INV-2022-0227,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,236,INV-2022-0228,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,237,INV-2022-0229,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,238,INV-2022-0230,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,239,INV-2022-0231,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,240,INV-2022-0232,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,241,INV-2022-0233,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,242,INV-2022-0234,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,243,INV-2022-0235,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,244,INV-2022-0236,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,245,INV-2022-0237,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,246,INV-2022-0238,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,247,INV-2022-0239,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,248,INV-2022-0240,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,249,INV-2022-0241,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,250,INV-2022-0242,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,251,INV-2022-0243,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,252,INV-2022-0244,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,253,INV-2022-0245,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,254,INV-2022-0246,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,255,INV-2022-0247,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,256,INV-2022-0248,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,257,INV-2022-0249,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,258,INV-2022-0250,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,259,INV-2022-0251,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,260,INV-2022-0252,Invoice or collection GL posting does not reconcile,,error,open
+,missing_deposit,,261,INV-2022-0253,Applied payment has no exact bank deposit,,error,open
+,missing_gl,,262,INV-2022-0253,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,263,INV-2022-0254,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,264,INV-2022-0255,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,265,INV-2022-0256,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,266,INV-2022-0257,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,267,INV-2022-0258,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,268,INV-2022-0259,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,269,INV-2022-0260,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,270,INV-2022-0261,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,271,INV-2022-0262,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,272,INV-2022-0263,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,273,INV-2022-0264,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,274,INV-2022-0265,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,275,INV-2022-0266,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,276,INV-2022-0267,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,277,INV-2022-0268,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,278,INV-2022-0269,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,279,INV-2022-0270,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,280,INV-2022-0271,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,281,INV-2022-0272,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,282,INV-2022-0273,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,283,INV-2022-0274,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,284,INV-2022-0275,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,285,INV-2022-0276,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,286,INV-2022-0277,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,287,INV-2022-0278,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,288,INV-2022-0279,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,289,INV-2022-0280,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,290,INV-2022-0281,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,291,INV-2022-0282,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,292,INV-2022-0283,Invoice or collection GL posting does not reconcile,,error,open
+,missing_deposit,,293,INV-2022-0284,Applied payment has no exact bank deposit,,error,open
+,missing_gl,,294,INV-2022-0284,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,295,INV-2022-0285,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,296,INV-2022-0286,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,297,INV-2022-0287,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,298,INV-2022-0288,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,299,INV-2022-0289,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,300,INV-2022-0290,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,301,INV-2022-0291,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,302,INV-2022-0292,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,303,INV-2022-0293,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,304,INV-2022-0294,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,305,INV-2022-0295,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,306,INV-2022-0296,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,307,INV-2022-0297,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,308,INV-2022-0298,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,309,INV-2022-0299,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,310,INV-2022-0300,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,311,INV-2022-0301,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,312,INV-2022-0302,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,313,INV-2022-0303,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,314,INV-2022-0304,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,315,INV-2022-0305,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,316,INV-2022-0306,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,317,INV-2022-0307,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,318,INV-2022-0308,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,319,INV-2022-0309,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,320,INV-2022-0310,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,321,INV-2022-0311,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,322,INV-2022-0312,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,323,INV-2022-0313,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,324,INV-2022-0314,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,325,INV-2022-0315,Invoice or collection GL posting does not reconcile,,error,open
+,missing_deposit,,326,INV-2022-0316,Applied payment has no exact bank deposit,,error,open
+,missing_gl,,327,INV-2022-0316,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,328,INV-2022-0317,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,329,INV-2022-0318,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,330,INV-2022-0319,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,331,INV-2022-0320,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,332,INV-2022-0321,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,333,INV-2022-0322,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,334,INV-2022-0323,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,335,INV-2022-0324,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,336,INV-2022-0325,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,337,INV-2022-0326,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,338,INV-2022-0327,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,339,INV-2022-0328,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,340,INV-2022-0329,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,341,INV-2022-0330,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,342,INV-2022-0331,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,343,INV-2022-0332,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,344,INV-2022-0333,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,345,INV-2022-0334,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,346,INV-2022-0335,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,347,INV-2022-0336,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,348,INV-2022-0337,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,349,INV-2022-0338,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,350,INV-2022-0339,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,351,INV-2022-0340,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,352,INV-2022-0341,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,353,INV-2022-0342,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,354,INV-2022-0343,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,355,INV-2022-0344,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,356,INV-2022-0345,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,357,INV-2022-0346,Invoice or collection GL posting does not reconcile,,error,open
+,missing_deposit,,358,INV-2022-0347,Applied payment has no exact bank deposit,,error,open
+,missing_gl,,359,INV-2022-0347,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,360,INV-2022-0348,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,361,INV-2022-0349,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,362,INV-2022-0350,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,363,INV-2022-0351,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,364,INV-2022-0352,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,365,INV-2022-0353,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,366,INV-2022-0354,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,367,INV-2022-0355,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,368,INV-2022-0356,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,369,INV-2022-0357,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,370,INV-2022-0358,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,371,INV-2022-0359,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,372,INV-2022-0360,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,373,INV-2022-0361,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,374,INV-2022-0362,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,375,INV-2022-0363,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,376,INV-2022-0364,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,377,INV-2022-0365,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,378,INV-2022-0366,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,379,INV-2022-0367,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,380,INV-2022-0368,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,381,INV-2022-0369,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,382,INV-2022-0370,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,383,INV-2022-0371,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,384,INV-2022-0372,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,385,INV-2022-0373,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,386,INV-2022-0374,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,387,INV-2022-0375,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,388,INV-2022-0376,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,389,INV-2022-0377,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,390,INV-2023-0378,Invoice or collection GL posting does not reconcile,,error,open
+,missing_deposit,,391,INV-2023-0379,Applied payment has no exact bank deposit,,error,open
+,missing_gl,,392,INV-2023-0379,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,393,INV-2023-0380,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,394,INV-2023-0381,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,395,INV-2023-0382,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,396,INV-2023-0383,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,397,INV-2023-0384,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,398,INV-2023-0385,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,399,INV-2023-0386,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,400,INV-2023-0387,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,401,INV-2023-0388,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,402,INV-2023-0389,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,403,INV-2023-0390,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,404,INV-2023-0391,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,405,INV-2023-0392,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,406,INV-2023-0393,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,407,INV-2023-0394,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,408,INV-2023-0395,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,409,INV-2023-0396,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,410,INV-2023-0397,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,411,INV-2023-0398,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,412,INV-2023-0399,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,413,INV-2023-0400,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,414,INV-2023-0401,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,415,INV-2023-0402,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,416,INV-2023-0403,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,417,INV-2023-0404,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,418,INV-2023-0405,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,419,INV-2023-0406,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,420,INV-2023-0407,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,421,INV-2023-0408,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,422,INV-2023-0409,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,423,INV-2023-0410,Invoice or collection GL posting does not reconcile,,error,open
+,missing_deposit,,424,INV-2023-0411,Applied payment has no exact bank deposit,,error,open
+,missing_gl,,425,INV-2023-0411,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,426,INV-2023-0412,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,427,INV-2023-0413,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,428,INV-2023-0414,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,429,INV-2023-0415,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,430,INV-2023-0416,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,431,INV-2023-0417,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,432,INV-2023-0418,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,433,INV-2023-0419,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,434,INV-2023-0420,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,435,INV-2023-0421,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,436,INV-2023-0422,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,437,INV-2023-0423,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,438,INV-2023-0424,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,439,INV-2023-0425,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,440,INV-2023-0426,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,441,INV-2023-0427,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,442,INV-2023-0428,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,443,INV-2023-0429,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,444,INV-2023-0430,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,445,INV-2023-0431,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,446,INV-2023-0432,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,447,INV-2023-0433,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,448,INV-2023-0434,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,449,INV-2023-0435,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,450,INV-2023-0436,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,451,INV-2023-0437,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,452,INV-2023-0438,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,453,INV-2023-0439,Invoice or collection GL posting does not reconcile,,error,open
+,missing_deposit,,454,INV-2023-0440,Applied payment has no exact bank deposit,,error,open
+,missing_gl,,455,INV-2023-0440,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,456,INV-2023-0441,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,457,INV-2023-0442,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,458,INV-2023-0443,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,459,INV-2023-0444,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,460,INV-2023-0445,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,461,INV-2023-0446,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,462,INV-2023-0447,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,463,INV-2023-0448,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,464,INV-2023-0449,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,465,INV-2023-0450,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,466,INV-2023-0451,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,467,INV-2023-0452,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,468,INV-2023-0453,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,469,INV-2023-0454,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,470,INV-2023-0455,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,471,INV-2023-0456,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,472,INV-2023-0457,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,473,INV-2023-0458,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,474,INV-2023-0459,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,475,INV-2023-0460,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,476,INV-2023-0461,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,477,INV-2023-0462,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,478,INV-2023-0463,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,479,INV-2023-0464,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,480,INV-2023-0465,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,481,INV-2023-0466,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,482,INV-2023-0467,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,483,INV-2023-0468,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,484,INV-2023-0469,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,485,INV-2023-0470,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,486,INV-2023-0471,Invoice or collection GL posting does not reconcile,,error,open
+,missing_deposit,,487,INV-2023-0472,Applied payment has no exact bank deposit,,error,open
+,missing_gl,,488,INV-2023-0472,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,489,INV-2023-0473,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,490,INV-2023-0474,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,491,INV-2023-0475,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,492,INV-2023-0476,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,493,INV-2023-0477,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,494,INV-2023-0478,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,495,INV-2023-0479,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,496,INV-2023-0480,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,497,INV-2023-0481,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,498,INV-2023-0482,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,499,INV-2023-0483,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,500,INV-2023-0484,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,501,INV-2023-0485,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,502,INV-2023-0486,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,503,INV-2023-0487,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,504,INV-2023-0488,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,505,INV-2023-0489,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,506,INV-2023-0490,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,507,INV-2023-0491,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,508,INV-2023-0492,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,509,INV-2023-0493,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,510,INV-2023-0494,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,511,INV-2023-0495,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,512,INV-2023-0496,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,513,INV-2023-0497,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,514,INV-2023-0498,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,515,INV-2023-0499,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,516,INV-2023-0500,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,517,INV-2023-0501,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,518,INV-2023-0502,Invoice or collection GL posting does not reconcile,,error,open
+,missing_deposit,,519,INV-2023-0503,Applied payment has no exact bank deposit,,error,open
+,missing_gl,,520,INV-2023-0503,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,521,INV-2023-0504,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,522,INV-2023-0505,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,523,INV-2023-0506,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,524,INV-2023-0507,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,525,INV-2023-0508,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,526,INV-2023-0509,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,527,INV-2023-0510,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,528,INV-2023-0511,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,529,INV-2023-0512,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,530,INV-2023-0513,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,531,INV-2023-0514,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,532,INV-2023-0515,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,533,INV-2023-0516,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,534,INV-2023-0517,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,535,INV-2023-0518,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,536,INV-2023-0519,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,537,INV-2023-0520,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,538,INV-2023-0521,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,539,INV-2023-0522,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,540,INV-2023-0523,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,541,INV-2023-0524,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,542,INV-2023-0525,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,543,INV-2023-0526,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,544,INV-2023-0527,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,545,INV-2023-0528,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,546,INV-2023-0529,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,547,INV-2023-0530,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,548,INV-2023-0531,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,549,INV-2023-0532,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,550,INV-2023-0533,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,551,INV-2023-0534,Invoice or collection GL posting does not reconcile,,error,open
+,missing_deposit,,552,INV-2023-0535,Applied payment has no exact bank deposit,,error,open
+,missing_gl,,553,INV-2023-0535,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,554,INV-2023-0536,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,555,INV-2023-0537,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,556,INV-2023-0538,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,557,INV-2023-0539,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,558,INV-2023-0540,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,559,INV-2023-0541,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,560,INV-2023-0542,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,561,INV-2023-0543,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,562,INV-2023-0544,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,563,INV-2023-0545,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,564,INV-2023-0546,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,565,INV-2023-0547,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,566,INV-2023-0548,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,567,INV-2023-0549,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,568,INV-2023-0550,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,569,INV-2023-0551,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,570,INV-2023-0552,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,571,INV-2023-0553,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,572,INV-2023-0554,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,573,INV-2023-0555,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,574,INV-2023-0556,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,575,INV-2023-0557,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,576,INV-2023-0558,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,577,INV-2023-0559,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,578,INV-2023-0560,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,579,INV-2023-0561,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,580,INV-2023-0562,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,581,INV-2023-0563,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,582,INV-2023-0564,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,583,INV-2023-0565,Invoice or collection GL posting does not reconcile,,error,open
+,missing_deposit,,584,INV-2023-0566,Applied payment has no exact bank deposit,,error,open
+,missing_gl,,585,INV-2023-0566,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,586,INV-2023-0567,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,587,INV-2023-0568,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,588,INV-2023-0569,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,589,INV-2023-0570,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,590,INV-2023-0571,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,591,INV-2023-0572,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,592,INV-2023-0573,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,593,INV-2023-0574,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,594,INV-2023-0575,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,595,INV-2023-0576,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,596,INV-2023-0577,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,597,INV-2023-0578,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,598,INV-2023-0579,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,599,INV-2023-0580,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,600,INV-2023-0581,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,601,INV-2023-0582,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,602,INV-2023-0583,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,603,INV-2023-0584,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,604,INV-2023-0585,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,605,INV-2023-0586,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,606,INV-2023-0587,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,607,INV-2023-0588,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,608,INV-2023-0589,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,609,INV-2023-0590,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,610,INV-2023-0591,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,611,INV-2023-0592,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,612,INV-2023-0593,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,613,INV-2023-0594,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,614,INV-2023-0595,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,615,INV-2023-0596,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,616,INV-2023-0597,Invoice or collection GL posting does not reconcile,,error,open
+,missing_deposit,,617,INV-2023-0598,Applied payment has no exact bank deposit,,error,open
+,missing_gl,,618,INV-2023-0598,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,619,INV-2023-0599,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,620,INV-2023-0600,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,621,INV-2023-0601,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,622,INV-2023-0602,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,623,INV-2023-0603,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,624,INV-2023-0604,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,625,INV-2023-0605,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,626,INV-2023-0606,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,627,INV-2023-0607,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,628,INV-2023-0608,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,629,INV-2023-0609,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,630,INV-2023-0610,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,631,INV-2023-0611,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,632,INV-2023-0612,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,633,INV-2023-0613,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,634,INV-2023-0614,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,635,INV-2023-0615,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,636,INV-2023-0616,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,637,INV-2023-0617,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,638,INV-2023-0618,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,639,INV-2023-0619,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,640,INV-2023-0620,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,641,INV-2023-0621,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,642,INV-2023-0622,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,643,INV-2023-0623,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,644,INV-2023-0624,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,645,INV-2023-0625,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,646,INV-2023-0626,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,647,INV-2023-0627,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,648,INV-2023-0628,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,649,INV-2023-0629,Invoice or collection GL posting does not reconcile,,error,open
+,missing_deposit,,650,INV-2023-0630,Applied payment has no exact bank deposit,,error,open
+,missing_gl,,651,INV-2023-0630,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,652,INV-2023-0631,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,653,INV-2023-0632,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,654,INV-2023-0633,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,655,INV-2023-0634,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,656,INV-2023-0635,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,657,INV-2023-0636,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,658,INV-2023-0637,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,659,INV-2023-0638,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,660,INV-2023-0639,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,661,INV-2023-0640,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,662,INV-2023-0641,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,663,INV-2023-0642,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,664,INV-2023-0643,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,665,INV-2023-0644,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,666,INV-2023-0645,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,667,INV-2023-0646,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,668,INV-2023-0647,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,669,INV-2023-0648,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,670,INV-2023-0649,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,671,INV-2023-0650,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,672,INV-2023-0651,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,673,INV-2023-0652,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,674,INV-2023-0653,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,675,INV-2023-0654,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,676,INV-2023-0655,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,677,INV-2023-0656,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,678,INV-2023-0657,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,679,INV-2023-0658,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,680,INV-2023-0659,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,681,INV-2023-0660,Invoice or collection GL posting does not reconcile,,error,open
+,missing_deposit,,682,INV-2023-0661,Applied payment has no exact bank deposit,,error,open
+,missing_gl,,683,INV-2023-0661,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,684,INV-2023-0662,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,685,INV-2023-0663,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,686,INV-2023-0664,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,687,INV-2023-0665,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,688,INV-2023-0666,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,689,INV-2023-0667,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,690,INV-2023-0668,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,691,INV-2023-0669,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,692,INV-2023-0670,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,693,INV-2023-0671,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,694,INV-2023-0672,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,695,INV-2023-0673,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,696,INV-2023-0674,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,697,INV-2023-0675,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,698,INV-2023-0676,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,699,INV-2023-0677,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,700,INV-2023-0678,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,701,INV-2023-0679,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,702,INV-2023-0680,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,703,INV-2023-0681,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,704,INV-2023-0682,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,705,INV-2023-0683,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,706,INV-2023-0684,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,707,INV-2023-0685,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,708,INV-2023-0686,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,709,INV-2023-0687,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,710,INV-2023-0688,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,711,INV-2023-0689,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,712,INV-2023-0690,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,713,INV-2023-0691,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,714,INV-2023-0692,Invoice or collection GL posting does not reconcile,,error,open
+,missing_deposit,,715,INV-2023-0693,Applied payment has no exact bank deposit,,error,open
+,missing_gl,,716,INV-2023-0693,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,717,INV-2023-0694,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,718,INV-2023-0695,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,719,INV-2023-0696,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,720,INV-2023-0697,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,721,INV-2023-0698,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,722,INV-2023-0699,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,723,INV-2023-0700,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,724,INV-2023-0701,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,725,INV-2023-0702,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,726,INV-2023-0703,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,727,INV-2023-0704,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,728,INV-2023-0705,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,729,INV-2023-0706,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,730,INV-2023-0707,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,731,INV-2023-0708,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,732,INV-2023-0709,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,733,INV-2023-0710,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,734,INV-2023-0711,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,735,INV-2023-0712,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,736,INV-2023-0713,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,737,INV-2023-0714,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,738,INV-2023-0715,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,739,INV-2023-0716,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,740,INV-2023-0717,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,741,INV-2023-0718,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,742,INV-2023-0719,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,743,INV-2023-0720,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,744,INV-2023-0721,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,745,INV-2023-0722,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,746,INV-2023-0723,Invoice or collection GL posting does not reconcile,,error,open
+,missing_deposit,,747,INV-2023-0724,Applied payment has no exact bank deposit,,error,open
+,missing_gl,,748,INV-2023-0724,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,749,INV-2023-0725,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,750,INV-2023-0726,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,751,INV-2023-0727,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,752,INV-2023-0728,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,753,INV-2023-0729,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,754,INV-2023-0730,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,755,INV-2023-0731,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,756,INV-2023-0732,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,757,INV-2023-0733,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,758,INV-2023-0734,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,759,INV-2023-0735,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,760,INV-2023-0736,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,761,INV-2023-0737,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,762,INV-2023-0738,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,763,INV-2023-0739,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,764,INV-2023-0740,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,765,INV-2023-0741,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,766,INV-2023-0742,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,767,INV-2023-0743,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,768,INV-2023-0744,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,769,INV-2023-0745,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,770,INV-2023-0746,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,771,INV-2023-0747,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,772,INV-2023-0748,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,773,INV-2023-0749,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,774,INV-2023-0750,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,775,INV-2023-0751,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,776,INV-2023-0752,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,777,INV-2023-0753,Invoice or collection GL posting does not reconcile,,error,open
+,missing_gl,,778,INV-2023-0754,Invoice or collection GL posting does not reconcile,,error,open
+9,unmatched_deposit,,779,,Bank deposit is not linked to an eligible payment,,warning,open
+13,unmatched_deposit,,780,,Bank deposit is not linked to an eligible payment,,warning,open
+18,unmatched_deposit,,781,,Bank deposit is not linked to an eligible payment,,warning,open
+21,unmatched_deposit,,782,,Bank deposit is not linked to an eligible payment,,warning,open
+29,unmatched_deposit,,783,,Bank deposit is not linked to an eligible payment,,warning,open
+33,unmatched_deposit,,784,,Bank deposit is not linked to an eligible payment,,warning,open
+35,unmatched_deposit,,785,,Bank deposit is not linked to an eligible payment,,warning,open
+38,unmatched_deposit,,786,,Bank deposit is not linked to an eligible payment,,warning,open
+43,unmatched_deposit,,787,,Bank deposit is not linked to an eligible payment,,warning,open
+51,unmatched_deposit,,788,,Bank deposit is not linked to an eligible payment,,warning,open
+54,unmatched_deposit,,789,,Bank deposit is not linked to an eligible payment,,warning,open
+61,unmatched_deposit,,790,,Bank deposit is not linked to an eligible payment,,warning,open
+70,unmatched_deposit,,791,,Bank deposit is not linked to an eligible payment,,warning,open
+72,unmatched_deposit,,792,,Bank deposit is not linked to an eligible payment,,warning,open
+83,unmatched_deposit,,793,,Bank deposit is not linked to an eligible payment,,warning,open
+87,unmatched_deposit,,794,,Bank deposit is not linked to an eligible payment,,warning,open
+93,unmatched_deposit,,795,,Bank deposit is not linked to an eligible payment,,warning,open
+100,unmatched_deposit,,796,,Bank deposit is not linked to an eligible payment,,warning,open
+103,unmatched_deposit,,797,,Bank deposit is not linked to an eligible payment,,warning,open
+119,unmatched_deposit,,798,,Bank deposit is not linked to an eligible payment,,warning,open
+121,unmatched_deposit,,799,,Bank deposit is not linked to an eligible payment,,warning,open
+126,unmatched_deposit,,800,,Bank deposit is not linked to an eligible payment,,warning,open
+133,unmatched_deposit,,801,,Bank deposit is not linked to an eligible payment,,warning,open
+135,unmatched_deposit,,802,,Bank deposit is not linked to an eligible payment,,warning,open
+140,unmatched_deposit,,803,,Bank deposit is not linked to an eligible payment,,warning,open
+154,unmatched_deposit,,804,,Bank deposit is not linked to an eligible payment,,warning,open
+176,unmatched_deposit,,805,,Bank deposit is not linked to an eligible payment,,warning,open
+179,unmatched_deposit,,806,,Bank deposit is not linked to an eligible payment,,warning,open
+187,unmatched_deposit,,807,,Bank deposit is not linked to an eligible payment,,warning,open
+196,unmatched_deposit,,808,,Bank deposit is not linked to an eligible payment,,warning,open
+201,unmatched_deposit,,809,,Bank deposit is not linked to an eligible payment,,warning,open
+206,unmatched_deposit,,810,,Bank deposit is not linked to an eligible payment,,warning,open
+211,unmatched_deposit,,811,,Bank deposit is not linked to an eligible payment,,warning,open
+213,unmatched_deposit,,812,,Bank deposit is not linked to an eligible payment,,warning,open
+215,unmatched_deposit,,813,,Bank deposit is not linked to an eligible payment,,warning,open
+217,unmatched_deposit,,814,,Bank deposit is not linked to an eligible payment,,warning,open
+222,unmatched_deposit,,815,,Bank deposit is not linked to an eligible payment,,warning,open
+227,unmatched_deposit,,816,,Bank deposit is not linked to an eligible payment,,warning,open
+238,unmatched_deposit,,817,,Bank deposit is not linked to an eligible payment,,warning,open
+241,unmatched_deposit,,818,,Bank deposit is not linked to an eligible payment,,warning,open
+245,unmatched_deposit,,819,,Bank deposit is not linked to an eligible payment,,warning,open
+258,unmatched_deposit,,820,,Bank deposit is not linked to an eligible payment,,warning,open
+262,unmatched_deposit,,821,,Bank deposit is not linked to an eligible payment,,warning,open
+268,unmatched_deposit,,822,,Bank deposit is not linked to an eligible payment,,warning,open
+273,unmatched_deposit,,823,,Bank deposit is not linked to an eligible payment,,warning,open
+275,unmatched_deposit,,824,,Bank deposit is not linked to an eligible payment,,warning,open
+282,unmatched_deposit,,825,,Bank deposit is not linked to an eligible payment,,warning,open
+285,unmatched_deposit,,826,,Bank deposit is not linked to an eligible payment,,warning,open
+292,unmatched_deposit,,827,,Bank deposit is not linked to an eligible payment,,warning,open
+296,unmatched_deposit,,828,,Bank deposit is not linked to an eligible payment,,warning,open
+298,unmatched_deposit,,829,,Bank deposit is not linked to an eligible payment,,warning,open
+305,unmatched_deposit,,830,,Bank deposit is not linked to an eligible payment,,warning,open
+311,unmatched_deposit,,831,,Bank deposit is not linked to an eligible payment,,warning,open
+318,unmatched_deposit,,832,,Bank deposit is not linked to an eligible payment,,warning,open
+321,unmatched_deposit,,833,,Bank deposit is not linked to an eligible payment,,warning,open
+330,unmatched_deposit,,834,,Bank deposit is not linked to an eligible payment,,warning,open
+336,unmatched_deposit,,835,,Bank deposit is not linked to an eligible payment,,warning,open
+343,unmatched_deposit,,836,,Bank deposit is not linked to an eligible payment,,warning,open
+345,unmatched_deposit,,837,,Bank deposit is not linked to an eligible payment,,warning,open
+364,unmatched_deposit,,838,,Bank deposit is not linked to an eligible payment,,warning,open
+377,unmatched_deposit,,839,,Bank deposit is not linked to an eligible payment,,warning,open
+384,unmatched_deposit,,840,,Bank deposit is not linked to an eligible payment,,warning,open
+387,unmatched_deposit,,841,,Bank deposit is not linked to an eligible payment,,warning,open
+392,unmatched_deposit,,842,,Bank deposit is not linked to an eligible payment,,warning,open
+395,unmatched_deposit,,843,,Bank deposit is not linked to an eligible payment,,warning,open
+400,unmatched_deposit,,844,,Bank deposit is not linked to an eligible payment,,warning,open
+402,unmatched_deposit,,845,,Bank deposit is not linked to an eligible payment,,warning,open
+406,unmatched_deposit,,846,,Bank deposit is not linked to an eligible payment,,warning,open
+413,unmatched_deposit,,847,,Bank deposit is not linked to an eligible payment,,warning,open
+419,unmatched_deposit,,848,,Bank deposit is not linked to an eligible payment,,warning,open
+421,unmatched_deposit,,849,,Bank deposit is not linked to an eligible payment,,warning,open
+423,unmatched_deposit,,850,,Bank deposit is not linked to an eligible payment,,warning,open
+441,unmatched_deposit,,851,,Bank deposit is not linked to an eligible payment,,warning,open
+443,unmatched_deposit,,852,,Bank deposit is not linked to an eligible payment,,warning,open
+445,unmatched_deposit,,853,,Bank deposit is not linked to an eligible payment,,warning,open
+454,unmatched_deposit,,854,,Bank deposit is not linked to an eligible payment,,warning,open
+456,unmatched_deposit,,855,,Bank deposit is not linked to an eligible payment,,warning,open
+458,unmatched_deposit,,856,,Bank deposit is not linked to an eligible payment,,warning,open
+460,unmatched_deposit,,857,,Bank deposit is not linked to an eligible payment,,warning,open
+468,unmatched_deposit,,858,,Bank deposit is not linked to an eligible payment,,warning,open
+478,unmatched_deposit,,859,,Bank deposit is not linked to an eligible payment,,warning,open
+481,unmatched_deposit,,860,,Bank deposit is not linked to an eligible payment,,warning,open
+495,unmatched_deposit,,861,,Bank deposit is not linked to an eligible payment,,warning,open
+498,unmatched_deposit,,862,,Bank deposit is not linked to an eligible payment,,warning,open
+502,unmatched_deposit,,863,,Bank deposit is not linked to an eligible payment,,warning,open
+505,unmatched_deposit,,864,,Bank deposit is not linked to an eligible payment,,warning,open
+515,unmatched_deposit,,865,,Bank deposit is not linked to an eligible payment,,warning,open
+532,unmatched_deposit,,866,,Bank deposit is not linked to an eligible payment,,warning,open
+534,unmatched_deposit,,867,,Bank deposit is not linked to an eligible payment,,warning,open
+541,unmatched_deposit,,868,,Bank deposit is not linked to an eligible payment,,warning,open
+548,unmatched_deposit,,869,,Bank deposit is not linked to an eligible payment,,warning,open
+556,unmatched_deposit,,870,,Bank deposit is not linked to an eligible payment,,warning,open
+564,unmatched_deposit,,871,,Bank deposit is not linked to an eligible payment,,warning,open
+569,unmatched_deposit,,872,,Bank deposit is not linked to an eligible payment,,warning,open
+577,unmatched_deposit,,873,,Bank deposit is not linked to an eligible payment,,warning,open
+581,unmatched_deposit,,874,,Bank deposit is not linked to an eligible payment,,warning,open
+584,unmatched_deposit,,875,,Bank deposit is not linked to an eligible payment,,warning,open
+588,unmatched_deposit,,876,,Bank deposit is not linked to an eligible payment,,warning,open
+608,unmatched_deposit,,877,,Bank deposit is not linked to an eligible payment,,warning,open
+612,unmatched_deposit,,878,,Bank deposit is not linked to an eligible payment,,warning,open
+617,unmatched_deposit,,879,,Bank deposit is not linked to an eligible payment,,warning,open
+626,unmatched_deposit,,880,,Bank deposit is not linked to an eligible payment,,warning,open
+635,unmatched_deposit,,881,,Bank deposit is not linked to an eligible payment,,warning,open
+639,unmatched_deposit,,882,,Bank deposit is not linked to an eligible payment,,warning,open
+641,unmatched_deposit,,883,,Bank deposit is not linked to an eligible payment,,warning,open
+645,unmatched_deposit,,884,,Bank deposit is not linked to an eligible payment,,warning,open
+650,unmatched_deposit,,885,,Bank deposit is not linked to an eligible payment,,warning,open
+666,unmatched_deposit,,886,,Bank deposit is not linked to an eligible payment,,warning,open
+672,unmatched_deposit,,887,,Bank deposit is not linked to an eligible payment,,warning,open
+674,unmatched_deposit,,888,,Bank deposit is not linked to an eligible payment,,warning,open
+685,unmatched_deposit,,889,,Bank deposit is not linked to an eligible payment,,warning,open
+689,unmatched_deposit,,890,,Bank deposit is not linked to an eligible payment,,warning,open
+691,unmatched_deposit,,891,,Bank deposit is not linked to an eligible payment,,warning,open
+701,unmatched_deposit,,892,,Bank deposit is not linked to an eligible payment,,warning,open
+703,unmatched_deposit,,893,,Bank deposit is not linked to an eligible payment,,warning,open
+716,unmatched_deposit,,894,,Bank deposit is not linked to an eligible payment,,warning,open
+724,unmatched_deposit,,895,,Bank deposit is not linked to an eligible payment,,warning,open
+731,unmatched_deposit,,896,,Bank deposit is not linked to an eligible payment,,warning,open
+733,unmatched_deposit,,897,,Bank deposit is not linked to an eligible payment,,warning,open
+738,unmatched_deposit,,898,,Bank deposit is not linked to an eligible payment,,warning,open
+740,unmatched_deposit,,899,,Bank deposit is not linked to an eligible payment,,warning,open
+755,unmatched_deposit,,900,,Bank deposit is not linked to an eligible payment,,warning,open
+760,unmatched_deposit,,901,,Bank deposit is not linked to an eligible payment,,warning,open
+765,unmatched_deposit,,902,,Bank deposit is not linked to an eligible payment,,warning,open
+771,unmatched_deposit,,903,,Bank deposit is not linked to an eligible payment,,warning,open
+781,unmatched_deposit,,904,,Bank deposit is not linked to an eligible payment,,warning,open
+787,unmatched_deposit,,905,,Bank deposit is not linked to an eligible payment,,warning,open
+791,unmatched_deposit,,906,,Bank deposit is not linked to an eligible payment,,warning,open
+797,unmatched_deposit,,907,,Bank deposit is not linked to an eligible payment,,warning,open
+800,unmatched_deposit,,908,,Bank deposit is not linked to an eligible payment,,warning,open
+812,unmatched_deposit,,909,,Bank deposit is not linked to an eligible payment,,warning,open
+814,unmatched_deposit,,910,,Bank deposit is not linked to an eligible payment,,warning,open
+816,unmatched_deposit,,911,,Bank deposit is not linked to an eligible payment,,warning,open
+821,unmatched_deposit,,912,,Bank deposit is not linked to an eligible payment,,warning,open
+825,unmatched_deposit,,913,,Bank deposit is not linked to an eligible payment,,warning,open
+836,unmatched_deposit,,914,,Bank deposit is not linked to an eligible payment,,warning,open
+838,unmatched_deposit,,915,,Bank deposit is not linked to an eligible payment,,warning,open
+841,unmatched_deposit,,916,,Bank deposit is not linked to an eligible payment,,warning,open
+843,unmatched_deposit,,917,,Bank deposit is not linked to an eligible payment,,warning,open
+849,unmatched_deposit,,918,,Bank deposit is not linked to an eligible payment,,warning,open
+853,unmatched_deposit,,919,,Bank deposit is not linked to an eligible payment,,warning,open
+862,unmatched_deposit,,920,,Bank deposit is not linked to an eligible payment,,warning,open
+864,unmatched_deposit,,921,,Bank deposit is not linked to an eligible payment,,warning,open
+869,unmatched_deposit,,922,,Bank deposit is not linked to an eligible payment,,warning,open
+871,unmatched_deposit,,923,,Bank deposit is not linked to an eligible payment,,warning,open
+876,unmatched_deposit,,924,,Bank deposit is not linked to an eligible payment,,warning,open
+878,unmatched_deposit,,925,,Bank deposit is not linked to an eligible payment,,warning,open

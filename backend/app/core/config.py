@@ -76,6 +76,21 @@ class Settings(BaseSettings):
     PAYROLL_RECONCILIATION_REVERSAL_DATE_TOLERANCE_DAYS: int = Field(default=7, ge=0, le=31)
     PAYROLL_RECONCILIATION_EMPLOYEE_TOLERANCE: float = Field(default=0.01, ge=0)
     PAYROLL_RECONCILIATION_REPORT_ROOT: Path = Path("/data/reports/reconciliation/payroll")
+    INVOICE_COLLECTIONS_RECONCILIATION_VERSION: str = "1.0.0"
+    INVOICE_COLLECTIONS_AMOUNT_TOLERANCE: float = Field(default=0.01, ge=0)
+    INVOICE_COLLECTIONS_DATE_TOLERANCE_DAYS: int = Field(default=3, ge=0, le=31)
+    INVOICE_COLLECTIONS_MIN_AUTO_ACCEPT_CONFIDENCE: float = Field(default=0.98, ge=0, le=1)
+    INVOICE_COLLECTIONS_MIN_SUGGESTION_CONFIDENCE: float = Field(default=0.65, ge=0, le=1)
+    INVOICE_COLLECTIONS_MAX_PAYMENTS_PER_INVOICE: int = Field(default=10, ge=1, le=50)
+    INVOICE_COLLECTIONS_MAX_INVOICES_PER_PAYMENT: int = Field(default=10, ge=1, le=50)
+    INVOICE_COLLECTIONS_MAX_PAYMENTS_PER_DEPOSIT: int = Field(default=10, ge=1, le=50)
+    INVOICE_COLLECTIONS_MAX_DEPOSITS_PER_PAYMENT: int = Field(default=5, ge=1, le=20)
+    INVOICE_COLLECTIONS_MAX_CANDIDATES_PER_RECORD: int = Field(default=20, ge=1, le=100)
+    INVOICE_COLLECTIONS_AUTO_ACCEPT_GROUPED: bool = False
+    INVOICE_COLLECTIONS_OVERPAYMENT_TOLERANCE: float = Field(default=0.01, ge=0)
+    INVOICE_COLLECTIONS_OVERDUE_WARNING_DAYS: int = Field(default=30, ge=0)
+    INVOICE_COLLECTIONS_AGING_BUCKETS: str = "current,1_30,31_60,61_90,over_90"
+    INVOICE_COLLECTIONS_REPORT_ROOT: Path = Path("/data/reports/reconciliation/invoice-collections")
     INGESTION_REPORTS_DIRECTORY: Path = Path("/data/reports")
     CSV_READ_CHUNK_SIZE: int = Field(default=1000, gt=0)
     MAX_SAMPLED_VALUES_PER_COLUMN: int = Field(default=5, gt=0, le=100)

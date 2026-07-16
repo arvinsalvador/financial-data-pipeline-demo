@@ -286,7 +286,7 @@ docker compose exec backend python -m app.cli.summarize_payroll_mismatches --pay
 See [docs/phase-10-payroll-reconciliation.md](docs/phase-10-payroll-reconciliation.md) for source
 precedence, formulas, settlement models, sign conventions, matching and allocation policy, API,
 CLI, frontend, reports, configuration, verification, and known limitations. Invoice and collections
-reconciliation are not yet implemented.
+reconciliation is implemented separately in Phase 11 below.
 
 ## Phase 10.5: responsive UI and demo recovery
 
@@ -304,3 +304,23 @@ docker compose exec backend python -m app.cli.reset_demo_environment --all-demo-
 See [docs/phase-10-5-ui-and-demo-reset.md](docs/phase-10-5-ui-and-demo-reset.md) for responsive and
 accessibility behavior, reset safety controls, host-file cleanup, recovery, and the destructive
 Docker-volume reset warning.
+
+## Phase 11: invoice and collections reconciliation
+
+Invoice collections reconciliation version `1.0.0` deterministically links validated CRM deals,
+invoices, payment applications, operating-account deposits, AR and cash ledger entries, and
+backend-calculated accounts-receivable aging. It persists transparent candidates and allocations,
+controlled exceptions, review history, 19 named financial controls, and 15 immutable reports.
+
+Open **Invoice & collections** in the frontend, or run:
+
+```bash
+docker compose exec backend python -m app.cli.reconcile_invoice_collections --bank-account-id 1 --date-from 2022-01-01 --date-to 2023-12-31 --aging-as-of-date 2023-12-31
+docker compose exec backend python -m app.cli.verify_invoice_collections_integrity --reconciliation-run-id 1
+docker compose exec backend python -m app.cli.summarize_unmatched_invoice_collections --reconciliation-run-id 1
+docker compose exec backend python -m app.cli.export_ar_aging --reconciliation-run-id 1
+```
+
+See [docs/phase-11-invoice-collections-reconciliation.md](docs/phase-11-invoice-collections-reconciliation.md)
+for source precedence, formulas, matching policy, aging, permissions, API, CLI, reports, verification,
+and deliberate Phase 12 boundaries.

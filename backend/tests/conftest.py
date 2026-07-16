@@ -93,6 +93,9 @@ def test_settings(tmp_path: Path) -> Settings:
         VALIDATION_REPORT_ROOT=tmp_path / "generated" / "reports" / "validation",
         RECONCILIATION_REPORT_ROOT=tmp_path / "reports" / "reconciliation" / "bank-ledger",
         PAYROLL_RECONCILIATION_REPORT_ROOT=tmp_path / "reports" / "reconciliation" / "payroll",
+        INVOICE_COLLECTIONS_REPORT_ROOT=(
+            tmp_path / "reports" / "reconciliation" / "invoice-collections"
+        ),
         MAX_UPLOAD_SIZE_BYTES=128,
     )
 

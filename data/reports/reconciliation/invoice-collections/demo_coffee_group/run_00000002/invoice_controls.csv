@@ -1,0 +1,9 @@
+actual,control,difference,expected,status
+0.000000,ar_aging,0.000000,0.000000,passed
+693424.000000,invoice_to_gl_receivable,0.000000,693424.000000,passed
+693424.000000,invoice_to_outstanding,0.000000,693424.000000,passed
+693424.000000,invoice_to_reported_paid,0.000000,693424.000000,passed
+582807.000000,matched_collections,-110617.000000,693424.000000,failed
+693424.000000,payment_to_application,0.000000,693424.000000,passed
+626006.000000,payment_to_deposit,-67418.000000,693424.000000,failed
+693424.000000,payment_to_gl_cash,0.000000,693424.000000,passed

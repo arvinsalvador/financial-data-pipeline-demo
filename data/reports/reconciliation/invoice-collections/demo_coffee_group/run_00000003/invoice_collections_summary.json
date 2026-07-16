@@ -1,0 +1,8 @@
+{
+  "invoice_total": "693424.000000",
+  "matched_collection_total": "582807.000000",
+  "reconciliation_rate": "0.840477",
+  "run_id": 3,
+  "status": "completed_with_exceptions",
+  "version": "1.0.0"
+}
