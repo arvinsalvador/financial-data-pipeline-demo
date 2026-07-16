@@ -78,6 +78,14 @@ PERMISSIONS = (
     "payroll_reconciliation_exceptions.view",
     "payroll_reconciliation_controls.view",
     "payroll_reconciliation_reports.view",
+    "invoice_collections_reconciliation.execute",
+    "invoice_collections_reconciliation.view",
+    "invoice_collections_reconciliation.review",
+    "invoice_collections_candidates.view",
+    "invoice_collections_exceptions.view",
+    "invoice_collections_controls.view",
+    "invoice_collections_reports.view",
+    "accounts_receivable_aging.view",
 )
 ROLE_PERMISSIONS = {
     "platform_admin": PERMISSIONS,
@@ -139,6 +147,14 @@ ROLE_PERMISSIONS = {
         "payroll_reconciliation_exceptions.view",
         "payroll_reconciliation_controls.view",
         "payroll_reconciliation_reports.view",
+        "invoice_collections_reconciliation.execute",
+        "invoice_collections_reconciliation.view",
+        "invoice_collections_reconciliation.review",
+        "invoice_collections_candidates.view",
+        "invoice_collections_exceptions.view",
+        "invoice_collections_controls.view",
+        "invoice_collections_reports.view",
+        "accounts_receivable_aging.view",
     ),
     "finance_analyst": (
         "source_systems.view",
@@ -192,6 +208,14 @@ ROLE_PERMISSIONS = {
         "payroll_reconciliation_exceptions.view",
         "payroll_reconciliation_controls.view",
         "payroll_reconciliation_reports.view",
+        "invoice_collections_reconciliation.execute",
+        "invoice_collections_reconciliation.view",
+        "invoice_collections_reconciliation.review",
+        "invoice_collections_candidates.view",
+        "invoice_collections_exceptions.view",
+        "invoice_collections_controls.view",
+        "invoice_collections_reports.view",
+        "accounts_receivable_aging.view",
     ),
     "client_viewer": (
         "source_systems.view",
@@ -212,6 +236,8 @@ ROLE_PERMISSIONS = {
         "validation.statistics.view",
         "bank_ledger_reconciliation.view",
         "payroll_reconciliation.view",
+        "invoice_collections_reconciliation.view",
+        "accounts_receivable_aging.view",
     ),
 }
 
@@ -355,11 +381,13 @@ def seed_governance_data(session: Session, settings: Settings) -> dict[str, int]
     from app.services.validation_seed import seed_validation_data
 
     seed_validation_data(session)
+    from app.services.invoice_collections_seed import seed_invoice_collections_data
     from app.services.payroll_reconciliation_seed import seed_payroll_reconciliation_data
     from app.services.reconciliation_seed import seed_reconciliation_data
 
     seed_reconciliation_data(session, settings)
     seed_payroll_reconciliation_data(session, settings)
+    seed_invoice_collections_data(session, settings)
     return {
         "tenants": 1,
         "users": len(users),

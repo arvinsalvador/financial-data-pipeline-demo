@@ -50,6 +50,20 @@ from app.models.ingestion import (
     StagingPayrollDetail,
     StagingPayrollSummary,
 )
+from app.models.invoice_collections import (
+    AccountsReceivableAgingBucket,
+    AccountsReceivableAgingSnapshot,
+    InvoiceCollectionsAllocation,
+    InvoiceCollectionsCandidate,
+    InvoiceCollectionsControlTotal,
+    InvoiceCollectionsDecision,
+    InvoiceCollectionsException,
+    InvoiceCollectionsMatch,
+    InvoiceCollectionsMatchGroup,
+    InvoiceCollectionsReconciliationRule,
+    InvoiceCollectionsReconciliationRun,
+    InvoiceCollectionsReport,
+)
 from app.models.messy import (
     DataMutation,
     DefectScenario,
@@ -103,6 +117,8 @@ from app.models.validation import (
 )
 
 __all__ = [
+    "AccountsReceivableAgingBucket",
+    "AccountsReceivableAgingSnapshot",
     "AuditEvent",
     "AuditEventChange",
     "BankAccount",
@@ -128,6 +144,16 @@ __all__ = [
     "GenerationControlTotal",
     "GenerationException",
     "IngestionControlTotal",
+    "InvoiceCollectionsAllocation",
+    "InvoiceCollectionsCandidate",
+    "InvoiceCollectionsControlTotal",
+    "InvoiceCollectionsDecision",
+    "InvoiceCollectionsException",
+    "InvoiceCollectionsMatch",
+    "InvoiceCollectionsMatchGroup",
+    "InvoiceCollectionsReconciliationRule",
+    "InvoiceCollectionsReconciliationRun",
+    "InvoiceCollectionsReport",
     "MessyDatasetRun",
     "MessyGenerationControlTotal",
     "MessySourceFile",

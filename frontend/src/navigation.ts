@@ -7,6 +7,7 @@ export type PageKey =
   | "validation"
   | "reconciliation"
   | "payroll"
+  | "collections"
   | "governance";
 
 export interface NavigationItem {
@@ -26,6 +27,7 @@ export const NAVIGATION: NavigationItem[] = [
   { label: "Validation", page: "validation", icon: "V", group: "Data Quality", viewerVisible: true },
   { label: "Bank reconciliation", page: "reconciliation", icon: "BR", group: "Reconciliation", viewerVisible: true },
   { label: "Payroll reconciliation", page: "payroll", icon: "PR", group: "Reconciliation", viewerVisible: true },
+  { label: "Invoice & collections", page: "collections", icon: "IC", group: "Reconciliation", viewerVisible: true },
   { label: "Governance & audit", page: "governance", icon: "GA", group: "Governance", viewerVisible: false },
 ];
 
@@ -38,5 +40,6 @@ export const PAGE_COPY: Record<PageKey, { title: string; description: string }> 
   validation: { title: "Validation", description: "Run transparent data-quality controls." },
   reconciliation: { title: "Bank reconciliation", description: "Reconcile bank activity to the general ledger." },
   payroll: { title: "Payroll reconciliation", description: "Reconcile payroll batches to bank and ledger evidence." },
+  collections: { title: "Invoice & collections", description: "Reconcile invoices, payments, deposits, ledger entries, and AR aging." },
   governance: { title: "Governance & audit", description: "Review tenants, memberships, roles, and audit history." },
 };

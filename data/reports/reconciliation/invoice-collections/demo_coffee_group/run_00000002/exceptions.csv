@@ -1,0 +1,172 @@
+bank_transaction_id,code,gl_record_id,id,invoice_id,message,payment_id,severity,status
+,missing_deposit,,926,INV-2022-0002,Applied payment has no exact bank deposit,,error,open
+,missing_deposit,,927,INV-2022-0034,Applied payment has no exact bank deposit,,error,open
+,missing_deposit,,928,INV-2022-0063,Applied payment has no exact bank deposit,,error,open
+,missing_deposit,,929,INV-2022-0095,Applied payment has no exact bank deposit,,error,open
+,missing_deposit,,930,INV-2022-0126,Applied payment has no exact bank deposit,,error,open
+,missing_deposit,,931,INV-2022-0158,Applied payment has no exact bank deposit,,error,open
+,missing_deposit,,932,INV-2022-0189,Applied payment has no exact bank deposit,,error,open
+,missing_deposit,,933,INV-2022-0221,Applied payment has no exact bank deposit,,error,open
+,missing_deposit,,934,INV-2022-0253,Applied payment has no exact bank deposit,,error,open
+,missing_deposit,,935,INV-2022-0284,Applied payment has no exact bank deposit,,error,open
+,missing_deposit,,936,INV-2022-0316,Applied payment has no exact bank deposit,,error,open
+,missing_deposit,,937,INV-2022-0347,Applied payment has no exact bank deposit,,error,open
+,missing_deposit,,938,INV-2023-0379,Applied payment has no exact bank deposit,,error,open
+,missing_deposit,,939,INV-2023-0411,Applied payment has no exact bank deposit,,error,open
+,missing_deposit,,940,INV-2023-0440,Applied payment has no exact bank deposit,,error,open
+,missing_deposit,,941,INV-2023-0472,Applied payment has no exact bank deposit,,error,open
+,missing_deposit,,942,INV-2023-0503,Applied payment has no exact bank deposit,,error,open
+,missing_deposit,,943,INV-2023-0535,Applied payment has no exact bank deposit,,error,open
+,missing_deposit,,944,INV-2023-0566,Applied payment has no exact bank deposit,,error,open
+,missing_deposit,,945,INV-2023-0598,Applied payment has no exact bank deposit,,error,open
+,missing_deposit,,946,INV-2023-0630,Applied payment has no exact bank deposit,,error,open
+,missing_deposit,,947,INV-2023-0661,Applied payment has no exact bank deposit,,error,open
+,missing_deposit,,948,INV-2023-0693,Applied payment has no exact bank deposit,,error,open
+,missing_deposit,,949,INV-2023-0724,Applied payment has no exact bank deposit,,error,open
+9,unmatched_deposit,,950,,Bank deposit is not linked to an eligible payment,,warning,open
+13,unmatched_deposit,,951,,Bank deposit is not linked to an eligible payment,,warning,open
+18,unmatched_deposit,,952,,Bank deposit is not linked to an eligible payment,,warning,open
+21,unmatched_deposit,,953,,Bank deposit is not linked to an eligible payment,,warning,open
+29,unmatched_deposit,,954,,Bank deposit is not linked to an eligible payment,,warning,open
+33,unmatched_deposit,,955,,Bank deposit is not linked to an eligible payment,,warning,open
+35,unmatched_deposit,,956,,Bank deposit is not linked to an eligible payment,,warning,open
+38,unmatched_deposit,,957,,Bank deposit is not linked to an eligible payment,,warning,open
+43,unmatched_deposit,,958,,Bank deposit is not linked to an eligible payment,,warning,open
+51,unmatched_deposit,,959,,Bank deposit is not linked to an eligible payment,,warning,open
+54,unmatched_deposit,,960,,Bank deposit is not linked to an eligible payment,,warning,open
+61,unmatched_deposit,,961,,Bank deposit is not linked to an eligible payment,,warning,open
+70,unmatched_deposit,,962,,Bank deposit is not linked to an eligible payment,,warning,open
+72,unmatched_deposit,,963,,Bank deposit is not linked to an eligible payment,,warning,open
+83,unmatched_deposit,,964,,Bank deposit is not linked to an eligible payment,,warning,open
+87,unmatched_deposit,,965,,Bank deposit is not linked to an eligible payment,,warning,open
+93,unmatched_deposit,,966,,Bank deposit is not linked to an eligible payment,,warning,open
+100,unmatched_deposit,,967,,Bank deposit is not linked to an eligible payment,,warning,open
+103,unmatched_deposit,,968,,Bank deposit is not linked to an eligible payment,,warning,open
+119,unmatched_deposit,,969,,Bank deposit is not linked to an eligible payment,,warning,open
+121,unmatched_deposit,,970,,Bank deposit is not linked to an eligible payment,,warning,open
+126,unmatched_deposit,,971,,Bank deposit is not linked to an eligible payment,,warning,open
+133,unmatched_deposit,,972,,Bank deposit is not linked to an eligible payment,,warning,open
+135,unmatched_deposit,,973,,Bank deposit is not linked to an eligible payment,,warning,open
+140,unmatched_deposit,,974,,Bank deposit is not linked to an eligible payment,,warning,open
+154,unmatched_deposit,,975,,Bank deposit is not linked to an eligible payment,,warning,open
+176,unmatched_deposit,,976,,Bank deposit is not linked to an eligible payment,,warning,open
+179,unmatched_deposit,,977,,Bank deposit is not linked to an eligible payment,,warning,open
+187,unmatched_deposit,,978,,Bank deposit is not linked to an eligible payment,,warning,open
+196,unmatched_deposit,,979,,Bank deposit is not linked to an eligible payment,,warning,open
+201,unmatched_deposit,,980,,Bank deposit is not linked to an eligible payment,,warning,open
+206,unmatched_deposit,,981,,Bank deposit is not linked to an eligible payment,,warning,open
+211,unmatched_deposit,,982,,Bank deposit is not linked to an eligible payment,,warning,open
+213,unmatched_deposit,,983,,Bank deposit is not linked to an eligible payment,,warning,open
+215,unmatched_deposit,,984,,Bank deposit is not linked to an eligible payment,,warning,open
+217,unmatched_deposit,,985,,Bank deposit is not linked to an eligible payment,,warning,open
+222,unmatched_deposit,,986,,Bank deposit is not linked to an eligible payment,,warning,open
+227,unmatched_deposit,,987,,Bank deposit is not linked to an eligible payment,,warning,open
+238,unmatched_deposit,,988,,Bank deposit is not linked to an eligible payment,,warning,open
+241,unmatched_deposit,,989,,Bank deposit is not linked to an eligible payment,,warning,open
+245,unmatched_deposit,,990,,Bank deposit is not linked to an eligible payment,,warning,open
+258,unmatched_deposit,,991,,Bank deposit is not linked to an eligible payment,,warning,open
+262,unmatched_deposit,,992,,Bank deposit is not linked to an eligible payment,,warning,open
+268,unmatched_deposit,,993,,Bank deposit is not linked to an eligible payment,,warning,open
+273,unmatched_deposit,,994,,Bank deposit is not linked to an eligible payment,,warning,open
+275,unmatched_deposit,,995,,Bank deposit is not linked to an eligible payment,,warning,open
+282,unmatched_deposit,,996,,Bank deposit is not linked to an eligible payment,,warning,open
+285,unmatched_deposit,,997,,Bank deposit is not linked to an eligible payment,,warning,open
+292,unmatched_deposit,,998,,Bank deposit is not linked to an eligible payment,,warning,open
+296,unmatched_deposit,,999,,Bank deposit is not linked to an eligible payment,,warning,open
+298,unmatched_deposit,,1000,,Bank deposit is not linked to an eligible payment,,warning,open
+305,unmatched_deposit,,1001,,Bank deposit is not linked to an eligible payment,,warning,open
+311,unmatched_deposit,,1002,,Bank deposit is not linked to an eligible payment,,warning,open
+318,unmatched_deposit,,1003,,Bank deposit is not linked to an eligible payment,,warning,open
+321,unmatched_deposit,,1004,,Bank deposit is not linked to an eligible payment,,warning,open
+330,unmatched_deposit,,1005,,Bank deposit is not linked to an eligible payment,,warning,open
+336,unmatched_deposit,,1006,,Bank deposit is not linked to an eligible payment,,warning,open
+343,unmatched_deposit,,1007,,Bank deposit is not linked to an eligible payment,,warning,open
+345,unmatched_deposit,,1008,,Bank deposit is not linked to an eligible payment,,warning,open
+364,unmatched_deposit,,1009,,Bank deposit is not linked to an eligible payment,,warning,open
+377,unmatched_deposit,,1010,,Bank deposit is not linked to an eligible payment,,warning,open
+384,unmatched_deposit,,1011,,Bank deposit is not linked to an eligible payment,,warning,open
+387,unmatched_deposit,,1012,,Bank deposit is not linked to an eligible payment,,warning,open
+392,unmatched_deposit,,1013,,Bank deposit is not linked to an eligible payment,,warning,open
+395,unmatched_deposit,,1014,,Bank deposit is not linked to an eligible payment,,warning,open
+400,unmatched_deposit,,1015,,Bank deposit is not linked to an eligible payment,,warning,open
+402,unmatched_deposit,,1016,,Bank deposit is not linked to an eligible payment,,warning,open
+406,unmatched_deposit,,1017,,Bank deposit is not linked to an eligible payment,,warning,open
+413,unmatched_deposit,,1018,,Bank deposit is not linked to an eligible payment,,warning,open
+419,unmatched_deposit,,1019,,Bank deposit is not linked to an eligible payment,,warning,open
+421,unmatched_deposit,,1020,,Bank deposit is not linked to an eligible payment,,warning,open
+423,unmatched_deposit,,1021,,Bank deposit is not linked to an eligible payment,,warning,open
+441,unmatched_deposit,,1022,,Bank deposit is not linked to an eligible payment,,warning,open
+443,unmatched_deposit,,1023,,Bank deposit is not linked to an eligible payment,,warning,open
+445,unmatched_deposit,,1024,,Bank deposit is not linked to an eligible payment,,warning,open
+454,unmatched_deposit,,1025,,Bank deposit is not linked to an eligible payment,,warning,open
+456,unmatched_deposit,,1026,,Bank deposit is not linked to an eligible payment,,warning,open
+458,unmatched_deposit,,1027,,Bank deposit is not linked to an eligible payment,,warning,open
+460,unmatched_deposit,,1028,,Bank deposit is not linked to an eligible payment,,warning,open
+468,unmatched_deposit,,1029,,Bank deposit is not linked to an eligible payment,,warning,open
+478,unmatched_deposit,,1030,,Bank deposit is not linked to an eligible payment,,warning,open
+481,unmatched_deposit,,1031,,Bank deposit is not linked to an eligible payment,,warning,open
+495,unmatched_deposit,,1032,,Bank deposit is not linked to an eligible payment,,warning,open
+498,unmatched_deposit,,1033,,Bank deposit is not linked to an eligible payment,,warning,open
+502,unmatched_deposit,,1034,,Bank deposit is not linked to an eligible payment,,warning,open
+505,unmatched_deposit,,1035,,Bank deposit is not linked to an eligible payment,,warning,open
+515,unmatched_deposit,,1036,,Bank deposit is not linked to an eligible payment,,warning,open
+532,unmatched_deposit,,1037,,Bank deposit is not linked to an eligible payment,,warning,open
+534,unmatched_deposit,,1038,,Bank deposit is not linked to an eligible payment,,warning,open
+541,unmatched_deposit,,1039,,Bank deposit is not linked to an eligible payment,,warning,open
+548,unmatched_deposit,,1040,,Bank deposit is not linked to an eligible payment,,warning,open
+556,unmatched_deposit,,1041,,Bank deposit is not linked to an eligible payment,,warning,open
+564,unmatched_deposit,,1042,,Bank deposit is not linked to an eligible payment,,warning,open
+569,unmatched_deposit,,1043,,Bank deposit is not linked to an eligible payment,,warning,open
+577,unmatched_deposit,,1044,,Bank deposit is not linked to an eligible payment,,warning,open
+581,unmatched_deposit,,1045,,Bank deposit is not linked to an eligible payment,,warning,open
+584,unmatched_deposit,,1046,,Bank deposit is not linked to an eligible payment,,warning,open
+588,unmatched_deposit,,1047,,Bank deposit is not linked to an eligible payment,,warning,open
+608,unmatched_deposit,,1048,,Bank deposit is not linked to an eligible payment,,warning,open
+612,unmatched_deposit,,1049,,Bank deposit is not linked to an eligible payment,,warning,open
+617,unmatched_deposit,,1050,,Bank deposit is not linked to an eligible payment,,warning,open
+626,unmatched_deposit,,1051,,Bank deposit is not linked to an eligible payment,,warning,open
+635,unmatched_deposit,,1052,,Bank deposit is not linked to an eligible payment,,warning,open
+639,unmatched_deposit,,1053,,Bank deposit is not linked to an eligible payment,,warning,open
+641,unmatched_deposit,,1054,,Bank deposit is not linked to an eligible payment,,warning,open
+645,unmatched_deposit,,1055,,Bank deposit is not linked to an eligible payment,,warning,open
+650,unmatched_deposit,,1056,,Bank deposit is not linked to an eligible payment,,warning,open
+666,unmatched_deposit,,1057,,Bank deposit is not linked to an eligible payment,,warning,open
+672,unmatched_deposit,,1058,,Bank deposit is not linked to an eligible payment,,warning,open
+674,unmatched_deposit,,1059,,Bank deposit is not linked to an eligible payment,,warning,open
+685,unmatched_deposit,,1060,,Bank deposit is not linked to an eligible payment,,warning,open
+689,unmatched_deposit,,1061,,Bank deposit is not linked to an eligible payment,,warning,open
+691,unmatched_deposit,,1062,,Bank deposit is not linked to an eligible payment,,warning,open
+701,unmatched_deposit,,1063,,Bank deposit is not linked to an eligible payment,,warning,open
+703,unmatched_deposit,,1064,,Bank deposit is not linked to an eligible payment,,warning,open
+716,unmatched_deposit,,1065,,Bank deposit is not linked to an eligible payment,,warning,open
+724,unmatched_deposit,,1066,,Bank deposit is not linked to an eligible payment,,warning,open
+731,unmatched_deposit,,1067,,Bank deposit is not linked to an eligible payment,,warning,open
+733,unmatched_deposit,,1068,,Bank deposit is not linked to an eligible payment,,warning,open
+738,unmatched_deposit,,1069,,Bank deposit is not linked to an eligible payment,,warning,open
+740,unmatched_deposit,,1070,,Bank deposit is not linked to an eligible payment,,warning,open
+755,unmatched_deposit,,1071,,Bank deposit is not linked to an eligible payment,,warning,open
+760,unmatched_deposit,,1072,,Bank deposit is not linked to an eligible payment,,warning,open
+765,unmatched_deposit,,1073,,Bank deposit is not linked to an eligible payment,,warning,open
+771,unmatched_deposit,,1074,,Bank deposit is not linked to an eligible payment,,warning,open
+781,unmatched_deposit,,1075,,Bank deposit is not linked to an eligible payment,,warning,open
+787,unmatched_deposit,,1076,,Bank deposit is not linked to an eligible payment,,warning,open
+791,unmatched_deposit,,1077,,Bank deposit is not linked to an eligible payment,,warning,open
+797,unmatched_deposit,,1078,,Bank deposit is not linked to an eligible payment,,warning,open
+800,unmatched_deposit,,1079,,Bank deposit is not linked to an eligible payment,,warning,open
+812,unmatched_deposit,,1080,,Bank deposit is not linked to an eligible payment,,warning,open
+814,unmatched_deposit,,1081,,Bank deposit is not linked to an eligible payment,,warning,open
+816,unmatched_deposit,,1082,,Bank deposit is not linked to an eligible payment,,warning,open
+821,unmatched_deposit,,1083,,Bank deposit is not linked to an eligible payment,,warning,open
+825,unmatched_deposit,,1084,,Bank deposit is not linked to an eligible payment,,warning,open
+836,unmatched_deposit,,1085,,Bank deposit is not linked to an eligible payment,,warning,open
+838,unmatched_deposit,,1086,,Bank deposit is not linked to an eligible payment,,warning,open
+841,unmatched_deposit,,1087,,Bank deposit is not linked to an eligible payment,,warning,open
+843,unmatched_deposit,,1088,,Bank deposit is not linked to an eligible payment,,warning,open
+849,unmatched_deposit,,1089,,Bank deposit is not linked to an eligible payment,,warning,open
+853,unmatched_deposit,,1090,,Bank deposit is not linked to an eligible payment,,warning,open
+862,unmatched_deposit,,1091,,Bank deposit is not linked to an eligible payment,,warning,open
+864,unmatched_deposit,,1092,,Bank deposit is not linked to an eligible payment,,warning,open
+869,unmatched_deposit,,1093,,Bank deposit is not linked to an eligible payment,,warning,open
+871,unmatched_deposit,,1094,,Bank deposit is not linked to an eligible payment,,warning,open
+876,unmatched_deposit,,1095,,Bank deposit is not linked to an eligible payment,,warning,open
+878,unmatched_deposit,,1096,,Bank deposit is not linked to an eligible payment,,warning,open
