@@ -287,3 +287,20 @@ See [docs/phase-10-payroll-reconciliation.md](docs/phase-10-payroll-reconciliati
 precedence, formulas, settlement models, sign conventions, matching and allocation policy, API,
 CLI, frontend, reports, configuration, verification, and known limitations. Invoice and collections
 reconciliation are not yet implemented.
+
+## Phase 10.5: responsive UI and demo recovery
+
+The application now uses a responsive shell with a collapsible desktop sidebar, mobile drawer,
+compact service health, development tenant/actor controls, centralized permission-aware navigation,
+bounded responsive tables, and denser page typography. Development-only CLI tools consolidate
+idempotent bootstrap, read-only database/file consistency checks, and explicit selective reset.
+
+```bash
+docker compose exec backend python -m app.cli.bootstrap_demo_environment
+docker compose exec backend python -m app.cli.verify_demo_environment
+docker compose exec backend python -m app.cli.reset_demo_environment --all-demo-data --dry-run
+```
+
+See [docs/phase-10-5-ui-and-demo-reset.md](docs/phase-10-5-ui-and-demo-reset.md) for responsive and
+accessibility behavior, reset safety controls, host-file cleanup, recovery, and the destructive
+Docker-volume reset warning.
