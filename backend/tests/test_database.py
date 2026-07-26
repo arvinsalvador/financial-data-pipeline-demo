@@ -16,7 +16,7 @@ def test_migration_is_at_head() -> None:
     with engine.connect() as connection:
         revision = connection.scalar(text("SELECT version_num FROM alembic_version"))
 
-    assert revision == "adc0bcae911e"
+    assert revision == "20260717_0012"
 
 
 def test_phase_2a_tables_exist() -> None:
