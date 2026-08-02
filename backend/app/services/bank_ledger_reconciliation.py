@@ -131,7 +131,8 @@ class BankLedgerReconciliationEngine:
                 ValidationRun.tenant_id == tenant.id,
                 ValidationRun.generated_dataset_run_id == generated_run.id,
                 ValidationRun.target_type == "generated_dataset",
-                ValidationRun.status == "completed",
+                ValidationRun.status.in_(("completed", "completed_with_issues")),
+                ValidationRun.critical_count == 0,
             )
             .order_by(ValidationRun.id.desc())
         )
@@ -325,7 +326,8 @@ class BankLedgerReconciliationEngine:
                 ValidationRun.generated_dataset_run_id == GeneratedDatasetRun.id,
             ).where(
                 ValidationRun.target_type == "generated_dataset",
-                ValidationRun.status == "completed",
+                ValidationRun.status.in_(("completed", "completed_with_issues")),
+                ValidationRun.critical_count == 0,
             )
         run = session.scalar(statement.order_by(GeneratedDatasetRun.id.desc()))
         if run is None:

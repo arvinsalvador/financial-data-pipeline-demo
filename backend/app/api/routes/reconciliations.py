@@ -38,6 +38,7 @@ from app.services.bank_ledger_reconciliation import (
 )
 from app.services.governance import AuditService
 from app.services.reconciliation_decisions import decide_group
+from app.services.reconciliation_eligibility import BankReconciliationEligibilityService
 
 router = APIRouter(prefix="/reconciliations/bank-ledger")
 match_group_router = APIRouter(prefix="/reconciliation-match-groups")
@@ -77,6 +78,17 @@ def _page(
         page=page,
         page_size=page_size,
     )
+
+
+@router.get("/eligibility")
+def eligibility(
+    session: Annotated[Session, Depends(get_db)],
+    settings: Annotated[Settings, Depends(get_settings)],
+    context: Annotated[
+        RequestContext, Depends(require_permission("bank_ledger_reconciliation.view"))
+    ],
+) -> dict[str, Any]:
+    return BankReconciliationEligibilityService(settings).evaluate(session, context.tenant.id)
 
 
 @router.get("/accounts", response_model=list[BankAccountResponse])

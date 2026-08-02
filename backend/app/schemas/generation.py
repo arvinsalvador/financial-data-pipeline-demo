@@ -6,6 +6,7 @@ from pydantic import BaseModel, ConfigDict, Field
 
 
 class GenerateDatasetRequest(BaseModel):
+    normalization_run_id: int | None = None
     random_seed: int | None = None
     generation_date: date | None = None
     force_rerun: bool = False
@@ -17,6 +18,7 @@ class GeneratedDatasetResponse(BaseModel):
     id: int
     tenant_id: int
     pipeline_run_id: int
+    normalization_run_id: int | None
     input_fingerprint: str
     generator_version: str
     random_seed: int
@@ -100,3 +102,33 @@ class GeneratedPage(BaseModel):
     total: int = Field(ge=0)
     page: int = Field(ge=1)
     page_size: int = Field(ge=1)
+
+
+class CanonicalGenerationCounts(BaseModel):
+    financial_accounts: int = 0
+    bank_transactions: int = 0
+    credit_card_transactions: int = 0
+    employees: int = 0
+    payroll_runs: int = 0
+    payroll_entries: int = 0
+    lineage: int = 0
+
+
+class GenerationEligibilityResponse(BaseModel):
+    normalization_run_id: int
+    tenant_id: int
+    status: str
+    completed_at: datetime | None
+    source_file_count: int
+    eligible: bool
+    canonical_counts: CanonicalGenerationCounts
+    missing_prerequisites: list[str]
+    blocking_conditions: list[str]
+    warnings: list[str]
+    already_generated_run_id: int | None
+    can_force_rerun: bool
+    input_fingerprint: str
+
+
+class GenerationEligibilityPage(BaseModel):
+    items: list[GenerationEligibilityResponse]

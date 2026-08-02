@@ -16,6 +16,7 @@ def main() -> None:
     parser.add_argument("--tenant-code", default=settings.DEFAULT_DEMO_TENANT_CODE)
     parser.add_argument("--seed", type=int, default=settings.GENERATION_RANDOM_SEED)
     parser.add_argument("--generation-date", type=date.fromisoformat, default=date(2026, 7, 14))
+    parser.add_argument("--normalization-run-id", type=int)
     parser.add_argument("--force-rerun", action="store_true")
     args = parser.parse_args()
     with SessionLocal() as session:
@@ -30,6 +31,7 @@ def main() -> None:
                 args.seed,
                 args.generation_date,
                 args.force_rerun,
+                normalization_run_id=args.normalization_run_id,
             )
         except GenerationError as error:
             raise SystemExit(str(error)) from error

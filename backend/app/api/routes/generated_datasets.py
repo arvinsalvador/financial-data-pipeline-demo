@@ -23,9 +23,11 @@ from app.schemas.generation import (
     GeneratedRecordLinkResponse,
     GeneratedSourceFileResponse,
     GenerationControlResponse,
+    GenerationEligibilityPage,
     GenerationExceptionResponse,
 )
 from app.services.generated_sources import GeneratedSourceService, GenerationError
+from app.services.generation_eligibility import GeneratedDataEligibilityService
 from app.services.governance import AuditService
 
 router = APIRouter()
@@ -72,6 +74,29 @@ def _page(
     )
 
 
+@router.get("/generated-datasets/eligible-inputs", response_model=GenerationEligibilityPage)
+def eligible_generation_inputs(
+    session: Annotated[Session, Depends(get_db)],
+    context: Annotated[RequestContext, Depends(require_permission("generated_datasets.view"))],
+) -> GenerationEligibilityPage:
+    items = GeneratedDataEligibilityService().candidates(session, context.tenant.id)
+    AuditService().record(
+        session,
+        context,
+        event_type="generation.eligibility_checked",
+        entity_type="normalization_run",
+        entity_id=items[0].normalization_run_id if items else None,
+        action="view",
+        description="Generated-data eligibility evaluated",
+        metadata={
+            "candidate_count": len(items),
+            "eligible_count": sum(item.eligible for item in items),
+        },
+    )
+    session.commit()
+    return GenerationEligibilityPage(items=items)
+
+
 @router.post("/generated-datasets", response_model=GeneratedDatasetResponse)
 def generate_dataset(
     body: GenerateDatasetRequest,
@@ -91,6 +116,7 @@ def generate_dataset(
             "random_seed": body.random_seed or settings.GENERATION_RANDOM_SEED,
             "generation_date": body.generation_date.isoformat() if body.generation_date else None,
             "force_rerun": body.force_rerun,
+            "normalization_run_id": body.normalization_run_id,
         },
     )
     session.commit()
@@ -101,9 +127,21 @@ def generate_dataset(
             body.random_seed,
             body.generation_date,
             body.force_rerun,
+            normalization_run_id=body.normalization_run_id,
         )
     except GenerationError as error:
         raise HTTPException(status_code=422, detail=str(error)) from error
+        AuditService().record(
+            session,
+            context,
+            event_type="generation.prerequisite_failed",
+            entity_type="normalization_run",
+            entity_id=body.normalization_run_id,
+            action="generate",
+            description="Generated-data prerequisites were not satisfied",
+            metadata={"reason": str(error)},
+        )
+        session.commit()
     AuditService().record(
         session,
         context,

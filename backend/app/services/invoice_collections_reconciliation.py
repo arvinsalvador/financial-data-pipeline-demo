@@ -157,7 +157,8 @@ class InvoiceCollectionsReconciliationEngine:
             .where(
                 ValidationRun.tenant_id == tenant_id,
                 ValidationRun.target_type == "generated_dataset",
-                ValidationRun.status == "completed",
+                ValidationRun.status.in_(("completed", "completed_with_issues")),
+                ValidationRun.critical_count == 0,
                 GeneratedDatasetRun.status == "completed",
             )
             .order_by(ValidationRun.generated_dataset_run_id.desc(), ValidationRun.id.desc())

@@ -1,0 +1,154 @@
+{
+  "allocation_balance": {
+    "deposit": null,
+    "difference": "0.000000",
+    "gl": null,
+    "invoice": null,
+    "payment": "693424.000000",
+    "status": "matched"
+  },
+  "applied_payment_total": {
+    "deposit": null,
+    "difference": "0.000000",
+    "gl": null,
+    "invoice": null,
+    "payment": "693424.000000",
+    "status": "matched"
+  },
+  "bank_deposit_total": {
+    "deposit": "626006.000000",
+    "difference": "-67418.000000",
+    "gl": null,
+    "invoice": null,
+    "payment": "693424.000000",
+    "status": "mismatch"
+  },
+  "deal_value_vs_invoice_total": {
+    "deposit": null,
+    "difference": "0.000000",
+    "gl": null,
+    "invoice": "693424.000000",
+    "payment": "693424.000000",
+    "status": "matched"
+  },
+  "gl_accounts_receivable_total": {
+    "deposit": null,
+    "difference": "0.000000",
+    "gl": "693424.000000",
+    "invoice": null,
+    "payment": "693424.000000",
+    "status": "matched"
+  },
+  "gl_cash_total": {
+    "deposit": null,
+    "difference": "0.000000",
+    "gl": "693424.000000",
+    "invoice": null,
+    "payment": "693424.000000",
+    "status": "matched"
+  },
+  "invoice_balance": {
+    "deposit": null,
+    "difference": "0.000000",
+    "gl": null,
+    "invoice": "0.000000",
+    "payment": "0.000000",
+    "status": "matched"
+  },
+  "invoice_discount_total": {
+    "deposit": null,
+    "difference": "0.000000",
+    "gl": null,
+    "invoice": "0.000000",
+    "payment": "0.000000",
+    "status": "matched"
+  },
+  "invoice_line_subtotal": {
+    "deposit": null,
+    "difference": "0.000000",
+    "gl": null,
+    "invoice": "693424.000000",
+    "payment": "693424.000000",
+    "status": "matched"
+  },
+  "invoice_tax_total": {
+    "deposit": null,
+    "difference": "0.000000",
+    "gl": null,
+    "invoice": "0.000000",
+    "payment": "0.000000",
+    "status": "matched"
+  },
+  "invoice_total": {
+    "deposit": null,
+    "difference": "0.000000",
+    "gl": null,
+    "invoice": "693424.000000",
+    "payment": "693424.000000",
+    "status": "matched"
+  },
+  "invoice_vs_gl_difference": {
+    "deposit": null,
+    "difference": "0.000000",
+    "gl": "693424.000000",
+    "invoice": null,
+    "payment": "693424.000000",
+    "status": "matched"
+  },
+  "invoice_vs_payment_difference": {
+    "deposit": null,
+    "difference": "0.000000",
+    "gl": null,
+    "invoice": null,
+    "payment": "693424.000000",
+    "status": "matched"
+  },
+  "payment_application_total": {
+    "deposit": null,
+    "difference": "0.000000",
+    "gl": null,
+    "invoice": null,
+    "payment": "693424.000000",
+    "status": "matched"
+  },
+  "payment_total": {
+    "deposit": null,
+    "difference": "0.000000",
+    "gl": null,
+    "invoice": null,
+    "payment": "693424.000000",
+    "status": "matched"
+  },
+  "payment_vs_deposit_difference": {
+    "deposit": "626006.000000",
+    "difference": "-67418.000000",
+    "gl": null,
+    "invoice": null,
+    "payment": "693424.000000",
+    "status": "mismatch"
+  },
+  "payment_vs_gl_difference": {
+    "deposit": null,
+    "difference": "0.000000",
+    "gl": "693424.000000",
+    "invoice": null,
+    "payment": "693424.000000",
+    "status": "matched"
+  },
+  "reconciliation_rate": {
+    "deposit": null,
+    "difference": "0.000000",
+    "gl": null,
+    "invoice": "0.840477",
+    "payment": "0.840477",
+    "status": "matched"
+  },
+  "unapplied_payment_total": {
+    "deposit": null,
+    "difference": "0.000000",
+    "gl": null,
+    "invoice": null,
+    "payment": "0.000000",
+    "status": "matched"
+  }
+}

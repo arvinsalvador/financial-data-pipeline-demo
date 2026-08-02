@@ -16,6 +16,7 @@ import {
   type ReconciliationRun,
   type Report,
 } from "../api/reconciliation";
+import { ReconciliationReadiness } from "./ReconciliationReadiness";
 
 export function ReconciliationPage() {
   const [accounts, setAccounts] = useState<BankAccount[]>([]);
@@ -77,6 +78,7 @@ export function ReconciliationPage() {
   return <section>
     <p className="eyebrow">Phase 9 · Version 1.0.0</p><h2>Bank-to-ledger reconciliation</h2>
     <p>Match canonical bank activity to generated cash-ledger lines with deterministic evidence and controlled review.</p>
+    <ReconciliationReadiness module="bank-ledger" />
     {error && <p className="notice error">{error}</p>}
     <div className="form-grid">
       <label>Bank account<select>{accounts.map((account) => <option key={account.id} value={account.id}>{account.account_name} · {account.source_account_code}</option>)}</select></label>

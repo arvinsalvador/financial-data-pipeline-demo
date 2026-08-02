@@ -39,6 +39,9 @@ class GeneratedDatasetRun(Base):
     pipeline_run_id: Mapped[int] = mapped_column(
         ForeignKey("pipeline_runs.id", ondelete="RESTRICT"), unique=True
     )
+    normalization_run_id: Mapped[int | None] = mapped_column(
+        ForeignKey("pipeline_runs.id", ondelete="RESTRICT"), index=True
+    )
     input_fingerprint: Mapped[str] = mapped_column(String(64), index=True)
     generator_version: Mapped[str] = mapped_column(String(30))
     random_seed: Mapped[int] = mapped_column(Integer())

@@ -34,6 +34,7 @@ from app.models import (
     SourceSystem,
     Tenant,
 )
+from app.services.generation_eligibility import GeneratedDataEligibilityService
 
 MONEY = Decimal("0.01")
 GENERATION_RULESET = "phase6_clean_business_rules_v4"
@@ -276,10 +277,27 @@ class GeneratedSourceService:
         random_seed: int | None = None,
         generation_date: date | None = None,
         force_rerun: bool = False,
+        normalization_run_id: int | None = None,
     ) -> GenerationResult:
         seed = random_seed if random_seed is not None else self.settings.GENERATION_RANDOM_SEED
         generated_on = generation_date or date(2026, 7, 14)
-        bank, cards, payroll = self._history(session, tenant.id)
+        eligibility_service = GeneratedDataEligibilityService()
+        try:
+            eligibility = (
+                eligibility_service.evaluate(session, tenant.id, normalization_run_id)
+                if normalization_run_id is not None
+                else eligibility_service.latest_eligible(session, tenant.id)
+            )
+        except ValueError as error:
+            raise GenerationError(str(error)) from error
+        if eligibility is None:
+            raise GenerationError("No eligible completed normalization run was found")
+        if not eligibility.eligible:
+            reasons = eligibility.missing_prerequisites + eligibility.blocking_conditions
+            raise GenerationError("Normalization run is not eligible: " + "; ".join(reasons))
+        normalization_run_id = eligibility.normalization_run_id
+        resolved = eligibility_service.resolve_input(session, tenant.id, normalization_run_id)
+        bank, cards, payroll = resolved.bank, resolved.cards, resolved.payroll
         fingerprint = self._fingerprint(tenant.id, seed, generated_on, bank, cards, payroll)
         existing = session.scalar(
             select(GeneratedDatasetRun).where(
@@ -332,6 +350,7 @@ class GeneratedSourceService:
             started_at=now,
             metadata_json={
                 "generator_version": self.settings.GENERATOR_VERSION,
+                "normalization_run_id": normalization_run_id,
                 "random_seed": seed,
                 "input_fingerprint": fingerprint,
             },
@@ -344,6 +363,7 @@ class GeneratedSourceService:
         run = GeneratedDatasetRun(
             tenant_id=tenant.id,
             pipeline_run_id=pipeline.id,
+            normalization_run_id=normalization_run_id,
             input_fingerprint=fingerprint,
             generator_version=self.settings.GENERATOR_VERSION,
             random_seed=seed,
@@ -361,6 +381,11 @@ class GeneratedSourceService:
         session.flush()
         try:
             rows, links = self._build(seed, generated_on, bank, cards, payroll)
+            output_count = sum(len(items) for items in rows.values())
+            if output_count == 0:
+                raise GenerationError(
+                    "Generation produced zero output records for the eligible canonical input"
+                )
             files = {name: _csv_bytes(name, rows[name]) for name in FILE_ORDER}
             self._validate(rows)
             controls = self._controls(rows, bank, payroll)
@@ -1198,7 +1223,8 @@ class GeneratedSourceService:
         rows: dict[str, list[dict[str, Any]]],
     ) -> None:
         root = self.settings.GENERATED_DATA_DIRECTORY.resolve()
-        output = (root / "clean" / tenant.code / f"run_{run.id:08d}").resolve()
+        run_directory = f"run_{run.id:08d}_{run.input_fingerprint[:12]}"
+        output = (root / "clean" / tenant.code / run_directory).resolve()
         if root not in output.parents:
             raise GenerationError("Generated output directory is outside the configured root")
         output.mkdir(parents=True, exist_ok=False)
@@ -1244,7 +1270,7 @@ class GeneratedSourceService:
                     source_file_id=source_file.id,
                     file_type=file_type,
                     filename=filename,
-                    relative_path=f"generated/clean/{tenant.code}/run_{run.id:08d}/{filename}",
+                    relative_path=f"generated/clean/{tenant.code}/{run_directory}/{filename}",
                     sha256_checksum=checksum,
                     file_size_bytes=len(content),
                     record_count=len(rows[file_type]),
@@ -1264,8 +1290,9 @@ class GeneratedSourceService:
         controls: list[Any],
     ) -> None:
         root = self.settings.GENERATED_DATA_DIRECTORY.resolve()
-        artifact_dir = root / "manifests" / tenant.code / f"run_{run.id:08d}"
-        report_dir = root / "reports" / tenant.code / f"run_{run.id:08d}"
+        run_directory = f"run_{run.id:08d}_{run.input_fingerprint[:12]}"
+        artifact_dir = root / "manifests" / tenant.code / run_directory
+        report_dir = root / "reports" / tenant.code / run_directory
         artifact_dir.mkdir(parents=True, exist_ok=False)
         report_dir.mkdir(parents=True, exist_ok=False)
         inventory = [

@@ -39,6 +39,7 @@ from app.services.payroll_reconciliation import (
     PayrollReconciliationEngine,
     PayrollReconciliationError,
 )
+from app.services.reconciliation_eligibility import PayrollReconciliationEligibilityService
 
 router = APIRouter(prefix="/reconciliations/payroll")
 group_router = APIRouter(prefix="/payroll-reconciliation-groups")
@@ -151,6 +152,15 @@ def execute(
     )
     session.commit()
     return PayrollReconciliationRunResponse.model_validate(run).model_copy(update={"no_op": no_op})
+
+
+@router.get("/eligibility")
+def eligibility(
+    session: Annotated[Session, Depends(get_db)],
+    settings: Annotated[Settings, Depends(get_settings)],
+    context: Annotated[RequestContext, Depends(require_permission("payroll_reconciliation.view"))],
+) -> dict[str, Any]:
+    return PayrollReconciliationEligibilityService(settings).evaluate(session, context.tenant.id)
 
 
 @router.get("", response_model=GeneratedPage)

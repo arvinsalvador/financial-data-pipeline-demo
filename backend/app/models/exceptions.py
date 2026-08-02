@@ -28,7 +28,9 @@ class UnifiedException(Base):
     )
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    tenant_id: Mapped[int] = mapped_column(ForeignKey("tenants.id", ondelete="RESTRICT"), index=True)
+    tenant_id: Mapped[int] = mapped_column(
+        ForeignKey("tenants.id", ondelete="RESTRICT"), index=True
+    )
     exception_key: Mapped[str] = mapped_column(String(64), index=True)
     source_module: Mapped[str] = mapped_column(String(80), index=True)
     source_exception_type: Mapped[str] = mapped_column(String(100), index=True)
@@ -96,7 +98,9 @@ class UnifiedExceptionSource(Base):
     )
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    tenant_id: Mapped[int] = mapped_column(ForeignKey("tenants.id", ondelete="RESTRICT"), index=True)
+    tenant_id: Mapped[int] = mapped_column(
+        ForeignKey("tenants.id", ondelete="RESTRICT"), index=True
+    )
     unified_exception_id: Mapped[int] = mapped_column(
         ForeignKey("unified_exceptions.id", ondelete="CASCADE"), index=True
     )
@@ -114,7 +118,9 @@ class UnifiedExceptionAssignment(Base):
     __tablename__ = "unified_exception_assignments"
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    tenant_id: Mapped[int] = mapped_column(ForeignKey("tenants.id", ondelete="RESTRICT"), index=True)
+    tenant_id: Mapped[int] = mapped_column(
+        ForeignKey("tenants.id", ondelete="RESTRICT"), index=True
+    )
     unified_exception_id: Mapped[int] = mapped_column(
         ForeignKey("unified_exceptions.id", ondelete="CASCADE"), index=True
     )
@@ -136,16 +142,22 @@ class UnifiedExceptionComment(Base):
     __tablename__ = "unified_exception_comments"
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    tenant_id: Mapped[int] = mapped_column(ForeignKey("tenants.id", ondelete="RESTRICT"), index=True)
+    tenant_id: Mapped[int] = mapped_column(
+        ForeignKey("tenants.id", ondelete="RESTRICT"), index=True
+    )
     unified_exception_id: Mapped[int] = mapped_column(
         ForeignKey("unified_exceptions.id", ondelete="CASCADE"), index=True
     )
-    author_user_id: Mapped[int] = mapped_column(ForeignKey("users.id", ondelete="RESTRICT"), index=True)
+    author_user_id: Mapped[int] = mapped_column(
+        ForeignKey("users.id", ondelete="RESTRICT"), index=True
+    )
     comment_type: Mapped[str] = mapped_column(String(40), index=True)
     body: Mapped[str] = mapped_column(Text())
     is_internal: Mapped[bool] = mapped_column(Boolean(), default=False, index=True)
     metadata_json: Mapped[dict[str, Any] | None] = mapped_column(JSONB())
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), index=True)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now(), index=True
+    )
     edited_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
 
 
@@ -153,11 +165,15 @@ class UnifiedExceptionDecision(Base):
     __tablename__ = "unified_exception_decisions"
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    tenant_id: Mapped[int] = mapped_column(ForeignKey("tenants.id", ondelete="RESTRICT"), index=True)
+    tenant_id: Mapped[int] = mapped_column(
+        ForeignKey("tenants.id", ondelete="RESTRICT"), index=True
+    )
     unified_exception_id: Mapped[int] = mapped_column(
         ForeignKey("unified_exceptions.id", ondelete="CASCADE"), index=True
     )
-    actor_user_id: Mapped[int] = mapped_column(ForeignKey("users.id", ondelete="RESTRICT"), index=True)
+    actor_user_id: Mapped[int] = mapped_column(
+        ForeignKey("users.id", ondelete="RESTRICT"), index=True
+    )
     decision_type: Mapped[str] = mapped_column(String(50), index=True)
     previous_status: Mapped[str] = mapped_column(String(40))
     new_status: Mapped[str] = mapped_column(String(40))
@@ -174,7 +190,9 @@ class UnifiedExceptionStatusHistory(Base):
     __tablename__ = "unified_exception_status_history"
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    tenant_id: Mapped[int] = mapped_column(ForeignKey("tenants.id", ondelete="RESTRICT"), index=True)
+    tenant_id: Mapped[int] = mapped_column(
+        ForeignKey("tenants.id", ondelete="RESTRICT"), index=True
+    )
     unified_exception_id: Mapped[int] = mapped_column(
         ForeignKey("unified_exceptions.id", ondelete="CASCADE"), index=True
     )
@@ -203,7 +221,9 @@ class UnifiedExceptionRelation(Base):
     )
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    tenant_id: Mapped[int] = mapped_column(ForeignKey("tenants.id", ondelete="RESTRICT"), index=True)
+    tenant_id: Mapped[int] = mapped_column(
+        ForeignKey("tenants.id", ondelete="RESTRICT"), index=True
+    )
     source_unified_exception_id: Mapped[int] = mapped_column(
         ForeignKey("unified_exceptions.id", ondelete="CASCADE"), index=True
     )
@@ -211,7 +231,9 @@ class UnifiedExceptionRelation(Base):
         ForeignKey("unified_exceptions.id", ondelete="CASCADE"), index=True
     )
     relation_type: Mapped[str] = mapped_column(String(50), index=True)
-    created_by_user_id: Mapped[int] = mapped_column(ForeignKey("users.id", ondelete="RESTRICT"), index=True)
+    created_by_user_id: Mapped[int] = mapped_column(
+        ForeignKey("users.id", ondelete="RESTRICT"), index=True
+    )
     reason: Mapped[str | None] = mapped_column(String(500))
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
 
@@ -220,7 +242,9 @@ class UnifiedExceptionEvidence(Base):
     __tablename__ = "unified_exception_evidence"
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    tenant_id: Mapped[int] = mapped_column(ForeignKey("tenants.id", ondelete="RESTRICT"), index=True)
+    tenant_id: Mapped[int] = mapped_column(
+        ForeignKey("tenants.id", ondelete="RESTRICT"), index=True
+    )
     unified_exception_id: Mapped[int] = mapped_column(
         ForeignKey("unified_exceptions.id", ondelete="CASCADE"), index=True
     )
@@ -255,7 +279,9 @@ class ExceptionWorkflowRule(Base):
     initial_priority: Mapped[str] = mapped_column(String(20))
     initial_status: Mapped[str] = mapped_column(String(40))
     auto_assign_team_code: Mapped[str | None] = mapped_column(String(80))
-    auto_assign_user_id: Mapped[int | None] = mapped_column(ForeignKey("users.id", ondelete="SET NULL"))
+    auto_assign_user_id: Mapped[int | None] = mapped_column(
+        ForeignKey("users.id", ondelete="SET NULL")
+    )
     escalation_after_hours: Mapped[int | None] = mapped_column(Integer())
     resolution_requires_comment: Mapped[bool] = mapped_column(Boolean(), default=True)
     ignore_requires_comment: Mapped[bool] = mapped_column(Boolean(), default=True)
@@ -272,9 +298,7 @@ class ExceptionWorkflowRule(Base):
 
 class ExceptionServiceLevelPolicy(Base):
     __tablename__ = "exception_service_level_policies"
-    __table_args__ = (
-        UniqueConstraint("tenant_id", "code", name="uq_exception_sla_policy"),
-    )
+    __table_args__ = (UniqueConstraint("tenant_id", "code", name="uq_exception_sla_policy"),)
 
     id: Mapped[int] = mapped_column(primary_key=True)
     tenant_id: Mapped[int] = mapped_column(ForeignKey("tenants.id", ondelete="CASCADE"), index=True)
@@ -295,9 +319,7 @@ class ExceptionServiceLevelPolicy(Base):
 
 class ExceptionResolutionCode(Base):
     __tablename__ = "exception_resolution_codes"
-    __table_args__ = (
-        UniqueConstraint("tenant_id", "code", name="uq_exception_resolution_code"),
-    )
+    __table_args__ = (UniqueConstraint("tenant_id", "code", name="uq_exception_resolution_code"),)
 
     id: Mapped[int] = mapped_column(primary_key=True)
     tenant_id: Mapped[int] = mapped_column(ForeignKey("tenants.id", ondelete="CASCADE"), index=True)
@@ -313,7 +335,9 @@ class ExceptionSavedView(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     tenant_id: Mapped[int] = mapped_column(ForeignKey("tenants.id", ondelete="CASCADE"), index=True)
-    owner_user_id: Mapped[int] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), index=True)
+    owner_user_id: Mapped[int] = mapped_column(
+        ForeignKey("users.id", ondelete="CASCADE"), index=True
+    )
     name: Mapped[str] = mapped_column(String(120))
     description: Mapped[str | None] = mapped_column(Text())
     is_shared: Mapped[bool] = mapped_column(Boolean(), default=False, index=True)
@@ -330,7 +354,9 @@ class ExceptionNotificationEvent(Base):
     __tablename__ = "exception_notification_events"
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    tenant_id: Mapped[int] = mapped_column(ForeignKey("tenants.id", ondelete="RESTRICT"), index=True)
+    tenant_id: Mapped[int] = mapped_column(
+        ForeignKey("tenants.id", ondelete="RESTRICT"), index=True
+    )
     unified_exception_id: Mapped[int] = mapped_column(
         ForeignKey("unified_exceptions.id", ondelete="CASCADE"), index=True
     )
@@ -352,7 +378,9 @@ class ExceptionManagementRun(Base):
     __tablename__ = "exception_management_runs"
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    tenant_id: Mapped[int] = mapped_column(ForeignKey("tenants.id", ondelete="RESTRICT"), index=True)
+    tenant_id: Mapped[int] = mapped_column(
+        ForeignKey("tenants.id", ondelete="RESTRICT"), index=True
+    )
     pipeline_run_id: Mapped[int | None] = mapped_column(
         ForeignKey("pipeline_runs.id", ondelete="SET NULL"), index=True
     )
@@ -382,7 +410,9 @@ class ExceptionManagementReport(Base):
     )
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    tenant_id: Mapped[int] = mapped_column(ForeignKey("tenants.id", ondelete="RESTRICT"), index=True)
+    tenant_id: Mapped[int] = mapped_column(
+        ForeignKey("tenants.id", ondelete="RESTRICT"), index=True
+    )
     exception_management_run_id: Mapped[int] = mapped_column(
         ForeignKey("exception_management_runs.id", ondelete="CASCADE"), index=True
     )

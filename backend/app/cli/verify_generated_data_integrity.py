@@ -15,6 +15,7 @@ from app.models import (
     GeneratedRecordLink,
     GeneratedSourceFile,
     GenerationControlTotal,
+    PipelineRun,
     SourceFile,
     Tenant,
 )
@@ -45,6 +46,23 @@ def main() -> None:
         run = session.scalar(query.order_by(GeneratedDatasetRun.id.desc()))
         if run is None:
             raise SystemExit("No completed generated dataset found")
+        normalization = (
+            session.get(PipelineRun, run.normalization_run_id)
+            if run.normalization_run_id is not None
+            else None
+        )
+        if normalization is None or normalization.tenant_id != tenant.id:
+            failures.append("normalization input is missing or belongs to another tenant")
+        if not any(
+            (
+                run.source_bank_transaction_count,
+                run.source_credit_card_transaction_count,
+                run.source_payroll_run_count,
+            )
+        ):
+            failures.append("canonical input counts are zero")
+        if run.record_count <= 0:
+            failures.append("generated output count is zero")
         generated_files = session.scalars(
             select(GeneratedSourceFile).where(
                 GeneratedSourceFile.generated_dataset_run_id == run.id
@@ -141,8 +159,9 @@ def main() -> None:
         ).all()
         if any(link.tenant_id != tenant.id for link in links):
             failures.append("cross-tenant generated record link")
+        run_directory = f"run_{run.id:08d}_{run.input_fingerprint[:12]}"
         manifest_path = (
-            root / "manifests" / tenant.code / f"run_{run.id:08d}" / "generation_manifest.json"
+            root / "manifests" / tenant.code / run_directory / "generation_manifest.json"
         )
         if not manifest_path.is_file():
             failures.append("generation manifest missing")

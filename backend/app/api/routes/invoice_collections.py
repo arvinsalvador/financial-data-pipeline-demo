@@ -41,6 +41,7 @@ from app.services.invoice_collections_reconciliation import (
     InvoiceCollectionsError,
     InvoiceCollectionsReconciliationEngine,
 )
+from app.services.reconciliation_eligibility import InvoiceCollectionsEligibilityService
 
 router = APIRouter(prefix="/reconciliations/invoice-collections")
 group_router = APIRouter(prefix="/invoice-collections-groups")
@@ -154,6 +155,18 @@ def execute(
     )
     session.commit()
     return InvoiceCollectionsRunResponse.model_validate(run).model_copy(update={"no_op": no_op})
+
+
+@router.get("/eligibility")
+def eligibility(
+    session: Annotated[Session, Depends(get_db)],
+    settings: Annotated[Settings, Depends(get_settings)],
+    context: Annotated[
+        RequestContext,
+        Depends(require_permission("invoice_collections_reconciliation.view")),
+    ],
+) -> dict[str, Any]:
+    return InvoiceCollectionsEligibilityService(settings).evaluate(session, context.tenant.id)
 
 
 @router.get("", response_model=GeneratedPage)

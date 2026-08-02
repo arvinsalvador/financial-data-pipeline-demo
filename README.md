@@ -324,3 +324,19 @@ docker compose exec backend python -m app.cli.export_ar_aging --reconciliation-r
 See [docs/phase-11-invoice-collections-reconciliation.md](docs/phase-11-invoice-collections-reconciliation.md)
 for source precedence, formulas, matching policy, aging, permissions, API, CLI, reports, verification,
 and deliberate Phase 12 boundaries.
+
+## Phase 12.2: generated-data eligibility
+
+Generated Data now selects an explicit tenant-scoped normalization snapshot, explains missing
+prerequisites and blockers, displays canonical counts, preserves deterministic no-op behavior, and
+uses fingerprinted output directories that remain safe when the demo database is reset.
+
+```bash
+docker compose exec backend python -m app.cli.check_generation_eligibility
+docker compose exec backend python -m app.cli.generate_demo_sources --normalization-run-id 20
+docker compose exec backend python -m app.cli.verify_generated_data_integrity --run-id 5
+```
+
+See [docs/phase-12-2-generated-data-eligibility.md](docs/phase-12-2-generated-data-eligibility.md)
+for the upload-to-generation contract, required and optional canonical inputs, APIs, permissions,
+tenant isolation, reset-safe paths, diagnostics, and troubleshooting.
